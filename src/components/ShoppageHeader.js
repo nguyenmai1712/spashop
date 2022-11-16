@@ -77,14 +77,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const breadcrumbsList = {
-  list: [
-    { text: 'Home', link: '/home' },
-  ],
-  active: 'Products',
-};
-
-function ShoppageHeader({ onHorizontal, amountOfProduct }) {
+function ShoppageHeader({ onHorizontal, amountOfProduct, breadcrumbsList, title }) {
   const classes = useStyles();
   const { value: sortByValue, onChange: setSortBy } = useInput("default");
   const [isHorizontal, setHorizontal] = React.useState(false);
@@ -104,7 +97,7 @@ function ShoppageHeader({ onHorizontal, amountOfProduct }) {
           marginBottom: 10,
         }}
       >
-        <Grid item className={classes.headerTitle}>Archives: Products</Grid>
+        <Grid item className={classes.headerTitle}>{title}</Grid>
         <Grid item className={classes.breadCumbs}>
           <BreadcrumbCustom breadcrumbsList={breadcrumbsList} />
         </Grid>
@@ -123,25 +116,32 @@ function ShoppageHeader({ onHorizontal, amountOfProduct }) {
         <Grid item
           className={classes.buttonContainer}
         >
-          <Button
-            onClick={() => handleSetHorizontal(false)}
-            variant="contained"
-            className={clsx(classes.button, {
-              [classes.active]: !isHorizontal,
-            })}
-          >
-            <AppsIcon />
-          </Button>
+          {
+            onHorizontal && (
+              <>
+                <Button
+                  onClick={() => handleSetHorizontal(false)}
+                  variant="contained"
+                  className={clsx(classes.button, {
+                    [classes.active]: !isHorizontal,
+                  })}
+                >
+                  <AppsIcon />
+                </Button>
 
-          <Button
-            onClick={() => handleSetHorizontal(true)}
-            variant="contained"
-            className={clsx(classes.button, {
-              [classes.active]: isHorizontal,
-            })}
-          >
-            <MenuIcon />
-          </Button>
+                <Button
+                  onClick={() => handleSetHorizontal(true)}
+                  variant="contained"
+                  className={clsx(classes.button, {
+                    [classes.active]: isHorizontal,
+                  })}
+                >
+                  <MenuIcon />
+                </Button>
+              </>
+            )
+          }
+          
 
           <Select
             value={sortByValue}

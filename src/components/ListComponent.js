@@ -33,13 +33,13 @@ const useStyles = makeStyles((theme) => ({
       fontWeight: 400,
       color: '#686868',
       '&:hover': {
-        color: '#f4a51c',
+        color: '#fb6f92',
       }
     },
     '& a': {
       textDecoration: 'none',
       '&:hover': {
-        color: '#f4a51c',
+        color: '#fb6f92',
       }
     },
   },
@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
 
   active: {
     '& .MuiListItemText-primary': {
-      color: '#f4a51c',
+      color: '#fb6f92',
     },
   },
 
@@ -110,7 +110,7 @@ function ListComponent({ name, data, location }) {
           button
           onClick={handleClick}
           style={{
-            background: '#f4a51c',
+            background: '#fb6f92',
             borderRadius: 4,
           }}
         >

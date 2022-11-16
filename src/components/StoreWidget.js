@@ -22,11 +22,11 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
   },
   icon: {
-    fontSize: 50,
+    fontSize: 40,
     [theme.breakpoints.down("md")]: {
       fontSize: 30,
     },
-    color: '#f4a51c',
+    color: '#fb6f92',
   },
   widget: {
     padding: '15px 5px',
@@ -63,8 +63,8 @@ function StoreWidget() {
             <StarBorderIcon className={classes.icon} />
           </Grid>
           <Grid item xs={8} lg={8}>
-            <Typography className={classes.primaryText}>Join risk free</Typography>
-            <Typography className={classes.secondaryText}>30 days refunds</Typography>
+            <Typography className={classes.primaryText}>Chất lượng</Typography>
+            <Typography className={classes.secondaryText}>Luôn được đánh giá cao</Typography>
           </Grid>
         </Grid>
         <Grid
@@ -78,8 +78,8 @@ function StoreWidget() {
             <VerifiedUserIcon className={classes.icon} />
           </Grid>
           <Grid item xs={8} lg={8}>
-            <Typography className={classes.primaryText}>100% Safe</Typography>
-            <Typography className={classes.secondaryText}>Secure Shopping</Typography>
+            <Typography className={classes.primaryText}>100% An Toàn</Typography>
+            <Typography className={classes.secondaryText}>Sản phẩm an toàn</Typography>
           </Grid>
         </Grid>
         <Grid
@@ -93,8 +93,8 @@ function StoreWidget() {
             <LocalCafeIcon className={classes.icon} />
           </Grid>
           <Grid item xs={8} lg={8}>
-            <Typography className={classes.primaryText}>24x7 Support</Typography>
-            <Typography className={classes.secondaryText}>Online 24 hours</Typography>
+            <Typography className={classes.primaryText}>Hỗ trợ 24x7</Typography>
+            <Typography className={classes.secondaryText}>Hỗ trợ tận tình</Typography>
           </Grid>
         </Grid>
         <Grid
@@ -108,8 +108,8 @@ function StoreWidget() {
             <ShopIcon className={classes.icon} />
           </Grid>
           <Grid item xs={8} lg={8}>
-            <Typography className={classes.primaryText}>Best Offers</Typography>
-            <Typography className={classes.secondaryText}>Grab now</Typography>
+            <Typography className={classes.primaryText}>Liệu trình hấp dẫn</Typography>
+            <Typography className={classes.secondaryText}>Lên lịch ngay </Typography>
           </Grid>
         </Grid>
         <Grid
@@ -124,7 +124,7 @@ function StoreWidget() {
           </Grid>
           <Grid item xs={8} lg={8}>
             <Typography className={classes.primaryText}>Free Shipping</Typography>
-            <Typography className={classes.secondaryText}>On all order over</Typography>
+            <Typography className={classes.secondaryText}>Cho mọi sản phẩm</Typography>
           </Grid>
         </Grid>
       </Grid>

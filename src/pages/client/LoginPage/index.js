@@ -17,7 +17,7 @@ import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import facebookIcon from 'assets/icons/facebook.png';
 import googleIcon from 'assets/icons/google.png';
 import twitterIcon from 'assets/icons/twitter.png';
-import background from 'assets/images/background.jpg';
+import background from 'assets/images/loginbg.jpg';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
@@ -70,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
   backButton: {
     position: 'absolute',
     textTransform: 'none',
-    backgroundColor: '#f4a51c',
+    backgroundColor: '#fb6f92',
     color: 'white',
     borderRadius: 30,
     top: 10,
@@ -78,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
     zIndex: 9999,
     fontWeight: 600,
     '&:hover': {
-      backgroundColor: '#f4a51c',
+      backgroundColor: '#fb6f92',
     },
     '&.Mui-disabled': {
       backgroundColor: '#ddd',
@@ -97,15 +97,15 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     height: 40,
     background: 'white',
-    color: '#f4a51c',
+    color: '#fb6f92',
     '& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
       borderColor: '#E2E8F0',
     },
     '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-      borderColor: '#f4a51c',
+      borderColor: '#fb6f92',
     },
     '&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
-      borderColor: '#f4a51c',
+      borderColor: '#fb6f92',
     },
   },
 
@@ -126,10 +126,10 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 16,
     fontWeight: 600,
     color: 'white',
-    border: 'solid 2px orange',
-    backgroundColor: '#f4a51c',
+    border: 'solid 2px white',
+    backgroundColor: '#fb6f92',
     '&:hover': {
-      backgroundColor: '#f9a30d',
+      backgroundColor: '#ffb3c6',
     }
   },
 
@@ -150,11 +150,12 @@ const useStyles = makeStyles((theme) => ({
     color: '#0096C7',
     // border: 'solid 1px #0096C7',
     '&:hover': {
-      // backgroundColor: '#f9a30d',
+      // backgroundColor: '#ffb3c6',
     }
   },
 
   remembermeContainer: {
+    width: '100%',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
@@ -194,7 +195,7 @@ const CustomCheckbox = withStyles({
   root: {
     color: '#686868',
     '&$checked': {
-      color: '#f4a51c',
+      color: '#fb6f92',
     },
   },
   checked: {},
@@ -223,16 +224,16 @@ function Login() {
           className={classes.backButton}
           onClick={() => handleNavigate("/home")}
         >
-          Home
+          Trang chủ
         </Button>
-        <Typography className={classes.title}> Login </Typography>
+        <Typography className={classes.title}> Đăng nhập </Typography>
         <div className={classes.inputContainer}>
-          <Typography className={classes.inputName}> Email/Phone Number </Typography>
+          <Typography className={classes.inputName}> Email/Số điện thoại</Typography>
           <TextField
             size="small"
             id="outlined-start-adornment"
             className={classes.textField}
-            placeholder="Type your Email/Phone Number"
+            placeholder="Nhập tài khoản"
             InputProps={{
               startAdornment: <InputAdornment position="start"><PersonOutlineIcon /></InputAdornment>,
             }}
@@ -240,13 +241,13 @@ function Login() {
           />
         </div>
         <div className={classes.inputContainer}>
-          <Typography className={classes.inputName}> Password </Typography>
+          <Typography className={classes.inputName}> Mật khẩu </Typography>
           <TextField
             size="small"
             type={clearPassword ? "text" : "password"}
             id="outlined-start-adornment"
             className={classes.textField}
-            placeholder="Type your password"
+            placeholder="Nhập mật khẩu"
             InputProps={{
               startAdornment: <InputAdornment position="start">
                 <LockOpenIcon />
@@ -276,21 +277,21 @@ function Login() {
                 name="checkedG"
               />
             }
-            label="Remember me"
+            label="Ghi nhớ tôi"
           />
-          <Typography className={classes.forgotPassword}> Forgot password?</Typography>
+          <Typography className={classes.forgotPassword}> Quên mật khẩu?</Typography>
         </div>
 
         <div className={classes.inputContainer}>
           <Button
             className={classes.loginBtn}
           >
-            Sign In
+            Đăng nhập
           </Button>
         </div>
 
         <div className={classes.inputContainer}>
-          <Typography className={classes.optionTitle}>Login with</Typography>
+          <Typography className={classes.optionTitle}>Đăng nhập bằng</Typography>
           <div className={classes.socialButtonContainer}>
             <IconButton>
               <Avatar src={facebookIcon} />
@@ -308,7 +309,7 @@ function Login() {
           {/* <Typography className={classes.optionTitle}>Or Sign Up Using</Typography> */}
           <div className={classes.socialButtonContainer}>
             <Button className={classes.signupBtn} onClick={() => handleNavigate("/signup")}>
-              Sign Up
+              Đăng kí
             </Button>
           </div>
         </div>

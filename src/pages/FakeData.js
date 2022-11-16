@@ -1,29 +1,57 @@
-import HeadPhoneStudio3 from '../assets/images/product1.png';
-import Cannon80DEOS from '../assets/images/product3.png';
-import AppleSmartWatch from '../assets/images/product12.png';
-import SecurityCamera from '../assets/images/product16.png';
-import AppleIpad3 from '../assets/images/product17.png';
-import XiaomiSmartWatch from '../assets/images/product18.png';
-import SonyHeadPhone from '../assets/images/product21.png';
-import SurfaceLaptop from '../assets/images/product23.png';
-import InfraredSecurityCamera from '../assets/images/product24.png';
-import TinyWatchDigital from '../assets/images/product25.png';
-import JPLSpaceSpeaker from '../assets/images/product27.png';
-import RazorLaptop from '../assets/images/product2.png';
-import FastImageCanonCamera from '../assets/images/product4.png';
-import AppleTVBox from '../assets/images/product7.png';
-import AppleMacbookPro from '../assets/images/product8.png';
-import MotorolaPhone from '../assets/images/product22.png';
-import Speaker from '../assets/images/products11.png';
+import product1 from "assets/images/home_beauty_salon_shop_1.jpg";
+import product2 from "assets/images/home_beauty_salon_shop_2.jpg";
+import product3 from "assets/images/home_beauty_salon_shop_3.jpg";
+import product4 from "assets/images/home_beauty_salon_shop_4.jpg";
+import product5 from "assets/images/home_beauty_salon_shop_5.jpg";
+import product6 from "assets/images/home_beauty_salon_shop_6.jpg";
+import product7 from "assets/images/home_beauty_salon_shop_7.jpg";
+import product8 from "assets/images/home_beauty_salon_shop_8.jpg";
+import product9 from "assets/images/home_beauty_salon_shop_9.jpg";
+import product10 from "assets/images/home_beauty_salon_shop_10.jpg";
+import product11 from "assets/images/home_beauty_salon_shop_11.jpg";
+import product12 from "assets/images/home_beauty_salon_shop_12.jpg";
+
+import category1 from 'assets/images/category1.jpeg';
+import category2 from 'assets/images/category2.jpg';
+import category3 from 'assets/images/category3.jpg';
+import category4 from 'assets/images/category4.jpg';
+import category5 from 'assets/images/category5.jpg';
+
+import AcUnitIcon from '@material-ui/icons/AcUnit';
+import BubbleChartIcon from '@material-ui/icons/BubbleChart';
+import CameraIcon from '@material-ui/icons/Camera';
+import DevicesOtherIcon from '@material-ui/icons/DevicesOther';
+import HomeWorkIcon from '@material-ui/icons/HomeWork';
+import LaptopWindowsIcon from '@material-ui/icons/LaptopWindows';
+import LocalMallIcon from '@material-ui/icons/LocalMall';
+import NotInterestedIcon from '@material-ui/icons/NotInterested';
+import SmartphoneIcon from '@material-ui/icons/Smartphone';
+import SpeakerIcon from '@material-ui/icons/Speaker';
+import SportsEsportsIcon from '@material-ui/icons/SportsEsports';
+import WatchIcon from '@material-ui/icons/Watch';
+import { createEventId, todayStr } from "Utils/Fullcalendar";
+
+export const INITIAL_EVENTS = [
+  {
+    id: createEventId(),
+    title: 'All-day event',
+    start: todayStr
+  },
+  {
+    id: createEventId(),
+    title: 'Timed event',
+    start: todayStr + 'T12:00:00'
+  }
+]
 
 export const productsData = [
   {
     id: 1,
-    name: "Headphone Studio3",
-    oldPrice: 412.02,
-    newPrice: 399.99,
+    name: "REPLENISHING HYDRATOR",
+    oldPrice: 40.00,
+    newPrice: 32.50,
     description: "Nulla finibus massa non maximus rhoncus. Duis ut ligula et nibh dictum eleifend vel non massa. Aliquam molestie, urna at pellentesque vehicula, sem justo condimentum purus, quis sodales dolor urna ut lorem. Aliquam erat volutpat. Sed ac ligula quis lacus consequat fringilla laoreet quis purus.",
-    mainImage: HeadPhoneStudio3,
+    mainImage: product1,
     extraImage1: "",
     extraImage2: "",
     extraImage3: "",
@@ -31,35 +59,35 @@ export const productsData = [
     color: ["red", "blue", "white", "black"],
     amount: 10,
     rating: 2,
-    category: ["Accessories", "Audio", "OnSale"],
+    category: ["Body", "OnSale"],
     status: ["On sale"],
-    tags: ["music", "sound", "speaker"],
+    tags: ["Blushers", "Creams"],
   },
   {
     id: 2,
-    name: "Canon Camera 80EOS",
-    oldPrice: 412.02,
-    newPrice: 399.99,
+    name: "BLENDED FACE POWDER",
+    oldPrice: "",
+    newPrice: 40.00,
     description: "Nulla finibus massa non maximus rhoncus. Duis ut ligula et nibh dictum eleifend vel non massa. Aliquam molestie, urna at pellentesque vehicula, sem justo condimentum purus, quis sodales dolor urna ut lorem. Aliquam erat volutpat. Sed ac ligula quis lacus consequat fringilla laoreet quis purus.",
-    mainImage: Cannon80DEOS,
-    extraImage1: HeadPhoneStudio3,
-    extraImage2: SecurityCamera,
+    mainImage: product2,
+    extraImage1: "",
+    extraImage2: "",
     extraImage3: "",
     view: 100,
     color: ["blue", "black"],
     amount: 10,
     rating: 3,
-    category: ["Camera", "New Arrival"],
+    category: ["MakeUp", "New Arrival"],
     status: ["On sale"],
-    tags: ["Camera"],
+    tags: ["Lotions", "Tanning"],
   },
   {
     id: 3,
-    name: "Apple SmartWatch 3 Series",
-    oldPrice: 412.02,
-    newPrice: 399.99,
-    description: "Nulla finibus massa non maximus rhoncus. Duis ut ligula et nibh dictum eleifend vel non massa. Aliquam molestie, urna at pellentesque vehicula, sem justo condimentum purus, quis sodales dolor urna ut lorem. Aliquam erat volutpat. Sed ac ligula quis lacus consequat fringilla laoreet quis purus.",
-    mainImage: AppleSmartWatch,
+    name: "MAKEUP BROAD SPECTRUM",
+    oldPrice: 60.02,
+    newPrice: 30.99,
+    description: "Objectively innovate empowered manufactured products whereas parallel platforms. Holisticly predominate extensible testing procedures for reliable supply chains. Dramatically engage top-line web services.",
+    mainImage: product3,
     extraImage1: "",
     extraImage2: "",
     extraImage3: "",
@@ -67,17 +95,17 @@ export const productsData = [
     color: ["black"],
     amount: 10,
     rating: 4,
-    category: ["Watches", "New Arrival"],
+    category: ["Suncare"],
     status: [],
-    tags: ["Camera"],
+    tags: ["Creams", "Lotions"],
   },
   {
     id: 4,
-    name: "Security Camera 360Deg",
-    oldPrice: 412.02,
-    newPrice: 399.99,
+    name: "CREAM-MOUSSE CLEANSER",
+    oldPrice: "",
+    newPrice: 20.00,
     description: "Nulla finibus massa non maximus rhoncus. Duis ut ligula et nibh dictum eleifend vel non massa. Aliquam molestie, urna at pellentesque vehicula, sem justo condimentum purus, quis sodales dolor urna ut lorem. Aliquam erat volutpat. Sed ac ligula quis lacus consequat fringilla laoreet quis purus.",
-    mainImage: SecurityCamera,
+    mainImage: product4,
     extraImage1: "",
     extraImage2: "",
     extraImage3: "",
@@ -85,17 +113,17 @@ export const productsData = [
     color: ["black"],
     amount: 10,
     rating: 5,
-    category: ["Camera", "Featured"],
+    category: ["Skincare", "Featured"],
     status: [],
-    tags: ["Camera"],
+    tags: ["Blushers", "Tanning"],
   },
   {
     id: 5,
-    name: "Apple Ipad3 2020",
-    oldPrice: 412.02,
-    newPrice: 399.99,
+    name: "ONE MARTINE",
+    oldPrice: "",
+    newPrice: 20.00,
     description: "Nulla finibus massa non maximus rhoncus. Duis ut ligula et nibh dictum eleifend vel non massa. Aliquam molestie, urna at pellentesque vehicula, sem justo condimentum purus, quis sodales dolor urna ut lorem. Aliquam erat volutpat. Sed ac ligula quis lacus consequat fringilla laoreet quis purus.",
-    mainImage: AppleIpad3,
+    mainImage: product5,
     extraImage1: "",
     extraImage2: "",
     extraImage3: "",
@@ -103,17 +131,17 @@ export const productsData = [
     color: ["black"],
     amount: 10,
     rating: 5,
-    category: ["Apple", "On sale"],
-    status: ["On sale"],
-    tags: ["Apple"],
+    category: ["Skincare", "Featured"],
+    status: [],
+    tags: ["Blushers", "Tanning"],
   },
   {
     id: 6,
-    name: "Xiaomi SmartWatch Mini 2022",
-    oldPrice: 412.02,
-    newPrice: 399.99,
+    name: "ONE MARTINE",
+    oldPrice: "",
+    newPrice: 20.00,
     description: "Nulla finibus massa non maximus rhoncus. Duis ut ligula et nibh dictum eleifend vel non massa. Aliquam molestie, urna at pellentesque vehicula, sem justo condimentum purus, quis sodales dolor urna ut lorem. Aliquam erat volutpat. Sed ac ligula quis lacus consequat fringilla laoreet quis purus.",
-    mainImage: XiaomiSmartWatch,
+    mainImage: product6,
     extraImage1: "",
     extraImage2: "",
     extraImage3: "",
@@ -121,35 +149,17 @@ export const productsData = [
     color: ["black"],
     amount: 10,
     rating: 5,
-    category: ["SmartWatch", "New Arrival"],
-    status: ["On sale"],
-    tags: ["SmartWatch"],
+    category: ["Skincare", "Featured"],
+    status: [],
+    tags: ["Blushers", "Tanning"],
   },
   {
     id: 7,
-    name: "Sony Headphone Three Demension Sound",
-    oldPrice: 412.02,
-    newPrice: 399.99,
+    name: "TWO MARTINE",
+    oldPrice: 200.00,
+    newPrice: 190.00,
     description: "Nulla finibus massa non maximus rhoncus. Duis ut ligula et nibh dictum eleifend vel non massa. Aliquam molestie, urna at pellentesque vehicula, sem justo condimentum purus, quis sodales dolor urna ut lorem. Aliquam erat volutpat. Sed ac ligula quis lacus consequat fringilla laoreet quis purus.",
-    mainImage: SonyHeadPhone,
-    extraImage1: "",
-    extraImage2: "",
-    extraImage3: "",
-    view: 100,
-    color: ["black"],
-    amount: 10,
-    rating: 0,
-    category: ["Audio", "New Arrival", "Accessories"],
-    status: ["On sale"],
-    tags: ["SmartWatch"],
-  },
-  {
-    id: 8,
-    name: "Microsoft Surface Laptop 3",
-    oldPrice: 412.02,
-    newPrice: 399.99,
-    description: "Nulla finibus massa non maximus rhoncus. Duis ut ligula et nibh dictum eleifend vel non massa. Aliquam molestie, urna at pellentesque vehicula, sem justo condimentum purus, quis sodales dolor urna ut lorem. Aliquam erat volutpat. Sed ac ligula quis lacus consequat fringilla laoreet quis purus.",
-    mainImage: SurfaceLaptop,
+    mainImage: product7,
     extraImage1: "",
     extraImage2: "",
     extraImage3: "",
@@ -157,170 +167,413 @@ export const productsData = [
     color: ["black"],
     amount: 10,
     rating: 5,
-    category: ["ComputerAndLaptop", "New Arrival",],
-    status: ["On sale"],
-    tags: ["SmartWatch"],
+    category: ["Skincare", "Featured"],
+    status: [],
+    tags: ["Blushers", "Tanning"],
   },
+
   {
-    id: 9,
-    name: "Infared Security Camera",
-    oldPrice: 412.02,
-    newPrice: 399.99,
+    id: 8,
+    name: "THREE MARTINE",
+    oldPrice: "",
+    newPrice: 25.00,
     description: "Nulla finibus massa non maximus rhoncus. Duis ut ligula et nibh dictum eleifend vel non massa. Aliquam molestie, urna at pellentesque vehicula, sem justo condimentum purus, quis sodales dolor urna ut lorem. Aliquam erat volutpat. Sed ac ligula quis lacus consequat fringilla laoreet quis purus.",
-    mainImage: InfraredSecurityCamera,
+    mainImage: product8,
     extraImage1: "",
     extraImage2: "",
     extraImage3: "",
     view: 100,
     color: ["black"],
     amount: 10,
-    rating: 3,
-    category: ["Cameras", "New Arrival",],
+    rating: 5,
+    category: ["Skincare", "Featured"],
+    status: [],
+    tags: ["Blushers", "Tanning"],
+  },
+
+  {
+    id: 9,
+    name: "FOUR MARTINE",
+    oldPrice: "",
+    newPrice: 18.00,
+    description: "Nulla finibus massa non maximus rhoncus. Duis ut ligula et nibh dictum eleifend vel non massa. Aliquam molestie, urna at pellentesque vehicula, sem justo condimentum purus, quis sodales dolor urna ut lorem. Aliquam erat volutpat. Sed ac ligula quis lacus consequat fringilla laoreet quis purus.",
+    mainImage: product9,
+    extraImage1: "",
+    extraImage2: "",
+    extraImage3: "",
+    view: 100,
+    color: ["black"],
+    amount: 10,
+    rating: 5,
+    category: ["Skincare", "Featured"],
+    status: [],
+    tags: ["Blushers", "Tanning"],
+  },
+
+  {
+    id: 10,
+    name: "FIVE MARTINE",
+    oldPrice: "",
+    newPrice: 20.00,
+    description: "Nulla finibus massa non maximus rhoncus. Duis ut ligula et nibh dictum eleifend vel non massa. Aliquam molestie, urna at pellentesque vehicula, sem justo condimentum purus, quis sodales dolor urna ut lorem. Aliquam erat volutpat. Sed ac ligula quis lacus consequat fringilla laoreet quis purus.",
+    mainImage: product10,
+    extraImage1: "",
+    extraImage2: "",
+    extraImage3: "",
+    view: 100,
+    color: ["black"],
+    amount: 10,
+    rating: 5,
+    category: ["Skincare", "Featured"],
+    status: [],
+    tags: ["Blushers", "Tanning"],
+  },
+  
+
+]
+
+export const popularData = [
+  {
+    id: 1,
+    name: "REPLENISHING HYDRATOR",
+    oldPrice: 40.11,
+    newPrice: 32.50,
+    description: "Nulla finibus massa non maximus rhoncus. Duis ut ligula et nibh dictum eleifend vel non massa. Aliquam molestie, urna at pellentesque vehicula, sem justo condimentum purus, quis sodales dolor urna ut lorem. Aliquam erat volutpat. Sed ac ligula quis lacus consequat fringilla laoreet quis purus.",
+    mainImage: product1,
+    extraImage1: "",
+    extraImage2: "",
+    extraImage3: "",
+    view: 1,
+    color: ["red", "blue", "white", "black"],
+    amount: 10,
+    rating: 2,
+    category: ["Body", "OnSale"],
     status: ["On sale"],
-    tags: ["Cameras"],
+    tags: ["Blushers", "Creams"],
+  },
+  {
+    id: 2,
+    name: "BLENDED FACE POWDER",
+    oldPrice: "",
+    newPrice: 40.534,
+    description: "Nulla finibus massa non maximus rhoncus. Duis ut ligula et nibh dictum eleifend vel non massa. Aliquam molestie, urna at pellentesque vehicula, sem justo condimentum purus, quis sodales dolor urna ut lorem. Aliquam erat volutpat. Sed ac ligula quis lacus consequat fringilla laoreet quis purus.",
+    mainImage: product2,
+    extraImage1: "",
+    extraImage2: "",
+    extraImage3: "",
+    view: 100,
+    color: ["blue", "black"],
+    amount: 10,
+    rating: 3,
+    category: ["MakeUp", "New Arrival"],
+    status: ["On sale"],
+    tags: ["Lotions", "Tanning"],
+  },
+  {
+    id: 3,
+    name: "MAKEUP BROAD SPECTRUM",
+    oldPrice: 60.02,
+    newPrice: 30.99,
+    description: "Objectively innovate empowered manufactured products whereas parallel platforms. Holisticly predominate extensible testing procedures for reliable supply chains. Dramatically engage top-line web services.",
+    mainImage: product3,
+    extraImage1: "",
+    extraImage2: "",
+    extraImage3: "",
+    view: 100,
+    color: ["black"],
+    amount: 10,
+    rating: 4,
+    category: ["Suncare"],
+    status: [],
+    tags: ["Creams", "Lotions"],
+  },
+  {
+    id: 4,
+    name: "CREAM-MOUSSE CLEANSER",
+    oldPrice: 30.45,
+    newPrice: 20.01,
+    description: "Nulla finibus massa non maximus rhoncus. Duis ut ligula et nibh dictum eleifend vel non massa. Aliquam molestie, urna at pellentesque vehicula, sem justo condimentum purus, quis sodales dolor urna ut lorem. Aliquam erat volutpat. Sed ac ligula quis lacus consequat fringilla laoreet quis purus.",
+    mainImage: product4,
+    extraImage1: "",
+    extraImage2: "",
+    extraImage3: "",
+    view: 100,
+    color: ["black"],
+    amount: 10,
+    rating: 5,
+    category: ["Skincare", "Featured"],
+    status: [],
+    tags: ["Blushers", "Tanning"],
+  },
+  {
+    id: 5,
+    name: "ONE MARTINE",
+    oldPrice: 33.4,
+    newPrice: 24.10,
+    description: "Nulla finibus massa non maximus rhoncus. Duis ut ligula et nibh dictum eleifend vel non massa. Aliquam molestie, urna at pellentesque vehicula, sem justo condimentum purus, quis sodales dolor urna ut lorem. Aliquam erat volutpat. Sed ac ligula quis lacus consequat fringilla laoreet quis purus.",
+    mainImage: product5,
+    extraImage1: "",
+    extraImage2: "",
+    extraImage3: "",
+    view: 100,
+    color: ["black"],
+    amount: 10,
+    rating: 5,
+    category: ["Skincare", "Featured"],
+    status: [],
+    tags: ["Blushers", "Tanning"],
+  },
+]
+
+export const menuData = [
+  {
+    id: 1,
+    label: 'Trang chủ',
+    link: '/home',
+    subMenu: [],
+  },
+  {
+    id: 2,
+    label: 'Blog',
+    link: '/blog',
+    subMenu: [],
+  },
+  {
+    id: 3,
+    label: 'Cửa hàng',
+    link: '/shop-page',
+    subMenu: [],
+  },
+  {
+    id: 4,
+    label: 'Chọn Liệu trình',
+    link: '/treatments',
+    subMenu: [],
+  },
+  {
+    id: 6,
+    label: "Liên hệ",
+    link: '/contact-us',
+    subMenu: [],
+  },
+  {
+    id: 7,
+    label: 'Mua gói dịch vụ',
+    link: '/services',
+    subMenu: [
+      {
+        id: 1,
+        label: "Gói bạc 236, 000đ/ tháng",
+        link: "/services/silver"
+      },
+      {
+        id: 2,
+        label: "Gói bạc 476, 000đ/ tháng",
+        link: "/services/Gold"
+      },
+      {
+        id: 3,
+        label: "Gói bạc 1,196, 000đ/ tháng",
+        link: "/services/diamond"
+      },
+    ],
+  },
+]
+
+export const categoryData = [
+  {
+    id: 1,
+    label: "Uncategoried",
+    icon: <NotInterestedIcon />,
+    link: '/category/uncategoried',
+    subMenu: [],
+  },
+  {
+    id: 2,
+    label: "Accessories",
+    icon: <DevicesOtherIcon />,
+    link: '/category/accessories',
+    subMenu: [],
+  },
+  {
+    id: 3,
+    label: "Cameras",
+    icon: <CameraIcon />,
+    link: '/category/cameras',
+    subMenu: [
+      {
+        id: 1,
+        label: 'Security Camera',
+        link: '/category/cameras/security-camera',
+      },
+      {
+        id: 2,
+        label: 'Gopro',
+        link: '/category/cameras/gopro'
+      },
+    ],
+  },
+  {
+    id: 4,
+    label: "Computer&Laptop",
+    icon: <LaptopWindowsIcon />,
+    link: '/category/computer-laptop',
+    subMenu: [],
+  },
+  {
+    id: 5,
+    label: "New Arrival",
+    icon: <AcUnitIcon />,
+    link: '/category/new-rrival',
+    subMenu: [],
+  },
+  {
+    id: 6,
+    label: "Most Popular",
+    icon: <BubbleChartIcon />,
+    link: '/category/most-popular',
+    subMenu: [],
+  },
+  {
+    id: 7,
+    label: "On Sale",
+    icon: <LocalMallIcon />,
+    link: '/category/on-sale',
+    subMenu: [],
   },
   {
     id: 10,
-    name: "Modern Digital Watches",
-    oldPrice: 412.02,
-    newPrice: 399.99,
-    description: "Nulla finibus massa non maximus rhoncus. Duis ut ligula et nibh dictum eleifend vel non massa. Aliquam molestie, urna at pellentesque vehicula, sem justo condimentum purus, quis sodales dolor urna ut lorem. Aliquam erat volutpat. Sed ac ligula quis lacus consequat fringilla laoreet quis purus.",
-    mainImage: TinyWatchDigital,
-    extraImage1: "",
-    extraImage2: "",
-    extraImage3: "",
-    view: 100,
-    color: ["black"],
-    amount: 10,
-    rating: 5,
-    category: ["Watches", "New Arrival",],
-    status: ["On sale"],
-    tags: ["Watches"],
+    label: "Audio",
+    icon: <SpeakerIcon />,
+    link: '/category/audio',
+    subMenu: [
+      {
+        id: 1,
+        label: "Headphones",
+        link: '/category/audio/headphones',
+      },
+      {
+        id: 2,
+        label: "Speaker",
+        link: '/category/audio/speaker',
+
+      },
+    ],
   },
   {
+    id: 8,
+    label: "Smartphone",
+    icon: <SmartphoneIcon />,
+    link: '/category/smartphone',
+    subMenu: [],
+  },
+  {
+    id: 9,
+    label: "Video Games",
+    icon: <SportsEsportsIcon />,
+    link: '/category/video-games',
+    subMenu: [],
+  },
+
+  {
     id: 11,
-    name: "JPL Space Speaker 3D",
-    oldPrice: 412.02,
-    newPrice: 399.99,
-    description: "Nulla finibus massa non maximus rhoncus. Duis ut ligula et nibh dictum eleifend vel non massa. Aliquam molestie, urna at pellentesque vehicula, sem justo condimentum purus, quis sodales dolor urna ut lorem. Aliquam erat volutpat. Sed ac ligula quis lacus consequat fringilla laoreet quis purus.",
-    mainImage: JPLSpaceSpeaker,
-    extraImage1: "",
-    extraImage2: "",
-    extraImage3: "",
-    view: 100,
-    color: ["black"],
-    amount: 10,
-    rating: 2,
-    category: ["Watches", "New Arrival",],
-    status: ["On sale"],
-    tags: ["Watches"],
+    label: "Home Appliances",
+    icon: <HomeWorkIcon />,
+    link: '/category/home-appliances',
+    subMenu: [],
   },
   {
     id: 12,
-    name: "Razor Laptop CoreI9 10800K",
-    oldPrice: 412.02,
-    newPrice: 399.99,
-    description: "Nulla finibus massa non maximus rhoncus. Duis ut ligula et nibh dictum eleifend vel non massa. Aliquam molestie, urna at pellentesque vehicula, sem justo condimentum purus, quis sodales dolor urna ut lorem. Aliquam erat volutpat. Sed ac ligula quis lacus consequat fringilla laoreet quis purus.",
-    mainImage: RazorLaptop,
-    extraImage1: "",
-    extraImage2: "",
-    extraImage3: "",
-    view: 100,
-    color: ["black"],
-    amount: 10,
-    rating: 5,
-    category: ["ComputorAndLaptop", "New Arrival",],
-    status: ["Featured"],
-    tags: ["laptop"],
+    label: "Watches",
+    icon: <WatchIcon />,
+    link: '/category/watches',
+    subMenu: [
+      {
+        id: 1,
+        label: "Smart Watch",
+        link: '/category/watches/smart-watch',
+      },
+    ],
+  },
+];
+
+export const tagCloudData = [
+  {
+    id: 1,
+    label: "Da mặt",
+    link: "/"
   },
   {
-    id: 13,
-    name: "Fast Image Canon Camera",
-    oldPrice: 412.02,
-    newPrice: 399.99,
-    description: "Nulla finibus massa non maximus rhoncus. Duis ut ligula et nibh dictum eleifend vel non massa. Aliquam molestie, urna at pellentesque vehicula, sem justo condimentum purus, quis sodales dolor urna ut lorem. Aliquam erat volutpat. Sed ac ligula quis lacus consequat fringilla laoreet quis purus.",
-    mainImage: FastImageCanonCamera,
-    extraImage1: "",
-    extraImage2: "",
-    extraImage3: "",
-    view: 100,
-    color: ["black"],
-    amount: 10,
-    rating: 5,
-    category: ["Camera", "New Arrival",],
-    status: ["Featured"],
-    tags: ["laptop"],
+    id: 2,
+    label: "Trị mụn",
+    link: "/"
   },
   {
-    id: 14,
-    name: "Apple TV Box",
-    oldPrice: 412.02,
-    newPrice: 399.99,
-    description: "Nulla finibus massa non maximus rhoncus. Duis ut ligula et nibh dictum eleifend vel non massa. Aliquam molestie, urna at pellentesque vehicula, sem justo condimentum purus, quis sodales dolor urna ut lorem. Aliquam erat volutpat. Sed ac ligula quis lacus consequat fringilla laoreet quis purus.",
-    mainImage: AppleTVBox,
-    extraImage1: "",
-    extraImage2: "",
-    extraImage3: "",
-    view: 100,
-    color: ["black"],
-    amount: 10,
-    rating: 5,
-    category: ["Apple", "New Arrival",],
-    status: ["Featured"],
-    tags: ["Apple"],
+    id: 3,
+    label: "Châm cứu",
+    link: "/"
   },
   {
-    id: 15,
-    name: "Apple Macbook Pro 2020",
-    oldPrice: 412.02,
-    newPrice: 399.99,
-    description: "Nulla finibus massa non maximus rhoncus. Duis ut ligula et nibh dictum eleifend vel non massa. Aliquam molestie, urna at pellentesque vehicula, sem justo condimentum purus, quis sodales dolor urna ut lorem. Aliquam erat volutpat. Sed ac ligula quis lacus consequat fringilla laoreet quis purus.",
-    mainImage: AppleMacbookPro,
-    extraImage1: "",
-    extraImage2: "",
-    extraImage3: "",
-    view: 100,
-    color: ["black"],
-    amount: 10,
-    rating: 5,
-    category: ["Apple", "New Arrival",],
-    status: ["On sale"],
-    tags: ["Apple"],
+    id: 4,
+    label: "Xông hơi",
+    link: "/"
   },
   {
-    id: 17,
-    name: "Motorola Flip Phone 2022",
-    oldPrice: 412.02,
-    newPrice: 399.99,
-    description: "Nulla finibus massa non maximus rhoncus. Duis ut ligula et nibh dictum eleifend vel non massa. Aliquam molestie, urna at pellentesque vehicula, sem justo condimentum purus, quis sodales dolor urna ut lorem. Aliquam erat volutpat. Sed ac ligula quis lacus consequat fringilla laoreet quis purus.",
-    mainImage: MotorolaPhone,
-    extraImage1: "",
-    extraImage2: "",
-    extraImage3: "",
-    view: 100,
-    color: ["black"],
-    amount: 10,
-    rating: 5,
-    category: ["SmartPhone", "New Arrival",],
-    status: ["On sale"],
-    tags: ["SmartPhone"],
+    id: 5,
+    label: "Body",
+    link: "/"
   },
   {
-    id: 18,
-    name: "Best performance Speaker 2022",
-    oldPrice: 412.02,
-    newPrice: 399.99,
-    description: "Nulla finibus massa non maximus rhoncus. Duis ut ligula et nibh dictum eleifend vel non massa. Aliquam molestie, urna at pellentesque vehicula, sem justo condimentum purus, quis sodales dolor urna ut lorem. Aliquam erat volutpat. Sed ac ligula quis lacus consequat fringilla laoreet quis purus.",
-    mainImage: Speaker,
-    extraImage1: "",
-    extraImage2: "",
-    extraImage3: "",
-    view: 100,
-    color: ["black"],
-    amount: 10,
-    rating: 5,
-    category: ["Audio", "New Arrival",],
-    status: ["On sale"],
-    tags: ["Audio"],
+    id: 6,
+    label: "massage",
+    link: "/"
+  },
+  {
+    id: 7,
+    label: "Thư giãn",
+    link: "/"
+  },
+  {
+    id: 8,
+    label: "Dưỡng ẩm",
+    link: "/"
+  },
+  {
+    id: 9,
+    label: "Luxury",
+    link: "/"
+  },
+  {
+    id: 10,
+    label: "Liệu trình",
+    link: "/"
+  },
+]
+
+export const categoryImageData = [
+  {
+    id: 1,
+    name: "Dưỡng sinh",
+    image: category1,
+  },
+  {
+    id: 2,
+    name: "Chăm sóc body",
+    image: category2,
+  },
+  {
+    id: 3,
+    name: "Massage",
+    image: category3,
+  },
+  {
+    id: 4,
+    name: "Liệu trình thiên nhiên",
+    image: category4,
+  },
+  {
+    id: 5,
+    name: "Thực phẩm chức năng",
+    image: category5,
   },
 ]

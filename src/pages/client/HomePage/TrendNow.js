@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'Lato',
     minWidth: 30,
     '&.Mui-selected': {
-      color: '#df971a',
+      color: '#fb6f92',
     },
   },
 
@@ -113,7 +113,7 @@ function TrendNow({ productIdCart }) {
     <div className={classes.container}>
       <Grid container alignItems="center">
         <Grid item sm={12} md={12} lg={3}>
-          <Typography className={classes.title}> Trending Now</Typography>
+          <Typography className={classes.title}> Trending </Typography>
         </Grid>
         <Grid
           container

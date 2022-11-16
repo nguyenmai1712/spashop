@@ -4,6 +4,8 @@
 
 ::-webkit-scrollbar {
   width: 5px;
+  height: 5px;
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -11,11 +13,11 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #f4a51c;
+  background: #dddd;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #db8e09;
+  background: "#686868";
 }
 
 .App {

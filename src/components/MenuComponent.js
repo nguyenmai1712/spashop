@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 16,
     fontFamily: 'Lato',
     '&:hover': {
-      color: '#df971a',
+      color: '#fb6f92',
     },
   },
 
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'Column',
     position: 'absolute',
     background: 'white',
-    boxShadow: '0px 2px 10px rgba(0, 0, 0, 0.2)',
+    boxShadow: '0px 2px 10px #fb6f92',
     zIndex: 9999,
 
   },
@@ -50,12 +50,12 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 16,
     fontFamily: 'Lato',
     '&:hover': {
-      color: '#df971a',
+      color: '#fb6f92',
     },
   },
 
   active: {
-    color: '#df971a',
+    color: '#fb6f92',
   },
 
   myEffect: {

@@ -60,7 +60,7 @@ function ProductDetail({ productIdCart }) {
           Categories:&nbsp;&nbsp;
           <span
             style={{
-              color: '#f4a51c',
+              color: '#fb6f92',
             }}
           >
             Accessories, Audio, Home Appliances, New Arrival, On Sale, Speaker
@@ -70,7 +70,7 @@ function ProductDetail({ productIdCart }) {
           Tags:&nbsp;&nbsp;
           <span
             style={{
-              color: '#f4a51c',
+              color: '#fb6f92',
             }}
           >
             music, sound, speaker

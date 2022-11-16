@@ -15,12 +15,12 @@ export const Connector = withStyles({
   },
   active: {
     '& $line': {
-      borderColor: '#f4a51c',
+      borderColor: '#fb6f92',
     },
   },
   completed: {
     '& $line': {
-      borderColor: '#f4a51c',
+      borderColor: '#fb6f92',
     },
   },
   line: {
@@ -39,16 +39,16 @@ const useQontoStepIconStyles = makeStyles({
   },
   active: {
     fontSize: 32,
-    color: '#f4a51c',
+    color: '#fb6f92',
   },
 
   completedIcon: {
     fontSize: 32,
-    color: '#f4a51c',
+    color: '#fb6f92',
   },
   activeIcon: {
     fontSize: 32,
-    color: '#f4a51c',
+    color: '#fb6f92',
   },
   inActiveIcon: {
     zIndex: 1,

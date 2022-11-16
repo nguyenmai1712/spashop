@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 
   status: {
     position: 'absolute',
-    zIndex: 1,
+    zIndex: 999,
     top: 0,
     left: 0,
     width: 50,
@@ -70,6 +70,7 @@ const useStyles = makeStyles((theme) => ({
     height: 60,
     marginBottom: 20,
     overflow: 'hidden',
+    borderRadius: 8,
     '& img': {
       width: 'inherit',
       objectFit: 'contain',
@@ -131,7 +132,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 20,
     fontSize: 18,
     fontFamily: 'Lato',
-    color: '#df971a',
+    color: '#fb6f92',
   },
 
   description: {
@@ -160,13 +161,13 @@ const useStyles = makeStyles((theme) => ({
   },
 
   addtocartBtn: {
-    background: '#f4a51c',
+    background: '#fb6f92',
     textTransform: 'none',
     color: 'white',
     fontSize: 16,
     padding: '6px 12px',
     '&:hover': {
-      background: '#f59c01',
+      background: '#ff8fab',
     },
   },
 
@@ -220,7 +221,9 @@ function ProductCardDetail({ data, productIdCart }) {
           watchSlidesProgress={true}
           direction={width > 640 ? "vertical" : "horizontal"}
           modules={[FreeMode, Navigation, Thumbs]}
-          className={classes.imgThumb}>
+          className={classes.imgThumb}
+          style={{marginRight: 10}}
+        >  
           <SwiperSlide>
             <div className={clsx(classes.thumbItem, {
               [classes.thumbActive]: indexActive === 0,
@@ -306,11 +309,16 @@ function ProductCardDetail({ data, productIdCart }) {
         </Swiper>
       </div>
       <div className={classes.content}>
-        <Typography className={classes.productName}>Suspendisse gravida lacus varius</Typography>
+        <Typography className={classes.productName}>{data.name}</Typography>
         <Rating name="read-only" value={4} readOnly />
         <Typography className={classes.viewer}> (1 customer review)</Typography>
         <div className={classes.priceContainer}>
-          <Typography className={classes.oldPrice}>$ {data.oldPrice}</Typography>
+          { data.oldPrice && 
+            <>
+              <Typography className={classes.oldPrice}>{`$ ${data.oldPrice}`}</Typography>
+              <Typography>  &nbsp; -   &nbsp; </Typography>
+            </>
+          }
           <Typography className={classes.newPrice}>$ {data.newPrice}</Typography>
         </div>
         <div className={classes.description}>

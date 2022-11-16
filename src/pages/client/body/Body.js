@@ -63,7 +63,7 @@ function Body({ children, location, ...props }) {
       <Grid container spacing={1}>
         <Grid item md={2} lg={2} className={classes.leftSideBar}>
           <div className={classes.item}>
-            <ListComponent name="Category" data={props.categoryData} location={location} />
+            <ListComponent name="Danh mục" data={props.categoryData} location={location} />
           </div>
           <div className={classes.item}>
             <PopularCard data={props.popularData} name={"Popular"} />

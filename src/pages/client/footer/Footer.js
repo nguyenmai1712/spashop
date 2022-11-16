@@ -1,5 +1,5 @@
 import { Avatar, Grid, makeStyles, Typography } from '@material-ui/core';
-import storeIcon from 'assets/icons/storeIcon.png';
+import spaIcon from 'assets/icons/spa_logo.png';
 import ItemProductRecomend from 'components/ItemProductRecommend';
 import MenuComponent from 'components/MenuComponent';
 import React from 'react';
@@ -84,8 +84,8 @@ function Footer({ location, popularData }) {
               {/* 1/8 footer */}
               <Grid container item xs={12} sm={6} md={6} lg={6}>
                 <Grid item xs={12} className={classes.branch}>
-                  <Avatar variant='square' src={storeIcon}></Avatar>
-                  <Typography className={classes.branchName}> Tech Store </Typography>
+                  <Avatar variant='square' src={spaIcon}></Avatar>
+                  <Typography className={classes.branchName}> Smile Spa </Typography>
                 </Grid>
                 <Grid item xs={12}>
                   <Typography className={classes.textFooter}>
@@ -140,7 +140,7 @@ function Footer({ location, popularData }) {
               <div className={classes.recommendProducts}>
                 <Typography className={classes.subTitle}> Products</Typography>
                 {
-                  popularData.map(item => (
+                  popularData.slice(0, 4).map(item => (
                     <ItemProductRecomend item={item} key={item.id}/>
                   ))
                 }

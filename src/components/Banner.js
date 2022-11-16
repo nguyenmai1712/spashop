@@ -1,6 +1,6 @@
 import { Avatar, makeStyles } from '@material-ui/core';
 import React from 'react';
-import banner from 'assets/images/banner-ad-sidebar-new.png';
+import banner from 'assets/images/banner.png';
 
 const useStyles = makeStyles(() => ({
   container: {

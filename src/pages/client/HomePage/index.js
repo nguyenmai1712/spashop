@@ -7,7 +7,6 @@ import OneRowProduct from '../../../components/OneRowProduct';
 import ShopByCategory from './ShopByCategory';
 import TrendNow from './TrendNow';
 import DiscoveryNow from './DiscoverNow';
-import Brand from './Brand';
 
 import { productsData } from '../../FakeData';
 
@@ -25,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     width: '100%',
     padding: 10,
-    background: "#f4a51c",
+    background: "#fb6f92",
     [theme.breakpoints.down("xs")]: {
       flexWrap: 'wrap',
       alignItems: 'center',
@@ -47,8 +46,8 @@ const useStyles = makeStyles((theme) => ({
     background: 'white',
     fontFamily: 'Lato',
     '&:hover': {
-      color: '#f4a51c',
-      background: '#f3f3f3f3',
+      color: '#fb6f92',
+      background: '#ffe5ec',
     },
     [theme.breakpoints.down("xs")]: {
       marginTop: 10,
@@ -77,16 +76,13 @@ function HomePage({ productIdCart }) {
           <ShopByCategory/>
         </Grid>
         <Grid item xs={12} className={classes.cardContainer}>
-          <OneRowProduct data={productsData} title="Hot Right Now" productIdCart={productIdCart} />
+          <OneRowProduct data={productsData} title="Sản phẩm bán chạy nhất" productIdCart={productIdCart} />
         </Grid>
         <Grid item xs={12} className={classes.cardContainer}>
           <Ads />
         </Grid>
         <Grid item xs={12} className={classes.cardContainer}>
           <DiscoveryNow />
-        </Grid>
-        <Grid item xs={12} className={classes.cardContainer}>
-          <Brand />
         </Grid>
       </Grid>
     </div>

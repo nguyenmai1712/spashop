@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 
   icon: {
     fontSize: 32,
-    color: '#f4a51c'
+    color: '#fb6f92'
   },
 
   shoppingCart: {
@@ -132,7 +132,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   buttonChecked: {
-    width: '49%',
+    width: '100%',
     height: 45,
     background: 'black',
     color: 'white',
@@ -219,7 +219,7 @@ function CartDrawer() {
                     <Typography className={classes.textSubTitle}>${ToCurrency(subTotal)}</Typography>
                   </div>
                   <div className={classes.buttonContainer}>
-                    <Button className={classes.buttonView} variant="outlined">View cart</Button>
+                    {/* <Button className={classes.buttonView} variant="outlined">View cart</Button> */}
                     <Button className={classes.buttonChecked}>Checkout</Button>
                   </div>
                 </div>
@@ -227,7 +227,7 @@ function CartDrawer() {
             ) : (
               <div className={classes.emptyCart}>
                 <Typography className={classes.emptyTitle}> Your cart is empty!</Typography>
-                <Button className={classes.backBtn}> Back to shop </Button>
+                <Button className={classes.backBtn} onClick={() => handleToggleDrawer(false)}> Back to shop </Button>
               </div>
             )
           }

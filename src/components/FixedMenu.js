@@ -3,7 +3,7 @@ import { Avatar, IconButton, InputAdornment, makeStyles, TextField, Typography }
 import clsx from 'clsx';
 import Badge from '@material-ui/core/Badge';
 import MenuComponent from 'components/MenuComponent';
-import storeIcon from 'assets/icons/storeIcon.png';
+import spaIcon from 'assets/icons/spa_logo.png';
 import SearchIcon from '@material-ui/icons/Search';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
@@ -15,6 +15,7 @@ import { isOpenSelector, productCarts } from 'redux/cart/selector';
 import { useScrollWindow } from 'hooks/input.hooks';
 import CancelIcon from '@material-ui/icons/Cancel';
 import { useHistory } from 'react-router-dom';
+import {menuData} from '../pages/FakeData';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -99,13 +100,13 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '4px !important',
     color: '#0096C7',
     '& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
-      border: 'solid 2px #f4a51c',
+      border: 'solid 2px #fb6f92',
     },
     '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-      borderColor: '#f4a51c',
+      borderColor: '#fb6f92',
     },
     '&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
-      borderColor: '#f4a51c',
+      borderColor: '#fb6f92',
     },
     '& .MuiOutlinedInput-adornedEnd': {
       paddingRight: 0,
@@ -128,99 +129,6 @@ const useStyles = makeStyles((theme) => ({
   },
 
 }))
-
-const menuData = [
-  {
-    id: 1,
-    label: 'Home',
-    link: '/home',
-    subMenu: [],
-  },
-  {
-    id: 2,
-    label: 'Blog',
-    link: '/blog',
-    subMenu: [],
-  },
-  {
-    id: 3,
-    label: 'Shop page',
-    link: '/shop-page',
-    subMenu: [],
-  },
-  {
-    id: 4,
-    label: 'Accessories',
-    link: '/accessories',
-    subMenu: [
-      {
-        id: 1,
-        label: 'Menu Item 1',
-        link: '/accessories/item1'
-      },
-      {
-        id: 2,
-        label: 'Menu Item 2',
-        link: '/accessories/item2'
-      },
-      {
-        id: 3,
-        label: 'Menu Item 3',
-        link: '/accessories/item3'
-      },
-    ],
-  },
-  {
-    id: 5,
-    label: 'Watches',
-    link: '/watches',
-    subMenu: [],
-  },
-  {
-    id: 6,
-    label: 'Contact Us',
-    link: '/contact-us',
-    subMenu: [
-      {
-        id: 1,
-        label: "Via Phone",
-        link: "/contact-us/phone"
-      },
-      {
-        id: 2,
-        label: "Via Email",
-        link: "/contact-us/email"
-      },
-      {
-        id: 3,
-        label: "Via Social Media",
-        link: "/contact-us/social-medial"
-      },
-    ],
-  },
-  {
-    id: 7,
-    label: 'Upgrade To Pro',
-    link: '/upgrage-to-pro',
-    subMenu: [
-      {
-        id: 1,
-        label: "Pay $199 for Month",
-        link: "/upgrage-to-pro/moth"
-      },
-      {
-        id: 2,
-        label: "Pay $499 for 6 Month",
-        link: "/upgrage-to-pro/halfYear"
-      },
-      {
-        id: 3,
-        label: "Pay $999 for 12 Month",
-        link: "/upgrage-to-pro/year"
-      },
-    ],
-  },
-];
 
 function FixedMenu({ location }) {
   const history = useHistory();
@@ -255,7 +163,7 @@ function FixedMenu({ location }) {
         [classes.hideLeft]: openSearch,
       })}>
         <IconButton className={classes.iconMenu} onClick={handleOpenMenu}>
-          <Avatar variant='square' src={storeIcon} className={classes.iconBrand}></Avatar>
+          <Avatar variant='square' src={spaIcon} className={classes.iconBrand}></Avatar>
           <Typography className={classes.menuText}>Menu</Typography>
         </IconButton>
       </div>

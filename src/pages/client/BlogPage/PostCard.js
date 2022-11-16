@@ -44,12 +44,12 @@ const useStyles = makeStyles((theme) => ({
   },
 
   button: {
-    background: '#f4a51c',
+    background: '#fb6f92',
     boxShadow: '0px 10px 15px -3px rgba(15, 23, 42, 0.08)',
     color: 'white',
     textTransform: 'none',
     '&:hover': {
-      background: '#f4a51cad',
+      background: '#ffc2d1',
     },
   },
 

@@ -88,13 +88,13 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '4px !important',
     color: '#0096C7',
     '& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
-      border: 'solid 1px #686868',
+      border: 'solid 2px #dddd',
     },
     '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-      borderColor: '#f4a51c',
+      borderColor: '#ff8fab',
     },
     '&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
-      borderColor: '#f4a51c',
+      borderColor: '#ff8fab',
     },
     '& .MuiOutlinedInput-adornedEnd': {
       paddingRight: 0,
@@ -104,13 +104,13 @@ const useStyles = makeStyles((theme) => ({
   submitBtn: {
     minWidth: 150,
     textTransform: 'none',
-    background: '#f4a51c',
+    background: '#fb6f92',
     color: 'white',
     fontSize: 14,
     fontFamily: 'Lato',
     fontWeight: 600,
     '&:hover': {
-      background: '#d38e18',
+      background: '#ff8fab',
     },
   },
 
@@ -127,7 +127,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   titleCard: {
-    color: '#f4a51c',
+    color: '#fb6f92',
     fontFamily: 'Lato',
     fontSize: 18,
     fontWeight: 600,
@@ -206,7 +206,7 @@ function ContactUs() {
     <div className={classes.background}>
       <div className={classes.container}>
         <div className={classes.header}>
-          <Typography className={classes.title}> Contact Us</Typography>
+          <Typography className={classes.title}> Liên hệ </Typography>
           <Typography className={classes.subTitle}> Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, </Typography>
         </div>
         <Grid container className={classes.contact}>
@@ -227,8 +227,8 @@ function ContactUs() {
                   </IconButton>
                 </div>
                 <div className={classes.contactInfo}>
-                  <Typography className={classes.titleCard}> Address </Typography>
-                  <Typography className={classes.subTitleCard}> Address: 3548 Columbia Mine Road, Wheeling, West Virginia, 26003 </Typography>
+                  <Typography className={classes.titleCard}> Địa chỉ </Typography>
+                  <Typography className={classes.subTitleCard}> Địa chỉ: 3548 Columbia Mine Road, Wheeling, West Virginia, 26003 </Typography>
                 </div>
               </div>
             </Grid>
@@ -241,8 +241,8 @@ function ContactUs() {
                   </IconButton>
                 </div>
                 <div className={classes.contactInfo}>
-                  <Typography className={classes.titleCard}> Contact</Typography>
-                  <Typography className={classes.subTitleCard}> 304-559-3023 | 304-650-2694 </Typography>
+                  <Typography className={classes.titleCard}>Liên hệ</Typography>
+                  <Typography className={classes.subTitleCard}> 0352642497 </Typography>
                 </div>
               </div>
             </Grid>
@@ -255,8 +255,8 @@ function ContactUs() {
                   </IconButton>
                 </div>
                 <div className={classes.contactInfo}>
-                  <Typography className={classes.titleCard}> Address </Typography>
-                  <Typography className={classes.subTitleCard}> Address: 3548 Columbia Mine Road, Wheeling, West Virginia, 26003 </Typography>
+                  <Typography className={classes.titleCard}> Email </Typography>
+                  <Typography className={classes.subTitleCard}> Email: email@mail.com</Typography>
                 </div>
               </div>
             </Grid>
@@ -310,7 +310,7 @@ function ContactUs() {
               />
             </div>
             <div>
-              <Button className={classes.submitBtn}> Submit </Button>
+              <Button className={classes.submitBtn}> Gửi </Button>
             </div>
           </Grid>
         </Grid>

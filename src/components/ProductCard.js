@@ -173,7 +173,7 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       color: '#df971a',
     },
-    zIndex: 9999,
+    zIndex: 9999999999,
   },
 
   cartIn: {
@@ -320,8 +320,12 @@ function ProductCard({ data, horizontal, added }) {
       <div className={classes.horizontalContentCard}>
         <Typography className={classes.horizontalTitle}>{data.name}</Typography>
         <div className={classes.horizontalPriceContainer}>
-          <Typography className={classes.oldPrice}>{`$ ${data.oldPrice}`}</Typography>
-          <Typography>  &nbsp; -   &nbsp; </Typography>
+          { data.oldPrice && 
+            <>
+              <Typography className={classes.oldPrice}>{`$ ${data.oldPrice}`}</Typography>
+              <Typography>  &nbsp; -   &nbsp; </Typography>
+            </>
+          }
           <Typography className={classes.newPrice}>{`$ ${data.newPrice}`}</Typography>
         </div>
         <div>
@@ -355,8 +359,12 @@ function ProductCard({ data, horizontal, added }) {
         </Typography>
       </div>
       <div className={classes.priceContainer}>
-        <Typography className={classes.oldPrice}>{`$ ${data.oldPrice}`}</Typography>
-        <Typography>  &nbsp; -   &nbsp; </Typography>
+          { data.oldPrice && 
+            <>
+              <Typography className={classes.oldPrice}>{`$ ${data.oldPrice}`}</Typography>
+              <Typography>  &nbsp; -   &nbsp; </Typography>
+            </>
+          }
         <Typography className={classes.newPrice}>{`$ ${data.newPrice}`}</Typography>
       </div>
       <div className={clsx(classes.addToCart, {

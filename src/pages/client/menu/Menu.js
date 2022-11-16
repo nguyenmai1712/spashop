@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import { toggleMenu } from 'redux/sidebarMenu/action';
 
 import MenuComponent from 'components/MenuComponent';
+import { menuData } from 'pages/FakeData';
 
 const useStyles = makeStyles((theme) => ({
   contianer: {
@@ -14,9 +15,9 @@ const useStyles = makeStyles((theme) => ({
 
   callButton: {
     marginRight: 10,
-    background: '#f4a51c',
+    background: '#fb6f92',
     '&:hover': {
-      background: '#df971a',
+      background: '#ff8fab',
     },
     '&.MuiIconButton-root': {
       padding: 7,
@@ -39,78 +40,17 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
     borderRadius: 4,
-    backgroundColor: '#f4a51c',
+    backgroundColor: '#fb6f92',
     color: 'white',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     '&:hover': {
-      backgroundColor: '#ffb93f',
+      backgroundColor: '#ff8fab',
     },
   },
 
 }))
-
-const menuData = [
-  {
-    id: 1,
-    label: 'Home',
-    link: '/home',
-    subMenu: [],
-  },
-  {
-    id: 2,
-    label: 'Blog',
-    link: '/blog',
-    subMenu: [],
-  },
-  {
-    id: 3,
-    label: 'Shop page',
-    link: '/shop-page',
-    subMenu: [],
-  },
-  {
-    id: 4,
-    label: 'Accessories',
-    link: '/accessories',
-    subMenu: [],
-  },
-  {
-    id: 5,
-    label: 'Watches',
-    link: '/watches',
-    subMenu: [],
-  },
-  {
-    id: 6,
-    label: 'Contact Us',
-    link: '/contact-us',
-    subMenu: [],
-  },
-  {
-    id: 7,
-    label: 'Upgrade To Pro',
-    link: '/upgrage-to-pro',
-    subMenu: [
-      {
-        id: 1,
-        label: "Pay $199 for Month",
-        link: "/upgrage-to-pro/moth"
-      },
-      {
-        id: 2,
-        label: "Pay $499 for 6 Month",
-        link: "/upgrage-to-pro/halfYear"
-      },
-      {
-        id: 3,
-        label: "Pay $899 for 12 Month",
-        link: "/upgrage-to-pro/year"
-      },
-    ],
-  },
-]
 
 function Menu({ location }) {
   const classes = useStyles();
@@ -140,7 +80,7 @@ function Menu({ location }) {
                 fontWeight: 600,
               }}
             >
-              Menu & Category
+              Menu & Danh mục
             </Typography>
           </IconButton>
         </Grid>

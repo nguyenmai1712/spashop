@@ -6,8 +6,9 @@ import React from 'react';
 import { Autoplay, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import slideImage1 from 'assets/images/camera-circle-new.png';
-import slideImage2 from 'assets/images/slider-watches-1-1.png';
+import slideImage1 from 'assets/images/slide1.jpg';
+import slideImage2 from 'assets/images/slide2.jpg';
+import slideImage3 from 'assets/images/slide3.jpg';
 import { useWindowSize } from 'hooks/input.hooks';
 
 const useStyles = makeStyles((theme) => ({
@@ -56,6 +57,9 @@ function BannerSlide() {
         </SwiperSlide>
         <SwiperSlide>
           <Avatar variant="square" src={slideImage2} className={classes.slide} />
+        </SwiperSlide>
+        <SwiperSlide>
+          <Avatar variant="square" src={slideImage3} className={classes.slide} />
         </SwiperSlide>
       </Swiper>
     </>

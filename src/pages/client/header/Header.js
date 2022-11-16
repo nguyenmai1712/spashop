@@ -12,7 +12,7 @@ import InstagramIcon from '@material-ui/icons/Instagram';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import LanguageIcon from '@material-ui/icons/Language';
-import storeIcon from 'assets/icons/storeIcon.png'
+import spaIcon from 'assets/icons/spa_logo.png'
 import SearchIcon from '@material-ui/icons/Search';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
@@ -26,7 +26,7 @@ import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   header: {
-    backgroundColor: '#03045E',
+    backgroundColor: '#fb6f92',
   },
   greeting: {
     color: 'white',
@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     padding: 10,
     display: 'flex',
     alignItems: 'center',
-    borderBottom: 'solid 1px #023E8A',
+    borderBottom: 'solid 1px white',
   },
   headerContainerIcons: {
     display: 'flex',
@@ -89,13 +89,13 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '4px !important',
     color: '#0096C7',
     '& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
-      border: 'solid 2px #f4a51c',
+      border: 'solid 2px #ffc2d1',
     },
     '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-      borderColor: '#f4a51c',
+      borderColor: '#ffc2d1',
     },
     '&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
-      borderColor: '#f4a51c',
+      borderColor: '#ffc2d1',
     },
     '& .MuiOutlinedInput-adornedEnd': {
       paddingRight: 0,
@@ -103,9 +103,9 @@ const useStyles = makeStyles((theme) => ({
   },
 
   searchButton: {
-    background: '#f4a51c',
+    background: '#ffc2d1',
     '&:hover': {
-      background: '#df971a',
+      background: '#ff8fab',
     },
     '&.MuiIconButton-root': {
       padding: 7,
@@ -150,7 +150,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 16,
     fontWeight: 500,
     '&:hover': {
-      color: '#f4a51c',
+      color: '#B3FFEC',
       cursor: 'pointer'
     },
   },
@@ -160,7 +160,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     color: 'white',
     '&:hover': {
-      color: '#f4a51c',
+      color: '#B3FFEC',
       cursor: 'pointer'
     },
   },
@@ -227,7 +227,7 @@ function Header() {
         className={classes.headerOne}
       >
         <Grid item xs={12} sm={6} md={6} lg={6}>
-          <Typography className={classes.greeting}> Welcome to TechStore</Typography>
+          <Typography className={classes.greeting}> Chào mừng bạn đến với Smile Spa!</Typography>
         </Grid>
         <Grid item xs={12} sm={6} md={6} lg={6}>
           <div className={classes.headerContainerIcons}>
@@ -266,8 +266,8 @@ function Header() {
           className={classes.branch}
         >
           <div style={{ display: 'flex', alignItems:'center' }}>
-            <Avatar variant='square' src={storeIcon}></Avatar>
-            <Typography className={classes.branchName}> Tech Store </Typography>I
+            <Avatar variant='square' src={spaIcon}></Avatar>
+            <Typography className={classes.branchName}> Smile Spa </Typography>
           </div>
           <Grid
             item
@@ -340,7 +340,7 @@ function Header() {
           <TextField
             id="outlined-start-adornment"
             className={classes.textField}
-            placeholder="Search..."
+            placeholder="Tìm kiếm..."
             InputProps={{
               endAdornment: <InputAdornment position="start">
                 <IconButton className={classes.searchButton}>

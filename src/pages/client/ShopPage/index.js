@@ -12,6 +12,13 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+const breadcrumbsList = {
+  list: [
+    { text: 'Home', link: '/home' },
+  ],
+  active: 'Products',
+};
+
 function ShopPage({ productIdCart }) {
   const classes = useStyles();
   const [isHorizontal, setHorizontal] = React.useState(false);
@@ -25,7 +32,7 @@ function ShopPage({ productIdCart }) {
   return (
     <div className={classes.container}>
       <>
-        <ShoppageHeader onHorizontal={getHorizontal} amountOfProduct={amountOfProduct} />
+        <ShoppageHeader onHorizontal={getHorizontal} amountOfProduct={amountOfProduct} breadcrumbsList={breadcrumbsList} title="Danh sách sản phẩm"/>
       </>
       <Grid container className={classes.productContainer}>
         {

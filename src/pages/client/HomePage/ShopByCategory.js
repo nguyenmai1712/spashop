@@ -5,14 +5,7 @@ import { Grid, makeStyles, Typography } from '@material-ui/core';
 import { Swiper, SwiperSlide } from "swiper/react";
 import CategoryCard from 'components/CategoryCard';
 import { useWindowSize } from 'hooks/input.hooks';
-
-
-
-import category1 from 'assets/images/category-img-1-woo-slider.png';
-import category2 from 'assets/images/category-img-2-woo-slider.png';
-import category3 from 'assets/images/category-img-6-woo-slider.png';
-import category4 from 'assets/images/category-image-3-wooo-slider.png';
-import category5 from 'assets/images/category-image-5-woo-slider.png';
+import { categoryImageData } from '../../FakeData';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -40,34 +33,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const categoryData = [
-  {
-    id: 1,
-    name: "cameras",
-    image: category1,
-  },
-  {
-    id: 2,
-    name: "Video Games",
-    image: category2,
-  },
-  {
-    id: 3,
-    name: "HeadPhone",
-    image: category3,
-  },
-  {
-    id: 4,
-    name: "Watches",
-    image: category4,
-  },
-  {
-    id: 5,
-    name: "Computer & Laptop",
-    image: category5,
-  },
-]
-
 function ShopByCategory() {
   const [width] = useWindowSize();
   const classes = useStyles({ width });
@@ -75,7 +40,7 @@ function ShopByCategory() {
     <div className={classes.container}>
       <Grid container>
         <Typography className={classes.title}>
-          Shop By Category
+          Liệu trình hot
         </Typography>
       </Grid>
       <Grid container className={classes.categoryCardContainer}>
@@ -101,7 +66,7 @@ function ShopByCategory() {
           className={classes.swiper}
         >
         {
-          categoryData.map(item => (
+          categoryImageData.map(item => (
             <SwiperSlide key={item.id}>
               <CategoryCard data={item}/>
             </SwiperSlide>

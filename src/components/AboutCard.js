@@ -7,7 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import avatar from 'assets/images/avatar.jpg';
+import avatar from 'assets/images/adsModel.jpg';
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -49,7 +49,7 @@ function AboutCard() {
               fontFamily: 'Lato',
             }}
           >
-            Know Us
+            Giới thiệu
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             Neque viverra justo nec ultrices dui sapien eget. Gravida cum sociis natoque penatibus. Imperdiet proin fermentum leo vel orci porta non
@@ -58,7 +58,7 @@ function AboutCard() {
       </CardActionArea>
       <CardActions>
         <Button size="small" color="primary">
-          Learn More
+          Xem thêm
         </Button>
       </CardActions>
     </Card>

@@ -9,7 +9,7 @@ import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import messIcon from 'assets/icons/MessageIcon.png';
-import background from 'assets/images/background.jpg';
+import background from 'assets/images/loginbg.jpg';
 import StepIcon, { Connector } from 'components/StepIcon';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
@@ -22,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
     //   height: '100%',
     // },
     backgroundImage: `url(${background})`,
+    // backgroundImage: 'linear-gradient(to right, #ffb3c6 , #fb6f92)',
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     backgroundAttachment: 'fixed',
@@ -68,13 +69,13 @@ const useStyles = makeStyles((theme) => ({
     background: 'white',
     color: '#f4a51c',
     '& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
-      borderColor: '#E2E8F0',
+      border: "solid 2px #fb6f92",
     },
     '& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-      borderColor: '#f4a51c',
+      borderColor: '#fb6f92',
     },
     '&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
-      borderColor: '#f4a51c',
+      borderColor: '#fb6f92',
     },
   },
 
@@ -95,10 +96,10 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 16,
     fontWeight: 600,
     color: 'white',
-    border: 'solid 2px orange',
-    backgroundColor: '#f4a51c',
+    border: 'solid 2px white',
+    backgroundColor: '#fb6f92',
     '&:hover': {
-      backgroundColor: '#f9a30d',
+      backgroundColor: '#ffb3c6',
     }
   },
 
@@ -119,7 +120,7 @@ const useStyles = makeStyles((theme) => ({
     color: '#0096C7',
     // border: 'solid 1px #0096C7',
     '&:hover': {
-      // backgroundColor: '#f9a30d',
+      // backgroundColor: '#ffb3c6',
     }
   },
 
@@ -265,12 +266,12 @@ function SignUp() {
         return (
           <>
             <div className={classes.inputContainer}>
-              <Typography className={classes.inputName}> Email/Phone Number </Typography>
+              <Typography className={classes.inputName}> Email/Số điện thoại </Typography>
               <TextField
                 size="small"
                 id="outlined-start-adornment"
                 className={classes.textField}
-                placeholder="Type your Email/Phone Number"
+                placeholder="Nhập tài khoản đăng kí"
                 InputProps={{
                   startAdornment: <InputAdornment position="start"><PersonOutlineIcon /></InputAdornment>,
                 }}
@@ -279,13 +280,13 @@ function SignUp() {
             </div>
 
             <div className={classes.inputContainer}>
-              <Typography className={classes.inputName}> Password </Typography>
+              <Typography className={classes.inputName}> Mật khẩu </Typography>
               <TextField
                 size="small"
                 type={clearPassword ? "text" : "password"}
                 id="outlined-start-adornment"
                 className={classes.textField}
-                placeholder="Type your password"
+                placeholder="Nhập mật khẩu"
                 InputProps={{
                   startAdornment: <InputAdornment position="start">
                     <LockOpenIcon />
@@ -306,13 +307,13 @@ function SignUp() {
             </div>
 
             <div className={classes.inputContainer}>
-              <Typography className={classes.inputName}> Re-Type password </Typography>
+              <Typography className={classes.inputName}> Xác nhận mật khẩu </Typography>
               <TextField
                 size="small"
                 type={clearPassword ? "text" : "password"}
                 id="outlined-start-adornment"
                 className={classes.textField}
-                placeholder="Re-type your password"
+                placeholder="Nhập lại mật khẩu"
                 InputProps={{
                   startAdornment: <InputAdornment position="start">
                     <LockOpenIcon />
@@ -334,7 +335,7 @@ function SignUp() {
 
             <div className={classes.inputContainer}>
               <Button className={classes.loginBtn} onClick={handleNext}>
-                Sign Up
+                Đăng kí
               </Button>
             </div>
 
@@ -345,7 +346,7 @@ function SignUp() {
                   className={classes.signupBtn}
                   onClick={()=>handleNavigate("/login")}
                 >
-                  Goto Login Page
+                  Đi đến trang đăng nhập
                 </Button>
               </div>
             </div>
@@ -440,7 +441,7 @@ function SignUp() {
         >
           Back
         </Button>
-        <Typography className={classes.title}> SignUp </Typography>
+        <Typography className={classes.title}> Đăng kí </Typography>
         <div className={classes.root}>
           <Stepper activeStep={activeStep} alternativeLabel connector={<Connector />}>
             {steps.map((label) => (

@@ -8,8 +8,8 @@ import React from 'react';
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import postImg2 from 'assets/images/post2-1.jpg';
-import postImg1 from 'assets/images/post3-1.jpg';
+import postImg2 from 'assets/images/category4.jpg';
+import postImg1 from 'assets/images/category3.jpg';
 import MediaCard from './MediaCard';
 
 const useStyles = makeStyles((theme) => ({
@@ -97,9 +97,8 @@ function StoreUpdate() {
           <SwiperSlide>
             <MediaCard
               image={postImg1}
-              title={'Headphone and love stories'}
+              title={'Relax on sunday'}
               content={'July 28, 2020'}
-              linkTo="/post/bai-viet-so1"
             />
           </SwiperSlide>
           <SwiperSlide>
@@ -107,7 +106,6 @@ function StoreUpdate() {
               image={postImg2}
               title={'A beautiful day'}
               content={'July 28, 2020'}
-              linkTo="/post/bai-viet-so2"
             />
           </SwiperSlide>
         </Swiper>

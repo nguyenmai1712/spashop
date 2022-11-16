@@ -31,7 +31,7 @@ const useStyles = makeStyles(() => ({
     fontSize: 13,
     fontFamily: 'Lato',
     '&:hover': {
-      color: '#f4a51c',
+      color: '#fb6f92',
       cursor: 'pointer',
     },
   },

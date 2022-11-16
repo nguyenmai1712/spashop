@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core';
-import post1 from 'assets/images/post1-1.jpg';
-import post2 from 'assets/images/post2-1.jpg';
-import post3 from 'assets/images/post3-1.jpg';
+import post1 from 'assets/images/Post_1.png';
+import post2 from 'assets/images/Post_2.png';
+import post3 from 'assets/images/Post_3.png';
 import React from 'react';
 
 import PostCard from './PostCard';

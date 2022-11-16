@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   titleDrawer: {
-    color: '#f4a51c',
+    color: '#fb6f92',
     fontSize: 18,
     fontWeight: 600,
     fontFamily: 'Lato',
@@ -37,13 +37,13 @@ const useStyles = makeStyles((theme) => ({
 
   closeBtn: {
     '&:hover': {
-      backgroundColor: '#f4a51c82',
+      backgroundColor: '#fb6f92',
       color: 'white',
     },
   },
 
   menuDrawer: {
-    width: 300,
+    width: 320,
     [theme.breakpoints.down("xs")]: {
       width: ({ width }) => width,
     },
@@ -56,21 +56,21 @@ const useStyles = makeStyles((theme) => ({
   },
 
   mainItem: {
-    background: '#f4a51c',
+    background: '#fb6f92',
     borderRadius: 4,
     '&:hover': {
-      background: '#f5a925',
+      background: '#ff8fab',
     },
     boxShadow: '0px -3px 15px -3px rgba(15, 23, 42, 0.3)',
   },
 
   listItem: {
     '&:hover .MuiListItemIcon-root': {
-      color: '#f4a51c',
+      color: '#fb6f92',
     },
 
     '&:hover .MuiListItemText-primary': {
-      color: '#f4a51c',
+      color: '#fb6f92',
     },
 
   },
@@ -105,11 +105,11 @@ const useStyles = makeStyles((theme) => ({
 
   active: {
     '& .MuiListItemIcon-root': {
-      color: '#f4a51c',
+      color: '#fb6f92',
     },
 
     '& .MuiListItemText-primary': {
-      color: '#f4a51c',
+      color: '#fb6f92',
     },
   },
 
@@ -122,7 +122,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   activeSubMenu: {
-    backgroundColor: '#ffb431',
+    backgroundColor: '#fb6f92',
     '& .MuiListItemText-primary': {
       fontSize: 16,
       color: 'white',
@@ -135,7 +135,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 10,
     marginTop: 5,
     '&:hover': {
-      backgroundColor: '#f4a51c',
+      backgroundColor: '#ff8fab',
     },
     '&:hover .MuiListItemText-primary': {
       fontSize: 16,
@@ -202,7 +202,7 @@ function SidebarMenu({ menuData, categoryData, location }) {
     <div className={classes.container}>
       <Drawer anchor="left" open={isOpenSideMenu} onClose={() => handleToggleDrawer(false)} className={classes.drawer}>
         <div className={classes.titleDrawerContainer}>
-          <Typography className={classes.titleDrawer}>Menu & Categories </Typography>
+          <Typography className={classes.titleDrawer}>Menu & Danh mục </Typography>
           <IconButton className={classes.closeBtn} onClick={() => handleToggleDrawer(false)}>
             <CloseIcon />
           </IconButton>

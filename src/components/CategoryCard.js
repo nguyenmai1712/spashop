@@ -8,7 +8,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     '&:hover': {
       cursor: 'pointer',
-      color: '#f4a51c'
+      color: '#fb6f92'
     },
   },
   imageContainer: {
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
       width: 'inherit',
       height: 'inherit',
       borderRadius: '50%',
-      objectFit: 'contain',
+      objectFit: 'cover',
       transition: 'all ease-in-out .5s',
     },
     '&:hover img': {
