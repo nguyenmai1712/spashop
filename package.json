@@ -1,7 +1,7 @@
 {
   "name": "techstore",
   "version": "0.1.0",
-  "homepage": "https://github.com/nguyenmai1712/spashop",
+  "homepage": "https://nguyenmai1712.github.io/home",
   "private": true,
   "dependencies": {
     "material-ui-popup-state": "^2.0.0",
