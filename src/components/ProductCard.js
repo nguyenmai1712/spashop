@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
     width: 50,
     padding: 2,
     borderRadius: '0px 0px 5px 5px',
-    background: '#f4a51c',
+    background: '#fb6f92',
     textAlign: 'center',
     '& span': {
       color: 'white',
@@ -113,7 +113,7 @@ const useStyles = makeStyles((theme) => ({
 
   iconButton: {
     '&:hover': {
-      color: '#f4a51c',
+      color: '#fb6f92',
     }
   },
 
@@ -128,6 +128,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'Lato',
     fontWeight: 600,
     marginBottom: 10,
+    textTransform: "capitalize",
   },
 
   priceContainer: {
@@ -171,9 +172,9 @@ const useStyles = makeStyles((theme) => ({
     color: '#686868',
     textTransform: 'none',
     '&:hover': {
-      color: '#df971a',
+      color: '#fb6f92',
     },
-    zIndex: 9999999999,
+    zIndex: 777 ,
   },
 
   cartIn: {
@@ -197,7 +198,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 22,
     fontWeight: 600,
     fontFamily: 'Lato',
-
+    textTransform: "capitalize",
   },
 
   horizontalPriceContainer: {
@@ -338,7 +339,7 @@ function ProductCard({ data, horizontal, added }) {
             <div>
               <Button className={classes.addCartButton} onClick={handleAddToCart}>
                 <ShoppingCartIcon />
-                Add to cart
+                Thêm vào giỏ hàng
               </Button>
             </div>
           ) : (
@@ -375,12 +376,12 @@ function ProductCard({ data, horizontal, added }) {
           !added ? (
             <Button className={classes.addCartButton} onClick={handleAddToCart}>
               <ShoppingCartIcon />
-              Add to cart
+              Thêm vào giỏ hàng
             </Button>
           ) : (
             <Button className={classes.addCartButton}>
               <ShoppingCartIcon />
-              ViewCart
+                Xem giỏ hàng
             </Button>
           )
         }

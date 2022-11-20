@@ -215,19 +215,19 @@ function CartDrawer() {
                     <Typography>Payments Details</Typography>
                   </div>
                   <div className={classes.subTotal}>
-                    <Typography className={classes.textSubTitle}> Sub Total</Typography>
+                    <Typography className={classes.textSubTitle}> Tổng tiền </Typography>
                     <Typography className={classes.textSubTitle}>${ToCurrency(subTotal)}</Typography>
                   </div>
                   <div className={classes.buttonContainer}>
                     {/* <Button className={classes.buttonView} variant="outlined">View cart</Button> */}
-                    <Button className={classes.buttonChecked}>Checkout</Button>
+                    <Button className={classes.buttonChecked}> Đặt hàng </Button>
                   </div>
                 </div>
               </>
             ) : (
               <div className={classes.emptyCart}>
                 <Typography className={classes.emptyTitle}> Your cart is empty!</Typography>
-                <Button className={classes.backBtn} onClick={() => handleToggleDrawer(false)}> Back to shop </Button>
+                <Button className={classes.backBtn} onClick={() => handleToggleDrawer(false)}> Quay lại cửa hàng </Button>
               </div>
             )
           }

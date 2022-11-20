@@ -89,7 +89,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Navigation({ children }) {
-  console.log(children)
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const location = useLocation();
@@ -129,7 +128,7 @@ export default function Navigation({ children }) {
           >
             <Grid item>
               <Typography variant="h6" noWrap style={{ marginLeft: "20px" }}>
-                AdminPage
+                Trang Quản lí
               </Typography>
             </Grid>
             <Grid item>

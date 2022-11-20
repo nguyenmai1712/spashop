@@ -95,25 +95,25 @@ function Body({ children, location, ...props }) {
       </Grid>
       <div className={classes.mobileContainer}>
         <div className={classes.item}>
-          <CollapseCustom title={"Popular"}>
+          <CollapseCustom title={"Phổ biến"}>
             <PopularCard data={props.popularData} name={"popular-pollapse"} collapse />
           </CollapseCustom>
         </div>
 
         <div className={classes.item}>
-          <CollapseCustom title={"Best Offers"}>
+          <CollapseCustom title={"Ưu đãi hấp dẫn"}>
             <StoreWidget />
           </CollapseCustom>
         </div>
 
         <div className={classes.item}>
-          <CollapseCustom title={"About Us"}>
+          <CollapseCustom title={"Giới thiệu"}>
             <AboutCard />
           </CollapseCustom>
         </div>
 
         <div className={classes.item}>
-          <CollapseCustom title={"Show Case"}>
+          <CollapseCustom title={"Hàng trưng bày"}>
             <ShowCase  collapse/>
           </CollapseCustom>
         </div>

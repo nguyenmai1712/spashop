@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     height: 40,
     background: 'white',
-    color: '#f4a51c',
+    color: '#fb6f92',
     '& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline': {
       border: "solid 2px #fb6f92",
     },
@@ -183,6 +183,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 15,
     color: '#686868',
     fontWeight: 400,
+    textAlign: "center"
   },
 
   verifySuccess: {
@@ -216,7 +217,7 @@ const useStyles = makeStyles((theme) => ({
   backButton: {
     position: 'absolute',
     textTransform: 'none',
-    backgroundColor: '#f4a51c',
+    backgroundColor: '#fb6f92',
     color: 'white',
     borderRadius: 30,
     top: 10,
@@ -224,7 +225,7 @@ const useStyles = makeStyles((theme) => ({
     zIndex: 9999,
     fontWeight: 600,
     '&:hover': {
-      backgroundColor: '#f4a51c',
+      backgroundColor: '#fb6f92',
     },
     '&.Mui-disabled': {
       backgroundColor: '#ddd',
@@ -234,7 +235,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function getSteps() {
-  return ['Account', 'Verify', 'Done'];
+  return ['Tài khoản', 'Xác thực', 'Hoàn thành'];
 }
 
 function SignUp() {
@@ -368,7 +369,7 @@ function SignUp() {
               </Grid>
               <Grid item container direction="column" alignItems="center">
                 <Typography className={classes.verifyNotify}>
-                  Enter the verification code we send to
+                  Nhập mã xác thực chúng tôi đã gửi tới:
                 </Typography>
                 <Typography className={classes.verifyEmail}>thuyduong@gmail.com</Typography>
               </Grid>
@@ -377,16 +378,16 @@ function SignUp() {
                   size="small"
                   id="outlined-start-adornment"
                   className={classes.textField}
-                  placeholder="Verification code"
+                  placeholder="Mã xác thực"
                   InputProps={{
-                    startAdornment: <InputAdornment position="start"><VerifiedUserIcon /></InputAdornment>,
+                    startAdornment: <InputAdornment position="start"><VerifiedUserIcon style={{color: '#007dff'}}/></InputAdornment>,
                   }}
                   variant="outlined"
                 />
               </Grid>
               <div className={classes.inputContainer}>
                 <Button className={classes.loginBtn} onClick={handleNext}>
-                  Verify
+                  Xác thực
                 </Button>
               </div>
             </Grid>
@@ -410,10 +411,10 @@ function SignUp() {
               </Grid>
               <Grid item container direction="column" alignItems="center">
                 <Typography className={classes.verifySuccess}>
-                  You are verified!
+                  Xác thực thành công
                 </Typography>
                 <Typography className={classes.verifyNotify} style={{ marginBottom: '20px' }}>
-                  We have confirm your account. Please loign
+                  Tiến hành đăng nhập
                 </Typography>
               </Grid>
               <div className={classes.inputContainer}>
@@ -421,7 +422,7 @@ function SignUp() {
                   className={classes.loginBtn}
                   onClick={()=>handleNavigate("/login")}
                 >
-                  Login
+                  Đăng nhập
                 </Button>
               </div>
             </Grid>

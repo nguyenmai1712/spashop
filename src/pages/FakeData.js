@@ -44,6 +44,39 @@ export const INITIAL_EVENTS = [
   }
 ]
 
+export const treatmentData = [
+  {
+    id: 1,
+    name: "REPLENISHING HYDRATOR",
+    oldPrice: 4000000,
+    newPrice: 3500000,
+    description: "Nulla finibus massa non maximus rhoncus. Duis ut ligula et nibh dictum eleifend vel non massa. Aliquam molestie, urna at pellentesque vehicula, sem justo condimentum purus, quis sodales dolor urna ut lorem. Aliquam erat volutpat. Sed ac ligula quis lacus consequat fringilla laoreet quis purus.",
+    mainImage: product1,
+    extraImage1: "",
+    extraImage2: "",
+    extraImage3: "",
+    view: 1,
+    color: ["red", "blue", "white", "black"],
+    amount: 10,
+    rating: 2,
+    category: ["Body", "OnSale"],
+    status: ["On sale"],
+    tags: ["Blushers", "Creams"],
+    duration: 90,
+    ingredient: [{
+      id: 1,
+      name: "serum",
+      type: "60ml",
+      amount: 1,
+    }],
+    startDate: new Date().toISOString().slice(0, 16),
+    bounus: {
+      type: "PERCENT",
+      value: 10,
+    }
+  },
+]
+
 export const productsData = [
   {
     id: 1,
@@ -62,6 +95,14 @@ export const productsData = [
     category: ["Body", "OnSale"],
     status: ["On sale"],
     tags: ["Blushers", "Creams"],
+    startDate: new Date().toISOString().slice(0, 16),
+    properties: [
+      {
+        name: 'bảo hành',
+        value: '2 năm'
+      }
+    ],
+    productCode: "12341ASDLKAHIOUWEN MASQR32423"
   },
   {
     id: 2,
@@ -396,31 +437,6 @@ export const categoryData = [
     subMenu: [],
   },
   {
-    id: 3,
-    label: "Cameras",
-    icon: <CameraIcon />,
-    link: '/category/cameras',
-    subMenu: [
-      {
-        id: 1,
-        label: 'Security Camera',
-        link: '/category/cameras/security-camera',
-      },
-      {
-        id: 2,
-        label: 'Gopro',
-        link: '/category/cameras/gopro'
-      },
-    ],
-  },
-  {
-    id: 4,
-    label: "Computer&Laptop",
-    icon: <LaptopWindowsIcon />,
-    link: '/category/computer-laptop',
-    subMenu: [],
-  },
-  {
     id: 5,
     label: "New Arrival",
     icon: <AcUnitIcon />,
@@ -441,61 +457,7 @@ export const categoryData = [
     link: '/category/on-sale',
     subMenu: [],
   },
-  {
-    id: 10,
-    label: "Audio",
-    icon: <SpeakerIcon />,
-    link: '/category/audio',
-    subMenu: [
-      {
-        id: 1,
-        label: "Headphones",
-        link: '/category/audio/headphones',
-      },
-      {
-        id: 2,
-        label: "Speaker",
-        link: '/category/audio/speaker',
-
-      },
-    ],
-  },
-  {
-    id: 8,
-    label: "Smartphone",
-    icon: <SmartphoneIcon />,
-    link: '/category/smartphone',
-    subMenu: [],
-  },
-  {
-    id: 9,
-    label: "Video Games",
-    icon: <SportsEsportsIcon />,
-    link: '/category/video-games',
-    subMenu: [],
-  },
-
-  {
-    id: 11,
-    label: "Home Appliances",
-    icon: <HomeWorkIcon />,
-    link: '/category/home-appliances',
-    subMenu: [],
-  },
-  {
-    id: 12,
-    label: "Watches",
-    icon: <WatchIcon />,
-    link: '/category/watches',
-    subMenu: [
-      {
-        id: 1,
-        label: "Smart Watch",
-        link: '/category/watches/smart-watch',
-      },
-    ],
-  },
-];
+]
 
 export const tagCloudData = [
   {

@@ -1,0 +1,11 @@
+export const DATA_TABLE_TYPE = {
+    PRODUCT: 'PRODUCT',
+    TREATMENT: 'TREATMENT',
+    EMPLOYEE: 'EMPLOYEE',
+    CUSTOMER: 'CUSTOMER',
+};
+
+export const REMUNERATION = {
+    PERCENT: 'PERCENT',
+    CASH: 'CAST',
+}

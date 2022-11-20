@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'Lato',
     minWidth: 100,
     '&.Mui-selected': {
-      color: '#df971a',
+      color: '#fb6f92',
     },
   },
 
@@ -113,7 +113,7 @@ export default function TabProductInfo({ productComments }) {
           className={classes.tabBar}
           TabIndicatorProps={{
             style: {
-              background: "#df971a",
+              background: "#fb6f92",
             },
           }}
         >

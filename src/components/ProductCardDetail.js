@@ -331,14 +331,14 @@ function ProductCardDetail({ data, productIdCart }) {
               <Button 
                 className={classes.addtocartBtn}
               > 
-                View Cart
+                Xem giỏ hàng
               </Button>
             ) : (
               <Button 
                 className={classes.addtocartBtn}
                 onClick={handleAddToCart}
               > 
-                Add to cart
+                Thêm vào giỏ hàng
               </Button>
             )
           }

@@ -6,8 +6,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import BallotIcon from "@material-ui/icons/Ballot";
 import DashboardIcon from "@material-ui/icons/Dashboard";
-import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
-import SettingsIcon from "@material-ui/icons/Settings";
+import GroupIcon from '@material-ui/icons/Group';
+import EventIcon from '@material-ui/icons/Event';
 import React, { useState } from "react";
 import clsx from "clsx";
 import { Link } from "react-router-dom";
@@ -67,58 +67,63 @@ const useStyles = makeStyles((theme) => ({
 
 const listMenuData = [
   {
-    key: "dashboard",
-    name: "DashBoard",
-    path: "/admin/dashboard",
-    icon: <DashboardIcon />,
+    key: "calendar",
+    name: "Lịch",
+    path: "/admin/calendar",
+    icon: <EventIcon />,
   },
   {
     key: "manage_products",
     name: "Quản lí sản phẩm",
-    path: "/admin/manage-products",
+    path: "/admin/manage-products/treatments",
     icon: <BallotIcon />,
     subMenu: [
       {
         key: "manage_products_list",
         name: "Liệu trình",
-        path: "/admin/treatments",
+        path: "/admin/manage-products/treatments",
       },
       {
         key: "manage_products_details",
         name: "Sản phẩm",
-        path: "/admin/products",
+        path: "/admin/manage-products/products",
       },
     ],
   },
   {
     key: "manage_user",
-    name: "Manage Users",
-    path: "/admin/manage-users",
+    name: "Quản lí nhân sự",
+    path: "/admin/manage-employees/employees",
     icon: <AccountCircleIcon />,
     subMenu: [
       {
         key: "manage_user_list",
-        name: "Lists",
-        path: "/admin/manage-users",
+        name: "Nhân viên",
+        path: "/admin/manage-employees/employees",
       },
       {
-        key: "manage_user_profile",
-        name: "Profile User",
-        path: "/admin/manage-users/profile",
+        key: "manage_user_salary",
+        name: "Tiền lương",
+        path: "/admin/manage-employees/salary",
+      },
+      {
+        key: "manage_user_checkin-out",
+        name: "Chấm công",
+        path: "/admin/manage-employees/checkin-out",
       },
     ],
   },
   {
-    key: "manage_role",
-    name: "Manage Roles",
-    path: "/admin/manage-roles",
-    icon: <VerifiedUserIcon />,
+    key: "manage_customer",
+    name: "Quản lí khách hàng",
+    path: "/admin/manage_customer",
+    icon: <GroupIcon />,
   },
   {
-    key: "admin_settings",
-    name: "Setting",
-    path: "/admin/setting",
-    icon: <SettingsIcon />,
+    key: "admin_report",
+    name: "Báo cáo",
+    path: "/admin/report",
+    icon: <DashboardIcon />,
   },
 ];
 

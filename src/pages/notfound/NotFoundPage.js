@@ -47,7 +47,7 @@ function NotFoundPage(props) {
                 variant="contained"
                 color="secondary"
                 className={classes.backButton}
-                onClick={() => handleNavigate("/")}
+                onClick={() => handleNavigate("/home")}
             > 
                 Go to home
             </Button>

@@ -38,7 +38,7 @@ const state = {
     currentEvents: []
   }
 
-function Dashboard(props) {
+function Calendar(props) {
     const handleDateSelect = (selectInfo) => {
         let title = prompt('Please enter a new title for your event')
         let calendarApi = selectInfo.view.calendar
@@ -75,4 +75,4 @@ function Dashboard(props) {
     );
 }
 
-export default Dashboard;
+export default Calendar;

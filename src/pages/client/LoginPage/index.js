@@ -268,7 +268,7 @@ function Login() {
         </div>
 
         <div className={classes.remembermeContainer}>
-          <FormControlLabel
+          {/* <FormControlLabel
             className={classes.formControlLabel}
             control={
               <CustomCheckbox
@@ -278,7 +278,7 @@ function Login() {
               />
             }
             label="Ghi nhớ tôi"
-          />
+          /> */}
           <Typography className={classes.forgotPassword}> Quên mật khẩu?</Typography>
         </div>
 

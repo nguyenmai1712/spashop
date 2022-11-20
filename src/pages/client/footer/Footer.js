@@ -193,7 +193,7 @@ function Footer({ location, popularData }) {
             marginTop: 10,
           }}
         >
-          <Typography className={classes.textFooter}>© 2022 Top Store Designed by Themehunk, Clone by Cops</Typography>
+          <Typography className={classes.textFooter}>© 2022 Smile Spa Coding by Mai Mai</Typography>
         </Grid>
       </Grid>
     </div>

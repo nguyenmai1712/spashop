@@ -4,7 +4,6 @@
   "homepage": "https://nguyenmai1712.github.io/home",
   "private": true,
   "dependencies": {
-    "material-ui-popup-state": "^2.0.0",
     "@fullcalendar/daygrid": "^5.11.3",
     "@fullcalendar/interaction": "^5.11.3",
     "@fullcalendar/react": "^5.11.2",
@@ -19,6 +18,9 @@
     "@testing-library/user-event": "^13.5.0",
     "clsx": "^1.1.1",
     "gh-pages": "^4.0.0",
+    "highcharts": "^10.3.1",
+    "highcharts-react-official": "^3.1.0",
+    "material-ui-popup-state": "^2.0.0",
     "npm": "^8.12.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -26,6 +28,7 @@
     "react-router-dom": "^5.3.3",
     "react-scripts": "5.0.1",
     "redux": "^4.2.0",
+    "styled-components.macro": "^1.0.0",
     "swiper": "^8.2.4",
     "web-vitals": "^2.1.4"
   },

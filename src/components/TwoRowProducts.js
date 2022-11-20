@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       width: (props) => (props.width -50),
     },
+    "& .swiper-wrapper": {
+      rowGap: 30,
+    }
   },
 }));
 

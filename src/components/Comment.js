@@ -123,8 +123,6 @@ function Comment({ comment, replies, currentUserId }) {
       setActiveComment(commentId);
     };
   };
-
-  console.log(activeComment);
   return (
     <>
       <div className={classes.container}>
