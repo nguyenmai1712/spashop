@@ -210,7 +210,7 @@ function TreatmentForm() {
         if (
             ingredientValue &&
             typeOfIngredient &&
-            amountOfIngredient
+            amountOfIngredient > 0
         ) {
             const ingredient = {
                 id: Math.round(Math.random()*100),

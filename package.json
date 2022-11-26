@@ -1,7 +1,7 @@
 {
   "name": "techstore",
   "version": "0.1.0",
-  "homepage": "https://nguyenmai1712.github.io/home",
+  "homepage": "https://nguyenmai1712.github.io/spashop",
   "private": true,
   "dependencies": {
     "@fullcalendar/daygrid": "^5.11.3",
@@ -12,7 +12,9 @@
     "@material-ui/data-grid": "^4.0.0-alpha.37",
     "@material-ui/icons": "^4.11.3",
     "@material-ui/lab": "^4.0.0-alpha.61",
-    "@syncfusion/ej2-react-schedule": "^20.3.56",
+    "@syncfusion/ej2-react-calendars": "^20.3.56",
+    "@syncfusion/ej2-react-dropdowns": "^20.3.58",
+    "@syncfusion/ej2-react-schedule": "^20.3.58",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",

@@ -5,6 +5,7 @@ import CartItem from 'components/CartItem';
 import { useWindowSize } from 'hooks/input.hooks';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { toggleCart } from 'redux/cart/actions';
 import { isOpenSelector, productCarts } from 'redux/cart/selector';
 import ToCurrency from 'Utils/FormatNumber';
@@ -169,6 +170,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function CartDrawer() {
+  const history = useHistory();
   const isCartOpen = useSelector(isOpenSelector);
   const dispatch = useDispatch();
   const [width] = useWindowSize();
@@ -185,6 +187,15 @@ function CartDrawer() {
   const handleToggleDrawer = (value) => {
     dispatch(toggleCart(value));
   };
+
+  const handleCheckout = () => {
+    history.push({
+      pathname: "/checkout",
+      state: {
+        data: cart,
+      }
+    })
+  }
 
   React.useEffect(() => {
     setOpen(isCartOpen);
@@ -212,21 +223,21 @@ function CartDrawer() {
                 </div>
                 <div className={classes.cartFooter}>
                   <div className={classes.paymentTitle}>
-                    <Typography>Payments Details</Typography>
+                    <Typography>Đến trang thanh toán</Typography>
                   </div>
                   <div className={classes.subTotal}>
                     <Typography className={classes.textSubTitle}> Tổng tiền </Typography>
-                    <Typography className={classes.textSubTitle}>${ToCurrency(subTotal)}</Typography>
+                    <Typography className={classes.textSubTitle}>{ToCurrency(subTotal)}đ</Typography>
                   </div>
                   <div className={classes.buttonContainer}>
                     {/* <Button className={classes.buttonView} variant="outlined">View cart</Button> */}
-                    <Button className={classes.buttonChecked}> Đặt hàng </Button>
+                    <Button className={classes.buttonChecked} onClick={handleCheckout}> Đặt hàng </Button>
                   </div>
                 </div>
               </>
             ) : (
               <div className={classes.emptyCart}>
-                <Typography className={classes.emptyTitle}> Your cart is empty!</Typography>
+                <Typography className={classes.emptyTitle}>Giỏ hàng trống</Typography>
                 <Button className={classes.backBtn} onClick={() => handleToggleDrawer(false)}> Quay lại cửa hàng </Button>
               </div>
             )

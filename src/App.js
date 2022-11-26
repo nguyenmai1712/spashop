@@ -31,6 +31,7 @@ import TreatmentForm from 'pages/admin/ManageProducts/Treatments/TreatmentForm';
 import ProductManage from 'pages/admin/ManageProducts/Products/ProductManage';
 import ProductForm from 'pages/admin/ManageProducts/Products/ProductForm';
 import ProductDetailAdmin from 'pages/admin/ManageProducts/Products/ProductDetailAdmin';
+import CheckoutPage from 'pages/client/CheckoutPage/CheckoutPage';
 
 function App() {
   const productCart = useSelector(productCarts);
@@ -42,6 +43,7 @@ function App() {
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/signup" component={SignUp} />
                 <Route exact path="/contact-us" component={ContactUs} />
+                <Route exact path="/checkout" component={CheckoutPage} />
                 {/* Trang quản lí */}
                 <PrivateRoute path="/admin">
                     <Navigation>

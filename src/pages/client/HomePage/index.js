@@ -65,8 +65,8 @@ function HomePage({ productIdCart }) {
         </Grid>
         <Grid item xs={12} className={classes.cardContainer}>
           <div className={classes.bannerOffer}>
-            <Typography className={classes.offerText}>Big offers on new collection</Typography>
-            <Button className={classes.button}> Know more </Button>
+            <Typography className={classes.offerText}>Liệu trình hot</Typography>
+            <Button className={classes.button}> Xem thêm </Button>
           </div>
         </Grid>
         <Grid item xs={12} className={classes.cardContainer}>

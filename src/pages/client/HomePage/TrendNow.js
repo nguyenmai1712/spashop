@@ -139,9 +139,9 @@ function TrendNow({ productIdCart }) {
                   }}
                   className={classes.tabBar}
                 >
-                  <Tab label="Most Popular" className={classes.tabChildren} />
-                  <Tab label="New Arrial" className={classes.tabChildren} />
-                  <Tab label="On Sale" className={classes.tabChildren} />
+                  <Tab label="Phổ biến nhất" className={classes.tabChildren} />
+                  <Tab label="Sản phẩm mới" className={classes.tabChildren} />
+                  <Tab label="Giảm giá" className={classes.tabChildren} />
                 </Tabs>
               </AppBar>
             </div>

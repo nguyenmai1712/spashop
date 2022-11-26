@@ -30,7 +30,9 @@ const useStyles = makeStyles((theme) => ({
   },
 
   bodyContent: {
-
+    [theme.breakpoints.down("sm")]: {
+      width: '100vw',
+    }
   },
 
   options: {

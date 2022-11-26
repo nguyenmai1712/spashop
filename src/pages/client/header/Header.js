@@ -281,7 +281,7 @@ function Header() {
               xs={4}
               className={classes.optionItem}
             >
-              <Typography className={classes.mainOptionName}> My Favourite </Typography>
+              <Typography className={classes.mainOptionName}> Mục yêu thích </Typography>
               <Typography className={classes.subOptionName}>
                 Wishlist
               </Typography>
@@ -368,9 +368,9 @@ function Header() {
             xs={4}
             className={classes.optionItem}
           >
-            <Typography className={classes.mainOptionName}> My Favourite </Typography>
+            <Typography className={classes.mainOptionName}> Mục yêu thích </Typography>
             <Typography className={classes.subOptionName}>
-              Wishlist
+              Sản phẩm yêu thích
             </Typography>
             <IconButton className={classes.iconButton}>
               <FavoriteBorderIcon />
@@ -381,9 +381,9 @@ function Header() {
             xs={4}
             className={classes.optionItem}
           >
-            <Typography className={classes.mainOptionName}> Sign In/Sign Up</Typography>
+            <Typography className={classes.mainOptionName}> Đăng nhập / Đăng kí</Typography>
             <Typography className={classes.subOptionName} onClick={() => handleNavigate("/login")}>
-              My Account
+              Tài khoản của
             </Typography>
             <IconButton className={classes.iconButton} onClick={() => handleNavigate("/login")}>
               <AccountCircleIcon />

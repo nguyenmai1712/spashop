@@ -8,14 +8,14 @@ const useStyles = makeStyles(() => ({
     },
 
     content: {
-        transform: 'translateY(-20%)',
         width: '100%',
-        height: '100vh',
         display: 'flex',
+        height: '100vh',
         flexDirection: 'column',
-        justifyContent: 'center',
+        // justifyContent: 'center',
         alignItems: 'center',
         '& h1': {
+            marginTop: 100,
             fontSize: 100,
             margin: 0,
         },
@@ -40,16 +40,14 @@ function NotFoundPage(props) {
        <div className={classes.container}>
         <div className={classes.content}>
             <h1>Oops!</h1>
-            <h3> 404 - Page not found </h3>
-            <p>The page you looking for might have been remove</p>
-            <p>had its name change or temporarily unavailable</p>
+            <h3> 404 - Không tìm thấy trang </h3>
             <Button
                 variant="contained"
                 color="secondary"
                 className={classes.backButton}
                 onClick={() => handleNavigate("/home")}
             > 
-                Go to home
+                Về trang chủ
             </Button>
         </div>
        </div>

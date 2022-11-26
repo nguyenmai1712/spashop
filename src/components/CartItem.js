@@ -122,7 +122,7 @@ function CartItem({ data }) {
           <input type="number" onChange={handleChangeQuality} value={quantity === 0 ? "": quantity}/>
         </div>          
         <div>
-          <Typography className={classes.price}>${ToCurrency(data.totalPrice)}</Typography>
+          <Typography className={classes.price}>{ToCurrency(data.totalPrice)}đ</Typography>
         </div>
       </div>
     </div>
