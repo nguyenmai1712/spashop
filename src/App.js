@@ -26,12 +26,12 @@ import Salary from 'pages/admin/ManangeEmployeer/Salary/Salary';
 import CheckInOut from 'pages/admin/ManangeEmployeer/Check-in-out/CheckInOut';
 import ManageCustomer from 'pages/admin/ManageCustomer/ManageCustomer';
 import Report from 'pages/admin/Report';
-import Calendar from 'pages/admin/Calendar/Calendar';
 import TreatmentForm from 'pages/admin/ManageProducts/Treatments/TreatmentForm';
 import ProductManage from 'pages/admin/ManageProducts/Products/ProductManage';
 import ProductForm from 'pages/admin/ManageProducts/Products/ProductForm';
 import ProductDetailAdmin from 'pages/admin/ManageProducts/Products/ProductDetailAdmin';
 import CheckoutPage from 'pages/client/CheckoutPage/CheckoutPage';
+import Calendars from 'pages/admin/Calendar/Calendars';
 
 function App() {
   const productCart = useSelector(productCarts);
@@ -49,7 +49,7 @@ function App() {
                     <Navigation>
                             <Switch>
                                 <PrivateRoute exact path="/admin" topath="/admin/calendar" />
-                                <PrivateRoute exact path="/admin/calendar" component={Calendar} />
+                                <PrivateRoute exact path="/admin/calendar" component={Calendars} />
                                 
                                 {/* Quản lí sản phẩm */}
                                 <PrivateRoute exact path="/admin/manage-products/products" component={ProductManage} />

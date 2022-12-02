@@ -42,19 +42,19 @@ const useStyles = makeStyles(() => ({
 const footerMenuData = [
   {
     id: 1,
-    label: 'Privicy Policy',
+    label: 'Chính sách bảo mật',
     link: '/privicy-policy',
     subMenu: [],
   },
   {
     id: 2,
-    label: 'Refund Policy',
+    label: 'Chính sách hoàn tiền',
     link: '/refund-policy',
     subMenu: [],
   },
   {
     id: 3,
-    label: 'Term & Conditions',
+    label: 'Điều khoản & điều kiện',
     link: '/term-and-conditions',
     subMenu: [],
   },
@@ -111,7 +111,7 @@ function Footer({ location, popularData }) {
               <Grid container item xs={12} sm={6} md={6} lg={6}>
                 <Grid item xs={12}>
                   <Typography className={classes.subTitle}>
-                    Connect With Us
+                    Kết nối với chúng tôi
                   </Typography>
                   <Typography className={classes.textFooter}>Facebook</Typography>
                   <Typography className={classes.textFooter}>Twitter</Typography>
@@ -122,12 +122,12 @@ function Footer({ location, popularData }) {
               <Grid container item xs={12} sm={6} md={6} lg={6}>
                 <Grid item xs={12}>
                   <Typography className={classes.subTitle}>
-                    More About Store
+                    Cửa hàng của chúng tôi
                   </Typography>
-                  <Typography className={classes.textFooter}>Multiple Branches</Typography>
-                  <Typography className={classes.textFooter}>Take Franchise</Typography>
-                  <Typography className={classes.textFooter}>Scheduled Offers</Typography>
-                  <Typography className={classes.textFooter}>More Links</Typography>
+                  <Typography className={classes.textFooter}>Các chi nhánh khác</Typography>
+                  <Typography className={classes.textFooter}>Nhận nhượng quyền thương mại</Typography>
+                  <Typography className={classes.textFooter}> Ưu đãi theo lịch trình </Typography>
+                  <Typography className={classes.textFooter}>Xem thêm</Typography>
                 </Grid>
               </Grid>
             </Grid>
@@ -138,7 +138,7 @@ function Footer({ location, popularData }) {
             <Grid container item xs={12} sm={6} md={6} lg={6}>
               {/* 1/8 footer */}
               <div className={classes.recommendProducts}>
-                <Typography className={classes.subTitle}> Products</Typography>
+                <Typography className={classes.subTitle}> Sản phẩm</Typography>
                 {
                   popularData.slice(0, 4).map(item => (
                     <ItemProductRecomend item={item} key={item.id}/>
@@ -151,7 +151,7 @@ function Footer({ location, popularData }) {
               <Grid container item xs={12}>
                 <Grid item xs={12}>
                   <Typography className={classes.subTitle}>
-                    Contact Details
+                    Chi tiết liên hệ
                   </Typography>
                   <Typography className={classes.textFooter}>
                     Address: 3548 Columbia Mine Road,
@@ -167,7 +167,7 @@ function Footer({ location, popularData }) {
               <Grid container item xs={12}>
               <Grid item xs={12}>
                   <Typography className={classes.subTitle}>
-                    Offline Stores
+                    Cửa hàng offline
                   </Typography>
                   <Typography className={classes.textFooter}>
                     Address: 3548 Columbia Mine Road,

@@ -1,10 +1,26 @@
-import React from 'react';
-import { Button, FormControlLabel, IconButton, InputAdornment, makeStyles, MenuItem, Radio, RadioGroup, Select, TextField, Typography } from '@material-ui/core';
-import useInput from 'hooks/input.hooks';
-import MiniTable from '../../Components/MiniTable';
+import {
+    Button,
+    CircularProgress,
+    IconButton,
+    InputAdornment,
+    makeStyles,
+    MenuItem,
+    Select,
+    Snackbar,
+    TextField,
+    Typography,
+} from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
-import { useLocation } from 'react-router-dom';
-import ToCurrency from 'Utils/FormatNumber';
+import { Alert } from '@material-ui/lab';
+import clsx from 'clsx';
+import useInput, { resizeFile } from 'hooks/input.hooks';
+import { productCategory } from 'pages/FakeData';
+import React from 'react';
+import { useHistory, useLocation } from 'react-router-dom';
+import { productService } from 'Services/productService';
+import { ValidateFunc } from 'Utils/ValidateFunc';
+
+import MiniTable from '../../Components/MiniTable';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -25,6 +41,11 @@ const useStyles = makeStyles((theme) => ({
         fontSize: 20,
         color: "#05b5cb",
         width: '100%',
+    },
+
+    buttonSubmit: {
+      width: 120,
+      height: 40,  
     },
 
     formControl: {
@@ -162,26 +183,36 @@ const FORM_TYPE = {
 
 function ProductForm() {
     const location = useLocation();
+    const history = useHistory();
     const { data, type } = location.state;
     const classes = useStyles();
+    
     const { value: name, onChange: setName } = useInput((data && data.name) ? data.name : "");
-    const { value: price, onChange: setPrice } = useInput((data && data.newPrice) ? ToCurrency(data.newPrice) : "");
+    const { value: price, onChange: setPrice } = useInput((data && data.newPrice) ? data.newPrice: "");
     const { value: amount, onChange: setAmount } = useInput((data && data.amount) ? data.amount : "");
     const { value: productCode, onChange: setProductCode } = useInput((data && data.productCode) ? data.productCode : "");
     const { value: propertyName, onChange: setPropertyName, reset: resetPropertyName } = useInput("");
     const { value: propertyValue, onChange: setPropertyValue, reset: resetPropertyValue} = useInput("");
     const { value: description, onChange: setDescription } = useInput((data && data.description) ? data.description : "");
-    const { value: startDate, onChange: setStartDate } = useInput((data && data.startDate) ? data.startDate : "");
-    const [images, setImages] = React.useState((data && data.mainImage) ? [{id: 1, src: data.mainImage}] : []);
-    const [productPropertiesData, setProductPropertiesData] = React.useState((data && data.properties) ? [...data.properties] : []);
+    const { value: category, onChange: setCategory } = useInput((data && data.category) ? data.category : "");
 
-    const handleSelectImage = (e) => {
+    const [images, setImages] = React.useState((data && data.mainImage) ? [data.mainImage] : []);
+    const [productPropertiesData, setProductPropertiesData] = React.useState((data && data.properties) ? [...data.properties] : []);
+    const [ isOpenSnackbar, setOpenSnackBar ] = React.useState(false);
+    const [ isFetching, setFetching ] = React.useState(false);
+
+    const handleSelectImage = async (e) => {
         const file = e.target.files[0];
+        const base64Value = await resizeFile(file);
         const image = {
             id: Math.round(Math.random()*100),
-            src: URL.createObjectURL(file)
+            src: base64Value, 
         }
         setImages([...images, image]);
+    }
+
+    const handleNavigate = (link) => {
+        history.push(link);
     }
 
     const handleRemoveSelectedImage = (id) => {
@@ -214,34 +245,139 @@ function ProductForm() {
         resetPropertyValue()
     }
 
-    const handleUpdate = () => {
-        // call api update here
+    const handleSubmit = async (type) => {
+       switch (type) {
+            case FORM_TYPE.ADD:
+                if (
+                    name &&
+                    ValidateFunc.isNumber(price) &&
+                    amount > 0 &&
+                    category &&
+                    productPropertiesData &&
+                    productCode &&
+                    description
+                ) {
+                    const newProduct = {
+                        name,
+                        oldPrice: price,
+                        newPrice: price,
+                        description,
+                        mainImage: images[0],
+                        extraImage1: images[1],
+                        extraImage2: images[2],
+                        extraImage3: images[3],
+                        view: 1,
+                        color: ["red", "blue", "white", "black"],
+                        amount: amount,
+                        rating: 5,
+                        category: category,
+                        status: ["On sale"],
+                        tags: ["Blushers", "Creams"],
+                        startDate: new Date().toISOString().slice(0, 16),
+                        properties: productPropertiesData,
+                        productCode,
+                    }
+                    
+                    try {
+                        setFetching(true);
+                        const response = await productService.addProduct(newProduct);
+                        if (response) {
+                            setFetching(false);
+                            handleNavigate("/admin/manage-products/products")
+                        }
+                    } catch (error) {
+                        setFetching(false);
+                        throw new Error(error.message)
+                    }
+                } else {
+                    setOpenSnackBar(true);
+                }
+                break;
+            case FORM_TYPE.EDIT:
+                const newProduct = {
+                    ...data,
+                    name,
+                    oldPrice: price,
+                    newPrice: price,
+                    description,
+                    mainImage: images[0],
+                    extraImage1: images[1],
+                    extraImage2: images[2],
+                    extraImage3: images[3],
+                    view: 1,
+                    color: ["red", "blue", "white", "black"],
+                    amount: amount,
+                    rating: 5,
+                    category: category,
+                    status: ["On sale"],
+                    tags: ["Blushers", "Creams"],
+                    startDate: new Date().toISOString().slice(0, 16),
+                    properties: productPropertiesData,
+                    productCode,
+                }
+                
+                try {
+                    setFetching(true);
+                    const response = await productService.updateProduct(newProduct);
+                    if (response) {
+                        setFetching(false);
+                        handleNavigate("/admin/manage-products/products")
+                    }
+                } catch (error) {
+                    setFetching(false);
+                    throw new Error(error.message)
+                }
+                break;
+            default:
+                return;
+       }
     }
 
     return (
         <div className={classes.container}>
+            <Snackbar
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                open={isOpenSnackbar}
+                onClose={() => setOpenSnackBar(false)}
+            >
+                <Alert severity="error">Vui lòng điền đầy đủ các thông tin!</Alert>
+            </Snackbar>
             <div className={classes.header}>
                 <div className={classes.leftContent}>
                     <Typography className={classes.titlePage}> {type === FORM_TYPE.EDIT ? "Chỉnh sửa sản phẩm" : "Thêm mới sản phẩm"} </Typography>
                 </div>
                 <div className={classes.rightContent}>
-                    <Button
-                        variant="contained"
-                        color="secondary"
-                        onClick={handleUpdate}
-                    >
-                        {type === FORM_TYPE.EDIT ? "Cập Nhật" : "Thêm mới"}
-                    </Button>
+                    {
+                        !isFetching ? (
+                            <Button
+                                className={classes.buttonSubmit}
+                                variant="contained"
+                                color="secondary"
+                                onClick={() => handleSubmit(type)}
+                            >
+                                {type === FORM_TYPE.EDIT ? "Cập Nhật" : "Thêm mới"}
+                            </Button>
+                        ) : (
+                            <Button
+                                className={classes.buttonSubmit}
+                                variant="contained"
+                                color="secondary"
+                            >
+                                <CircularProgress size={24}/>
+                            </Button>
+                        )
+                    }
+                    
                 </div>
             </div>
             <div className={classes.formControl}>
                 <div className={classes.formContent}>
                     <div className={classes.formGroup}>
-                        <Typography className={classes.inputLabel}> Tên liệu trình </Typography>
+                        <Typography className={classes.inputLabel}> Tên sản phẩm </Typography>
                         <TextField
                             className={classes.inputfield}
                             id="standard-textarea"
-                            placeholder="Nhập tên liệu trình"
+                            placeholder="Nhập tên sản phẩm"
                             variant="outlined"
                             size='small'
                             value={name}
@@ -284,19 +420,20 @@ function ProductForm() {
                     </div>
 
                     <div className={classes.formGroup}>
-                        <Typography className={classes.inputLabel}> Ngày bắt đầu bán </Typography>
-                        <TextField
-                            className={classes.inputfield}
-                            id="standard-textarea"
-                            type="datetime-local"
+                        <Typography className={classes.inputLabel}> Danh mục </Typography>
+                        <Select
+                            value={category}
+                            onChange={setCategory}
+                            displayEmpty
+                            size="small"
+                            className={clsx(classes.fieldSelect, classes.selectCategory)}
                             variant="outlined"
-                            size='small'
-                            value={startDate}
-                            onChange={setStartDate}
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-                        />
+                        >
+                            <MenuItem value={""}>Danh mục</MenuItem>
+                            {
+                                productCategory.map(item => <MenuItem value={item}> {item} </MenuItem>)
+                            }
+                        </Select>
                     </div>
 
                     <div className={classes.formGroup}>

@@ -121,7 +121,7 @@ function ProductDetailAdmin(props) {
             <div className={classes.productDetailContent}>
                 <div className={classes.detailInfor}>
                     <div className={classes.imageProduct}>
-                        <img src={productData.mainImage} alt=""/>
+                        <img src={productData.mainImage.src} alt=""/>
                     </div>
                     <div className={classes.productInfor}>
                         <Typography className={classes.inforTitle}>Chi tiết sản phẩm/Dịch vụ</Typography>
@@ -157,7 +157,7 @@ function ProductDetailAdmin(props) {
 
                         <div className={classes.inforItem}>
                             <span className={classes.label}>Danh mục:</span>
-                            <span className={classes.information}>{productData.category.join(", ")} </span>
+                            <span className={classes.information}>{productData.category} </span>
                         </div>
 
                         <div className={classes.inforItem}>

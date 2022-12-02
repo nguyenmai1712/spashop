@@ -1,4 +1,21 @@
 import React, { useEffect, useState, } from 'react';
+import Resizer from "react-image-file-resizer";
+
+export const resizeFile = (file) =>
+  new Promise((resolve) => {
+    Resizer.imageFileResizer(
+      file,
+      300,
+      300,
+      "JPEG",
+      90,
+      0,
+      (uri) => {
+        resolve(uri);
+      },
+      "base64"
+    );
+  });
 
 export const useInput = (initialValue) => {
   const [value, setValue] = useState(initialValue);
@@ -29,11 +46,15 @@ export const useAvatar = (initialValue) => {
   return {
     value,
     setValue,
-    reset: useEffect(() => (value && URL.revokeObjectURL(value))),
-    onChange: (event) => {
-      const file = event.target.files[0];
-      file.preview = URL.createObjectURL(file);
-      setValue(file);
+    onChange: async (event) => {
+      try {
+        const file = event.target.files[0];
+        const image = await resizeFile(file);
+        setValue(image);
+        console.log(image);
+      } catch (error) {
+        console.log(error);
+      }
     },
   };
 };

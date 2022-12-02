@@ -1,47 +1,61 @@
-import product1 from "assets/images/home_beauty_salon_shop_1.jpg";
-import product2 from "assets/images/home_beauty_salon_shop_2.jpg";
-import product3 from "assets/images/home_beauty_salon_shop_3.jpg";
-import product4 from "assets/images/home_beauty_salon_shop_4.jpg";
-import product5 from "assets/images/home_beauty_salon_shop_5.jpg";
-import product6 from "assets/images/home_beauty_salon_shop_6.jpg";
-import product7 from "assets/images/home_beauty_salon_shop_7.jpg";
-import product8 from "assets/images/home_beauty_salon_shop_8.jpg";
-import product9 from "assets/images/home_beauty_salon_shop_9.jpg";
-import product10 from "assets/images/home_beauty_salon_shop_10.jpg";
-import product11 from "assets/images/home_beauty_salon_shop_11.jpg";
-import product12 from "assets/images/home_beauty_salon_shop_12.jpg";
-
+import AcUnitIcon from '@material-ui/icons/AcUnit';
+import BubbleChartIcon from '@material-ui/icons/BubbleChart';
+import DevicesOtherIcon from '@material-ui/icons/DevicesOther';
+import LocalMallIcon from '@material-ui/icons/LocalMall';
+import NotInterestedIcon from '@material-ui/icons/NotInterested';
 import category1 from 'assets/images/category1.jpeg';
 import category2 from 'assets/images/category2.jpg';
 import category3 from 'assets/images/category3.jpg';
 import category4 from 'assets/images/category4.jpg';
 import category5 from 'assets/images/category5.jpg';
+import product1 from 'assets/images/home_beauty_salon_shop_1.jpg';
+import product10 from 'assets/images/home_beauty_salon_shop_10.jpg';
+import product2 from 'assets/images/home_beauty_salon_shop_2.jpg';
+import product3 from 'assets/images/home_beauty_salon_shop_3.jpg';
+import product4 from 'assets/images/home_beauty_salon_shop_4.jpg';
+import product5 from 'assets/images/home_beauty_salon_shop_5.jpg';
+import product6 from 'assets/images/home_beauty_salon_shop_6.jpg';
+import product7 from 'assets/images/home_beauty_salon_shop_7.jpg';
+import product8 from 'assets/images/home_beauty_salon_shop_8.jpg';
+import product9 from 'assets/images/home_beauty_salon_shop_9.jpg';
 
-import AcUnitIcon from '@material-ui/icons/AcUnit';
-import BubbleChartIcon from '@material-ui/icons/BubbleChart';
-import CameraIcon from '@material-ui/icons/Camera';
-import DevicesOtherIcon from '@material-ui/icons/DevicesOther';
-import HomeWorkIcon from '@material-ui/icons/HomeWork';
-import LaptopWindowsIcon from '@material-ui/icons/LaptopWindows';
-import LocalMallIcon from '@material-ui/icons/LocalMall';
-import NotInterestedIcon from '@material-ui/icons/NotInterested';
-import SmartphoneIcon from '@material-ui/icons/Smartphone';
-import SpeakerIcon from '@material-ui/icons/Speaker';
-import SportsEsportsIcon from '@material-ui/icons/SportsEsports';
-import WatchIcon from '@material-ui/icons/Watch';
-import { createEventId, todayStr } from "Utils/Fullcalendar";
+export const dayOfWeekLable = [
+  "Thứ hai",
+  "Thứ ba",
+  "Thứ tư",
+  "Thứ năm",
+  "Thứ sáu",
+  "Thứ bảy",
+  "Chủ nhật"
+];
 
-export const INITIAL_EVENTS = [
-  {
-    id: createEventId(),
-    title: 'All-day event',
-    start: todayStr
-  },
-  {
-    id: createEventId(),
-    title: 'Timed event',
-    start: todayStr + 'T12:00:00'
-  }
+export const storeData = [
+  "Meow Meow",
+  "Gau Gau Gau",
+  "Cop cop cop"
+]
+
+export const appointmentStatus = [
+  "Đã thanh toán",
+  "Đang xử lí",
+  "Đã lên lịch",
+  "Hủy",
+  "Đang thực hiện"
+];
+
+export const treatmentCategory =[
+  "Chăm sóc da mặt",
+  "Trị mụn",
+  "Xông hơi đá nóng",
+  "Massage",
+]
+
+export const productCategory = [
+  "Serum",
+  "Thực phẩm chức năng",
+  "Sản phẩm chăm sóc da mặt",
+  "Sản phẩm thiên nhiên",
+  "Hàng cao cấp",
 ]
 
 export const treatmentData = [
