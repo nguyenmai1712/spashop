@@ -12,6 +12,7 @@ import React, { useState } from "react";
 import clsx from "clsx";
 import { Link } from "react-router-dom";
 import { Collapse } from "@material-ui/core";
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 // import IconButton from '@material-ui/core/IconButton';
 
 const useStyles = makeStyles((theme) => ({
@@ -71,6 +72,12 @@ const listMenuData = [
     name: "Lịch",
     path: "/admin/calendar",
     icon: <EventIcon />,
+  },
+  {
+    key: "sell",
+    name: "Tạo đơn hàng",
+    path: "/admin/order",
+    icon: <ShoppingCartIcon />,
   },
   {
     key: "manage_products",

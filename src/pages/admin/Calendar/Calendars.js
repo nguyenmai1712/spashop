@@ -47,9 +47,9 @@ const useStyles = makeStyles((theme) => ({
     },
     tabpanel: {
         width: '100%',
-        height: 'calc(100vh - 120px)',
+        // height: '100vh',
         background: 'white',
-        boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.8)',
+        // boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.8)',
     },
     tabContent: {
         width: '100%',
@@ -59,6 +59,7 @@ const useStyles = makeStyles((theme) => ({
 
     appointment: {
         padding: '0px 200px',
+        height: 'calc(100vh - 170px)'
     },
 
     header: {
@@ -96,7 +97,7 @@ const useStyles = makeStyles((theme) => ({
 
     textarea: {
         width: '100%',
-        height: 350,
+        height: 120,
         borderRadius: 10,
         padding: 10,
         border: 'solid 2px #ddd'
@@ -118,7 +119,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
     serviceInfo: {
-        minHeight: 150,
+        minHeight: 120,
         width: '100%',
         padding: '16px',
     },
@@ -320,6 +321,8 @@ export default function Calendars() {
                 Location: location,
                 Description: description,
                 Service: service,
+                date: allDayOfWeek[day],
+                dayOfWeek: day,
             }
             handleAddAppointment(newAppointment);
             handleChangeTab(0)
@@ -618,7 +621,6 @@ export default function Calendars() {
                                 <div className={classes.buttonGroup}>
                                     <Button variant="contained"> Hủy </Button>
                                     <Button variant='contained' color="primary" onClick={handleSubmit}> Thêm </Button>
-                                    <Button variant='contained' color="secondary"> Thanh Toán </Button>
                                 </div>
 
                             </div>
@@ -641,7 +643,12 @@ export default function Calendars() {
             </SwipeableViews>
 
             <Dialog open={isOpenDialogDetail} onClose={()=> setOpenDialogDetail(false)} className={classes.modal}>
-                <AppoinentForm appointmentData={selectedData} type={typeForm} onCloseModal={() => setOpenDialogDetail(false)}/>
+                <AppoinentForm
+                    appointmentData={selectedData}
+                    type={typeForm}
+                    onCloseModal={() => setOpenDialogDetail(false)}
+                    updateData={(data) => setAppointmentData(data)}
+                />
             </Dialog>
         </div>
     );

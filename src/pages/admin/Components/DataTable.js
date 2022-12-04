@@ -89,7 +89,8 @@ export default function DataTable({ data, columns, type, height, minHeight, hasM
 
     const FORM_TYPE = {
         EDIT: 'EDIT',
-        ADD: 'ADD'
+        ADD: 'ADD',
+        DETAIL: 'DETAIL'
     }
 
 
@@ -120,7 +121,7 @@ export default function DataTable({ data, columns, type, height, minHeight, hasM
                 setCustomerModalData(data);
                 break;
             case DATA_TABLE_TYPE.APPOINTMENT:
-                onSelectRow(data, FORM_TYPE.EDIT);
+                onSelectRow(data, FORM_TYPE.DETAIL);
                 break;
             default:
                 return

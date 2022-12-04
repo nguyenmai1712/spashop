@@ -1,12 +1,25 @@
-import React from 'react';
-import { Button, FormControlLabel, makeStyles, MenuItem, Radio, RadioGroup, Select, TextField, Typography } from '@material-ui/core';
+import {
+    Button,
+    CircularProgress,
+    FormControlLabel,
+    makeStyles,
+    MenuItem,
+    Radio,
+    RadioGroup,
+    Select,
+    Snackbar,
+    TextField,
+    Typography,
+} from '@material-ui/core';
+import { Alert } from '@material-ui/lab';
+import { CREATED, OK } from 'constant';
 import useInput from 'hooks/input.hooks';
-import ToCurrency from 'Utils/FormatNumber';
 import { appointmentStatus, dayOfWeekLable, storeData } from 'pages/FakeData';
-import { OK } from 'constant';
-import { treatementService } from 'Services/treatmentService';
+import React from 'react';
 import { useEffect } from 'react';
 import { appointmentService } from 'Services/appointmentService';
+import { treatementService } from 'Services/treatmentService';
+import ToCurrency from 'Utils/FormatNumber';
 
 const useStyles = makeStyles((theme) => ({
     appointment: {
@@ -114,50 +127,60 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: 'row'
     },
 
+    buttonSubmit: {
+        minWidth: 100,
+    },
+
 }));
 
+const FORM_TYPE = {
+    EDIT: 'EDIT',
+    ADD: 'ADD',
+    DETAIL: 'DETAIL'
+}
+
 function dates(current) {
-    var week= new Array(); 
-    current.setDate((current.getDate() - current.getDay() +1));
+    var week = [];
+    current.setDate((current.getDate() - current.getDay() + 1));
     for (var i = 0; i < 7; i++) {
         week.push(
             new Date(current)
-        ); 
-        current.setDate(current.getDate() +1);
+        );
+        current.setDate(current.getDate() + 1);
     }
-    return week; 
+    return week;
 }
 
 function handleGetDate(date, time) {
-    const date_parse = Date.parse(date.toDateString()+" "+time);
+    const date_parse = Date.parse(date.toDateString() + " " + time);
     return new Date(date_parse);
 }
 
 function handleGetTime(date) {
     const hours = new Date(date).getHours();
     const minutes = new Date(date).getMinutes();
-    return `${("0"+hours).slice(-2)}:${('0'+minutes).slice(-2)}`
+    return `${("0" + hours).slice(-2)}:${('0' + minutes).slice(-2)}`
 }
 
 
-function AppoinentForm({ appointmentData, type, onCloseModal }) {
-
-    
-
+function AppoinentForm({ appointmentData, type, onCloseModal, updateData, serivceDefault, onAddOrder  }) {
     const classes = useStyles();
-    const [ treatments, setTreatment ] = React.useState([]);
-    const [ day, setDay ] = React.useState([]);
+    const [treatments, setTreatment] = React.useState([]);
+    const [day, setDay] = React.useState(appointmentData ? appointmentData.dayOfWeek : "");
     const allDayOfWeek = dates(new Date());
-    const [ isFetching, setFetching ] = React.useState(false);
+    const [isFetching, setFetching] = React.useState(false);
+    const [isOpenSnackbar, setOpenSnackbar] = React.useState(false);
     
+
     const { value: customerName, onChange: setCustomerName } = useInput(appointmentData ? appointmentData.Customer : "");
     const { value: technicanName, onChange: setTechnicanName } = useInput(appointmentData ? appointmentData.Technician : "");
     const { value: startTime, onChange: setStartTime } = useInput(appointmentData ? handleGetTime(appointmentData.StartTime) : "");
     const { value: endTime, onChange: setEndTime } = useInput(appointmentData ? handleGetTime(appointmentData.EndTime) : "");
     const { value: description, onChange: setDescription } = useInput(appointmentData ? appointmentData.Description : "");
     const { value: status, onChange: setStatus } = useInput(appointmentData ? appointmentData.Status : "");
-    const { value: service, onChange: setService } = useInput(appointmentData ? appointmentData.Service : "");
+    const { value: service, onChange: setService } = useInput(appointmentData ? appointmentData.Service : serivceDefault);
     const { value: location, onChange: setLocation } = useInput(appointmentData ? appointmentData.Location : "");
+    const { value: sellAmount, onChange: setSellAmount } = useInput(1);
 
     const handleSelectDay = (e) => {
         setDay(e.target.value);
@@ -166,27 +189,45 @@ function AppoinentForm({ appointmentData, type, onCloseModal }) {
     const handleGetTreatment = async () => {
         try {
             const response = await treatementService.getTreatments();
-            if ( response && response.status === OK) {
+            if (response && response.status === OK) {
                 setTreatment(response.data);
             }
         } catch (error) {
         }
     }
 
-    const handleUpdateAppointment = async (data) => {
+    const handleUpdateAppoiment = async (data) => {
         try {
             setFetching(true)
             const response = await appointmentService.updateAppointment(data);
-            if (response && response.status === OK){
-                console.log(response);
+            if (response && response.status === OK) {
                 setTimeout(() => {
                     setFetching(false);
+                    handleGetAppointments();
+                    onCloseModal();
                 }, 1000);
             }
         } catch (error) {
             setFetching(false)
         }
     };
+
+    const handleAddAppoiment = async (data) => {
+        try {
+            setFetching(true)
+            const response = await appointmentService.addAppointment(data);
+            if (response && response.status === CREATED) {
+                setTimeout(() => {
+                    setFetching(false);
+                    onAddOrder({...data.Service, sellAmount, totalPrice: sellAmount * data.Service.newPrice});
+                    onCloseModal();
+                }, 1000);
+            }
+        } catch (error) {
+            setFetching(false)
+        }
+    };
+
 
     const handleSubmit = async () => {
         if (
@@ -200,159 +241,186 @@ function AppoinentForm({ appointmentData, type, onCloseModal }) {
         ) {
             const newAppointment = {
                 ...appointmentData,
-                Customer: customerName,            
+                Customer: customerName,
                 Subject: service.name,
                 StartTime: handleGetDate(allDayOfWeek[day], startTime).toString(),
-                EndTime:  handleGetDate(allDayOfWeek[day], endTime).toString(),
+                EndTime: handleGetDate(allDayOfWeek[day], endTime).toString(),
                 Status: status,
                 Technician: technicanName,
                 Location: location,
                 Description: description,
                 Service: service,
+                date: allDayOfWeek[day],
+                dayOfWeek: day,
             }
-            handleUpdateAppointment(newAppointment);
+            if (!type) {
+                handleAddAppoiment(newAppointment);
+            } else {
+                handleUpdateAppoiment(newAppointment);
+            }
         } else {
-
+            setOpenSnackbar(true);
         }
-        
     }
 
-
-    const handleUpdateAppoiment = () => {
-       
+    const handleGetAppointments = async () => {
+        try {
+            const response = await appointmentService.getAppointments();
+            if (response && response.status === OK) {
+                updateData(response.data);
+            }
+        } catch (error) {
+        }
     }
 
     useEffect(() => {
         handleGetTreatment();
-        console.log(startTime);
     }, [])
-
-    useEffect(() => {
-        console.log(appointmentData);
-        console.log(type);
-    }, []);
 
     return (
         <div>
+
+            <Snackbar
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                open={isOpenSnackbar}
+                onClose={() => setOpenSnackbar(false)}
+            >
+                <Alert severity="error">Vui lòng điền đầy đủ các thông tin!</Alert>
+            </Snackbar>
+
             <div className={classes.appointment}>
-                        <div className={classes.header}>
-                            <Typography className={classes.appointmentTitle}>Thêm cuộc hẹn mới</Typography>
+                <div className={classes.header}>
+                    {
+                        type ? (
+                            <Typography className={classes.appointmentTitle}>
+                                {
+                                    type === FORM_TYPE.DETAIL ? 'Chi tiết cuộc hẹn' : 'Cập nhật thông tin cuộc hẹn'
+                                }
+                            </Typography>
+                        ) : (
+                            <Typography className={classes.appointmentTitle}>
+                               Thêm cuộc hẹn mới
+                            </Typography>
+                        )
+                    }
+                </div>
+
+                <RadioGroup value={parseInt(day)} onChange={handleSelectDay} className={classes.radioGroup}>
+                    {
+                        dayOfWeekLable.map((item, index) => (
+                            <FormControlLabel value={index} control={<Radio />} label={item} />
+                        ))
+                    }
+                </RadioGroup>
+                <div className={classes.appointmentForm}>
+                    <div className={classes.formItem}>
+                        <div className={classes.formGroup}>
+                            <Typography className={classes.inputLabel}> Tên khách hàng </Typography>
+                            <TextField
+                                className={classes.inputfield}
+                                id="standard-textarea"
+                                placeholder="Nhập tên khách hàng"
+                                variant="outlined"
+                                size='small'
+                                value={customerName}
+                                onChange={setCustomerName}
+                            />
                         </div>
 
-                        <RadioGroup value={parseInt(day)} onChange={handleSelectDay} className={classes.radioGroup}>
-                            {
-                                dayOfWeekLable.map((item, index) => (
-                                    <FormControlLabel value={index} control={<Radio />} label={item} />
-                                ))
-                            }
-                        </RadioGroup>
-                        <div className={classes.appointmentForm}>
-                            <div className={classes.formItem}>
-                                <div className={classes.formGroup}>
-                                    <Typography className={classes.inputLabel}> Tên khách hàng </Typography>
-                                    <TextField
-                                        className={classes.inputfield}
-                                        id="standard-textarea"
-                                        placeholder="Nhập tên khách hàng"
-                                        variant="outlined"
-                                        size='small'
-                                        value={customerName}
-                                        onChange={setCustomerName}
-                                    />
-                                </div>
+                        <div className={classes.formGroup}>
+                            <Typography className={classes.inputLabel}> Tên kĩ thuật viên </Typography>
+                            <TextField
+                                className={classes.inputfield}
+                                id="standard-textarea"
+                                placeholder="Nhập tên kĩ thuật viên"
+                                variant="outlined"
+                                size='small'
+                                value={technicanName}
+                                onChange={setTechnicanName}
+                            />
+                        </div>
+                        <div className={classes.formGroup}>
+                            <Typography className={classes.inputLabel}> Thời gian bắt đầu </Typography>
+                            <TextField
+                                className={classes.inputfield}
+                                id="standard-textarea"
+                                type="time"
+                                variant="outlined"
+                                size='small'
+                                value={startTime}
+                                onChange={setStartTime}
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                            />
+                        </div>
 
-                                <div className={classes.formGroup}>
-                                    <Typography className={classes.inputLabel}> Tên kĩ thuật viên </Typography>
-                                    <TextField
-                                        className={classes.inputfield}
-                                        id="standard-textarea"
-                                        placeholder="Nhập tên kĩ thuật viên"
-                                        variant="outlined"
-                                        size='small'
-                                        value={technicanName}
-                                        onChange={setTechnicanName}
-                                    />
-                                </div>
-                                <div className={classes.formGroup}>
-                                    <Typography className={classes.inputLabel}> Thời gian bắt đầu </Typography>
-                                    <TextField
-                                        className={classes.inputfield}
-                                        id="standard-textarea"
-                                        type="time"
-                                        variant="outlined"
-                                        size='small'
-                                        value={startTime}
-                                        onChange={setStartTime}
-                                        InputLabelProps={{
-                                            shrink: true,
-                                        }}
-                                    />
-                                </div>
-
-                                <div className={classes.formGroup}>
-                                    <Typography className={classes.inputLabel}> Thời gian kết thúc </Typography>
-                                    <TextField
-                                        className={classes.inputfield}
-                                        id="standard-textarea"
-                                        type="time"
-                                        variant="outlined"
-                                        size='small'
-                                        value={endTime}
-                                        onChange={setEndTime }
-                                        InputLabelProps={{
-                                            shrink: true,
-                                        }}
-                                    />
-                                </div>
+                        <div className={classes.formGroup}>
+                            <Typography className={classes.inputLabel}> Thời gian kết thúc </Typography>
+                            <TextField
+                                className={classes.inputfield}
+                                id="standard-textarea"
+                                type="time"
+                                variant="outlined"
+                                size='small'
+                                value={endTime}
+                                onChange={setEndTime}
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                            />
+                        </div>
 
 
-                                <div className={classes.formGroup}>
-                                    <Typography className={classes.inputLabel}> Ghi chú </Typography>
-                                    <textarea className={classes.textarea} placeholder="Nhập ghi chú..." defaultValue={description} onChange={setDescription}>
-                                    </textarea>
-                                </div>
-                            </div>
-                            <div className={classes.formItem}>
-                                <div className={classes.formGroup}>
-                                    <Typography className={classes.inputLabel}> Cửa hàng </Typography>
-                                    <Select
-                                        displayEmpty
-                                        size="small"
-                                        className={classes.fieldSelect}
-                                        variant="outlined"
-                                        value={location}
-                                        onChange={setLocation}
-                                    >
-                                        <MenuItem value={""}> Chọn cửa hàng </MenuItem>
-                                        {
-                                            storeData.map(item => (
-                                                <MenuItem value={item}>{item}</MenuItem>
-                                            ))
-                                        }
+                        <div className={classes.formGroup}>
+                            <Typography className={classes.inputLabel}> Ghi chú </Typography>
+                            <textarea className={classes.textarea} placeholder="Nhập ghi chú..." defaultValue={description} onChange={setDescription}>
+                            </textarea>
+                        </div>
+                    </div>
+                    <div className={classes.formItem}>
+                        <div className={classes.formGroup}>
+                            <Typography className={classes.inputLabel}> Cửa hàng </Typography>
+                            <Select
+                                displayEmpty
+                                size="small"
+                                className={classes.fieldSelect}
+                                variant="outlined"
+                                value={location}
+                                onChange={setLocation}
+                            >
+                                <MenuItem value={""}> Chọn cửa hàng </MenuItem>
+                                {
+                                    storeData.map(item => (
+                                        <MenuItem value={item}>{item}</MenuItem>
+                                    ))
+                                }
 
-                                    </Select>
-                                </div>
+                            </Select>
+                        </div>
 
-                                <div className={classes.formGroup}>
-                                    <Typography className={classes.inputLabel}> Trạng thái</Typography>
-                                    <Select
-                                        displayEmpty
-                                        size="small"
-                                        className={classes.fieldSelect}
-                                        variant="outlined"
-                                        value={status}
-                                        onChange={setStatus}
-                                    >
-                                        <MenuItem value={""}> Chọn trạng thái </MenuItem>
-                                        {
-                                            appointmentStatus.map(item => (
-                                                <MenuItem value={item}>{item}</MenuItem>
-                                            ))
-                                        }
+                        <div className={classes.formGroup}>
+                            <Typography className={classes.inputLabel}> Trạng thái</Typography>
+                            <Select
+                                displayEmpty
+                                size="small"
+                                className={classes.fieldSelect}
+                                variant="outlined"
+                                value={status}
+                                onChange={setStatus}
+                            >
+                                <MenuItem value={""}> Chọn trạng thái </MenuItem>
+                                {
+                                    appointmentStatus.map(item => (
+                                        <MenuItem value={item}>{item}</MenuItem>
+                                    ))
+                                }
 
-                                    </Select>
-                                </div>
-
+                            </Select>
+                        </div>
+                        
+                        {
+                            type ? (
                                 <div className={classes.formGroup}>
                                     <Typography className={classes.inputLabel}> Chọn dịch vụ </Typography>
                                     <Select
@@ -371,45 +439,97 @@ function AppoinentForm({ appointmentData, type, onCloseModal }) {
                                         }
                                     </Select>
                                 </div>
-
+                            ) : (
                                 <div className={classes.formGroup}>
-                                    <Typography className={classes.inputLabel}> Thông tin chi tiết dịch vụ</Typography>
-                                    <div className={classes.serviceInfo}>
-                                    {
-                                        service && ( <>
-                                            <div className={classes.serviceInfoItem}>
-                                                <span className={classes.infoName}> Tên dịch vụ </span>
-                                                <span className={classes.infoValue}> { service.name && service.name }</span>
-                                            </div>
-
-                                            <div className={classes.serviceInfoItem}>
-                                                <span className={classes.infoName}> Số buổi tối thiểu </span>
-                                                <span className={classes.infoValue}> {service.amount && service.amount } buổi</span>
-                                            </div>
-
-                                            <div className={classes.serviceInfoItem}>
-                                                <span className={classes.infoName}> Thời lượng </span>
-                                                <span className={classes.infoValue}> { service.duration && service.duration } phút</span>
-                                            </div>
-
-                                            <div className={classes.serviceInfoItem}>
-                                                <span className={classes.infoName}> Giá tiền </span>
-                                                <span className={classes.infoValue}> { service.newPrice && ToCurrency(service.newPrice) }đ</span>
-                                            </div></>
-                                        )
-                                    }
-                                    </div>
-                                    
+                                    <Typography className={classes.inputLabel}> Số lượng mua </Typography>
+                                    <TextField
+                                        className={classes.inputfield}
+                                        id="standard-textarea"
+                                        type="number"
+                                        variant="outlined"
+                                        size='small'
+                                        value={sellAmount}
+                                        onChange={setSellAmount}
+                                        InputLabelProps={{
+                                            shrink: true,
+                                        }}
+                                    />
                                 </div>
-                                <hr/>
-                                <div className={classes.buttonGroup}>
-                                    <Button variant="contained" onClick={onCloseModal}> Hủy </Button>
-                                    <Button variant='contained' color="primary" onClick={handleUpdateAppoiment}> Update </Button>
-                                </div>
+                            )
+                        }
 
+                        <div className={classes.formGroup}>
+                            <Typography className={classes.inputLabel}> Thông tin chi tiết dịch vụ</Typography>
+                            <div className={classes.serviceInfo}>
+                                {
+                                    service && (<>
+                                        <div className={classes.serviceInfoItem}>
+                                            <span className={classes.infoName}> Tên dịch vụ </span>
+                                            <span className={classes.infoValue}> {service.name && service.name}</span>
+                                        </div>
+
+                                        <div className={classes.serviceInfoItem}>
+                                            <span className={classes.infoName}> Số buổi tối thiểu </span>
+                                            <span className={classes.infoValue}> {service.amount && service.amount} buổi</span>
+                                        </div>
+
+                                        <div className={classes.serviceInfoItem}>
+                                            <span className={classes.infoName}> Thời lượng </span>
+                                            <span className={classes.infoValue}> {service.duration && service.duration} phút</span>
+                                        </div>
+
+                                        <div className={classes.serviceInfoItem}>
+                                            <span className={classes.infoName}> Giá tiền </span>
+                                            <span className={classes.infoValue}> {service.newPrice && ToCurrency(service.newPrice)}đ</span>
+                                        </div></>
+                                    )
+                                }
                             </div>
+
+                        </div>
+                        <hr />
+                        <div className={classes.buttonGroup}>
+                            <Button variant="contained" onClick={onCloseModal}> Hủy </Button>
+                            {
+                                type ? (
+                                    <>
+                                        {
+                                            type !== FORM_TYPE.DETAIL &&
+                                            (
+                                                !isFetching ? (
+                                                    <Button className={classes.buttonSubmit} variant='contained' color="primary" onClick={handleSubmit}>
+                                                        Update
+                                                    </Button>
+                                                ) : (
+                                                    <Button className={classes.buttonSubmit} variant='contained' color="primary">
+                                                        <CircularProgress color="secondary" size={24} />
+                                                    </Button>
+                                                )
+                                            )
+                                        }
+                                    </>
+                                ) : (
+                                    <>
+                                        {
+                                            !isFetching ? (
+                                                <Button className={classes.buttonSubmit} variant='contained' color="primary" onClick={handleSubmit}>
+                                                    Thêm
+                                                </Button>
+                                            ) : (
+                                                <Button className={classes.buttonSubmit} variant='contained' color="primary">
+                                                    <CircularProgress color="secondary" size={24} />
+                                                </Button>
+                                            )
+                                        }
+                                    </>
+                                )
+                            }
+
+                            
                         </div>
                     </div>
+                </div>
+            </div>
         </div>
     );
 }

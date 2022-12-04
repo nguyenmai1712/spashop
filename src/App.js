@@ -32,6 +32,8 @@ import ProductForm from 'pages/admin/ManageProducts/Products/ProductForm';
 import ProductDetailAdmin from 'pages/admin/ManageProducts/Products/ProductDetailAdmin';
 import CheckoutPage from 'pages/client/CheckoutPage/CheckoutPage';
 import Calendars from 'pages/admin/Calendar/Calendars';
+import OrderPage from 'pages/admin/OrderPage/OrderPage';
+import AddOrder from 'pages/admin/OrderPage/AddOrder';
 
 function App() {
   const productCart = useSelector(productCarts);
@@ -49,7 +51,13 @@ function App() {
                     <Navigation>
                             <Switch>
                                 <PrivateRoute exact path="/admin" topath="/admin/calendar" />
+                                AddOrder
+                                {/* Trang tạo lịch */}
                                 <PrivateRoute exact path="/admin/calendar" component={Calendars} />
+                                <PrivateRoute exact path="/admin/add-order" component={AddOrder} />
+
+                                {/* Trang tạo đơn hàng */}
+                                <PrivateRoute exact path="/admin/order" component={OrderPage} />
                                 
                                 {/* Quản lí sản phẩm */}
                                 <PrivateRoute exact path="/admin/manage-products/products" component={ProductManage} />

@@ -1,7 +1,7 @@
 {
-  "name": "techstore",
+  "name": "myspa",
   "version": "0.1.0",
-  "homepage": "https://nguyenmai1712.github.io/spashop",
+  "homepage": "https://nguyenmai1712.github.io/admin",
   "private": true,
   "dependencies": {
     "@fullcalendar/daygrid": "^5.11.3",

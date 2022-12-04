@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   flexItem: {
-    width: '19%',
+    width: '15%',
   },
 
   chartTitle: {
@@ -56,6 +56,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const overViewData = [
+  {
+    id: 0,
+    label: 'Doanh thu hôm nay',
+    data: {
+      value: 15002340,
+      type: 'vnd',
+    },
+    rate: {
+      percent: 12,
+      total: 'increase',
+    },
+  },
   {
     id: 1,
     label: 'Doanh thu tháng này',
@@ -94,7 +106,7 @@ const overViewData = [
   },
   {
     id: 4,
-    label: 'Tổng số sản phẩm & liệu trình được bán',
+    label: 'Tổng số sản được bán',
     data: {
       value: 362545,
       type: '',
