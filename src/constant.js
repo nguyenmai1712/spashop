@@ -18,3 +18,8 @@ export const UNAUTHORIZED = 401;
 export const FORBIDDEN = 403;
 export const NOT_FOUND = 404;
 export const INTERNAL_SERVER_ERROR = 500;
+export const USER_LOCAL_STORE = "user_storage"
+export const roles = {
+    admin: 'admin',
+    user: 'user',
+}

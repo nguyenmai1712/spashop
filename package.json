@@ -35,7 +35,8 @@
     "redux": "^4.2.0",
     "styled-components.macro": "^1.0.0",
     "swiper": "^8.2.4",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "rxjs": "^6.6.6"
   },
   "scripts": {
     "start": "react-scripts start",

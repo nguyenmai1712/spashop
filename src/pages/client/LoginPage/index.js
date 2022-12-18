@@ -1,14 +1,14 @@
 import {
   Avatar,
   Button,
-  Checkbox,
-  FormControlLabel,
+  CircularProgress,
   IconButton,
   InputAdornment,
   makeStyles,
+  Slide,
+  Snackbar,
   TextField,
   Typography,
-  withStyles,
 } from '@material-ui/core';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
@@ -18,8 +18,13 @@ import facebookIcon from 'assets/icons/facebook.png';
 import googleIcon from 'assets/icons/google.png';
 import twitterIcon from 'assets/icons/twitter.png';
 import background from 'assets/images/loginbg.jpg';
+import useInput from 'hooks/input.hooks';
 import React from 'react';
+import { ValidateFunc } from 'Utils/ValidateFunc';
 import { useHistory } from 'react-router-dom';
+import { Alert } from '@material-ui/lab';
+import authenticationService from 'Services/authenticationService';
+import { OK, roles, USER_LOCAL_STORE } from 'constant';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -75,7 +80,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 30,
     top: 10,
     left: 10,
-    zIndex: 9999,
+    zIndex: 1,
     fontWeight: 600,
     '&:hover': {
       backgroundColor: '#fb6f92',
@@ -125,6 +130,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 30,
     fontSize: 16,
     fontWeight: 600,
+    minHeight: 50,
     color: 'white',
     border: 'solid 2px white',
     backgroundColor: '#fb6f92',
@@ -189,36 +195,89 @@ const useStyles = makeStyles((theme) => ({
     }
   },
 
+  loading: {
+    color: 'white',
+  }
+
 }));
 
-const CustomCheckbox = withStyles({
-  root: {
-    color: '#686868',
-    '&$checked': {
-      color: '#fb6f92',
-    },
-  },
-  checked: {},
-})((props) => <Checkbox color="default" {...props} />);
 
+function TransitionDown(props) {
+  return <Slide {...props} direction="down" />;
+}
 
 function Login() {
   const history = useHistory();
   const classes = useStyles();
-  const [clearPassword, setClearPassword] = React.useState(false);
-  const [checked, setChecked] = React.useState(false)
-
-  const handleChecked = (event) => {
-    setChecked(event.target.checked);
-  };
-
+  const [ clearPassword, setClearPassword ] = React.useState(false);
+  const [ isFetching, setFetching ] = React.useState(false);
+  const [ error, setError ] = React.useState("");
+  const [ showError, setShowError] = React.useState(false);
+  const { value: password, onChange: handleChangePassword } = useInput("") ;
+  const { value: email, onChange: handleChangeEmail } = useInput("");
 
   const handleNavigate = (link) => {
     history.push(link);
   };
 
+  const handleLogin = async() => {
+    if (
+      ValidateFunc.email(email) &&
+      ValidateFunc.password(password)
+    ) {
+      const user = {
+        email,
+        password
+      };
+
+      try {
+        setFetching(true);
+        const {data, status} = await authenticationService.login(user);
+        if (data && status === OK) {
+          setFetching(false);
+          const user = {
+            token: data.token,
+            email: data.user.email,
+            role: data.user.role,
+          }
+          authenticationService.updateUser(user);
+
+          if (data.user.role === roles.admin && data.user.isVerify) {
+            handleNavigate("/admin");
+          } else {
+            handleNavigate("/home");
+          }
+        }
+      } catch(error) {
+        setFetching(false)
+      }     
+    } else {
+      setError("Email hoặc mật khẩu không đúng! ");
+      setShowError(true);
+    }
+  }
+
+  const checkLogin = () => {
+    const user = JSON.parse(localStorage.getItem(USER_LOCAL_STORE));
+    if (user && user.token) {
+      user.role === roles.admin ? handleNavigate("/admin") : handleNavigate("/home");
+    }
+  }
+
+  React.useEffect(() => {
+    checkLogin();
+  },[])
+
   return (
     <div className={classes.container}>
+      <Snackbar
+        open={showError}
+        onClose={() => setShowError(false)}
+        TransitionComponent={TransitionDown}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+      > 
+        <Alert severity="error">{error}</Alert>
+      </Snackbar>
       <div className={classes.loginContainer}>
         <Button
           className={classes.backButton}
@@ -228,12 +287,14 @@ function Login() {
         </Button>
         <Typography className={classes.title}> Đăng nhập </Typography>
         <div className={classes.inputContainer}>
-          <Typography className={classes.inputName}> Email/Số điện thoại</Typography>
+          <Typography className={classes.inputName}> Email </Typography>
           <TextField
             size="small"
             id="outlined-start-adornment"
             className={classes.textField}
             placeholder="Nhập tài khoản"
+            value={email}
+            onChange={handleChangeEmail}
             InputProps={{
               startAdornment: <InputAdornment position="start"><PersonOutlineIcon /></InputAdornment>,
             }}
@@ -247,12 +308,14 @@ function Login() {
             type={clearPassword ? "text" : "password"}
             id="outlined-start-adornment"
             className={classes.textField}
+            value={password}
+            onChange={handleChangePassword}
             placeholder="Nhập mật khẩu"
             InputProps={{
               startAdornment: <InputAdornment position="start">
                 <LockOpenIcon />
               </InputAdornment>,
-              endAdornment: <InputAdornment position="start">
+              endAdornment: <InputAdornment style={{cursor: 'pointer'}} position="start">
                 {
                   clearPassword ? (
                     <VisibilityIcon onClick={() => setClearPassword(false)} />
@@ -268,26 +331,28 @@ function Login() {
         </div>
 
         <div className={classes.remembermeContainer}>
-          {/* <FormControlLabel
-            className={classes.formControlLabel}
-            control={
-              <CustomCheckbox
-                checked={checked}
-                onChange={handleChecked}
-                name="checkedG"
-              />
-            }
-            label="Ghi nhớ tôi"
-          /> */}
           <Typography className={classes.forgotPassword}> Quên mật khẩu?</Typography>
         </div>
 
         <div className={classes.inputContainer}>
-          <Button
-            className={classes.loginBtn}
-          >
-            Đăng nhập
-          </Button>
+          {
+            !isFetching ? (
+              <Button
+                className={classes.loginBtn}
+                onClick={handleLogin}
+              >
+                Đăng nhập
+              </Button>
+            ) : (
+              <Button
+                className={classes.loginBtn}
+              >
+                <CircularProgress className={classes.loading} size={24}/>
+              </Button>
+            )
+          }
+          
+          
         </div>
 
         <div className={classes.inputContainer}>

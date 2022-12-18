@@ -48,7 +48,6 @@ const useStyles = makeStyles({
 
 export default function CheckInTable({columns, rows}) {
   const classes = useStyles();
-
   return (
     <Paper className={classes.root}>
       <TableContainer className={classes.container}>

@@ -219,7 +219,7 @@ function AppoinentForm({ appointmentData, type, onCloseModal, updateData, serivc
             if (response && response.status === CREATED) {
                 setTimeout(() => {
                     setFetching(false);
-                    onAddOrder({...data.Service, sellAmount, totalPrice: sellAmount * data.Service.newPrice});
+                    onAddOrder({...response.data.Service, appointmentId: response.data.id, sellAmount, totalPrice: sellAmount * data.Service.newPrice});
                     onCloseModal();
                 }, 1000);
             }

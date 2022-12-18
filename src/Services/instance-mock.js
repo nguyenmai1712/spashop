@@ -2,7 +2,7 @@ import axios from "axios";
 import { FORBIDDEN, INTERNAL_SERVER_ERROR, NOT_FOUND, UNAUTHORIZED, USER_LOCAL_STORE } from "constant";
 
 const API = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: process.env.REACT_APP_API_URL_MOCK,
 });
 
 export const apiBase = (options) =>
@@ -52,7 +52,6 @@ API.interceptors.request.use(
     ...config,
     headers: {
     ...config.headers,
-    ...defaultRequestHeader(),
     },
   }),
   err

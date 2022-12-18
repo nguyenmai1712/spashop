@@ -1,4 +1,4 @@
-import { Button, Grid, InputAdornment, makeStyles, TextField, Typography } from '@material-ui/core';
+import { Button, CircularProgress, Grid, InputAdornment, makeStyles, Slide, Snackbar, TextField, Typography } from '@material-ui/core';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Stepper from '@material-ui/core/Stepper';
@@ -8,11 +8,16 @@ import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
+import { Alert } from '@material-ui/lab';
 import messIcon from 'assets/icons/MessageIcon.png';
 import background from 'assets/images/loginbg.jpg';
 import StepIcon, { Connector } from 'components/StepIcon';
+import { OK } from 'constant';
+import useInput from 'hooks/input.hooks';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import authenticationService from 'Services/authenticationService';
+import { ValidateFunc } from 'Utils/ValidateFunc'
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -36,7 +41,6 @@ const useStyles = makeStyles((theme) => ({
   loginContainer: {
     position: 'relative',
     width: 350,
-    height: 590,
     [theme.breakpoints.down('sm')]: {
       width: 500,
     },
@@ -95,6 +99,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 30,
     fontSize: 16,
     fontWeight: 600,
+    minHeight: 50,
     color: 'white',
     border: 'solid 2px white',
     backgroundColor: '#fb6f92',
@@ -232,10 +237,18 @@ const useStyles = makeStyles((theme) => ({
       color: '#686868',
     }
   },
+
+  loading: {
+    color: 'white',
+  }
 }));
 
 function getSteps() {
   return ['Tài khoản', 'Xác thực', 'Hoàn thành'];
+}
+
+function TransitionDown(props) {
+  return <Slide {...props} direction="down" />;
 }
 
 function SignUp() {
@@ -244,6 +257,14 @@ function SignUp() {
   const steps = getSteps();
   const [clearPassword, setClearPassword] = React.useState(false);
   const [activeStep, setActiveStep] = React.useState(0);
+  const [showError, setShowError] = React.useState(false);
+  const [isFetching, setFetching] = React.useState(false);
+  const [errorMsg, setErrorMsg] = React.useState("");
+  const {value: email, onChange: onChangeEmail} = useInput('');
+  const {value: password, onChange: onChangePassword} = useInput('');
+  const {value: repassword, onChange: onChangeRepassword} = useInput('');
+  const {value: name, onChange: onChangeName} = useInput('');
+  const {value: verifyCode, onChange: onChangeVerifyCode} = useInput("");
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -261,24 +282,103 @@ function SignUp() {
     history.push(link);
   };
 
+  const handleSignUp = async() => {
+    if (
+      name &&
+      ValidateFunc.email(email) &&
+      ValidateFunc.password(password) &&
+      password === repassword
+    ) {
+      const user = {
+        name,
+        email,
+        password
+      }
+      try {
+        setFetching(true)
+        const {data, status} = await authenticationService.register(user);
+        if (data && status === OK) {
+          console.log(data)
+          setFetching(false);
+          const user = {
+            token: data.user.tokens[0].token,
+            email: data.user.email,
+            role: data.user.role,
+          }
+          authenticationService.updateUser(user);
+          handleNext();
+        }
+      } catch (error) {
+        setFetching(false);
+        setShowError(true);
+        setErrorMsg(error.message);
+      }
+    } else {
+      setShowError(true);
+      setErrorMsg("Vui lòng nhập đầy đủ các thông tin");
+    }
+  }
+
+  const handleVerifyEmail = async() => {
+    if (
+      verifyCode &&
+      ValidateFunc.minLength(verifyCode, 6)
+    ){
+      try{
+        setFetching(true);
+        console.log("vào day không")
+        const {status} = await authenticationService.verifyCode(verifyCode);
+        if (status === OK) {
+          handleNext();
+        } else {
+          setFetching(false)
+        }
+      } catch (error) {
+        setFetching(false)
+      }
+    } else {
+      setShowError(true);
+      setErrorMsg("Mã xác thực không đúng");
+    }
+  }
+
   function GetStepContent(stepIndex) {
     switch (stepIndex) {
       case 0:
         return (
-          <>
+          <React.Fragment>
             <div className={classes.inputContainer}>
-              <Typography className={classes.inputName}> Email/Số điện thoại </Typography>
+              <Typography className={classes.inputName}> Tên người dùng </Typography>
               <TextField
                 size="small"
                 id="outlined-start-adornment"
                 className={classes.textField}
-                placeholder="Nhập tài khoản đăng kí"
+                placeholder="Nhập tên người dùng"
+                value={name}
+                onChange={onChangeName}
                 InputProps={{
                   startAdornment: <InputAdornment position="start"><PersonOutlineIcon /></InputAdornment>,
                 }}
                 variant="outlined"
               />
             </div>
+
+            <div className={classes.inputContainer}>
+              <Typography className={classes.inputName}> Email </Typography>
+              <TextField
+                size="small"
+                id="outlined-start-adornment"
+                className={classes.textField}
+                placeholder="Nhập tài khoản đăng kí"
+                value={email}
+                onChange={onChangeEmail}
+                InputProps={{
+                  startAdornment: <InputAdornment position="start"><PersonOutlineIcon /></InputAdornment>,
+                }}
+                variant="outlined"
+              />
+            </div>
+
 
             <div className={classes.inputContainer}>
               <Typography className={classes.inputName}> Mật khẩu </Typography>
@@ -288,6 +388,8 @@ function SignUp() {
                 id="outlined-start-adornment"
                 className={classes.textField}
                 placeholder="Nhập mật khẩu"
+                value={password}
+                onChange={onChangePassword}
                 InputProps={{
                   startAdornment: <InputAdornment position="start">
                     <LockOpenIcon />
@@ -315,6 +417,8 @@ function SignUp() {
                 id="outlined-start-adornment"
                 className={classes.textField}
                 placeholder="Nhập lại mật khẩu"
+                value={repassword}
+                onChange={onChangeRepassword}
                 InputProps={{
                   startAdornment: <InputAdornment position="start">
                     <LockOpenIcon />
@@ -335,9 +439,18 @@ function SignUp() {
             </div>
 
             <div className={classes.inputContainer}>
-              <Button className={classes.loginBtn} onClick={handleNext}>
-                Đăng kí
-              </Button>
+              {
+                isFetching ? (
+                  <Button className={classes.loginBtn}>
+                    <CircularProgress className={classes.loading} size={24}/>
+                  </Button>
+                ) : (
+                  <Button className={classes.loginBtn} onClick={handleSignUp}>
+                    Đăng kí
+                  </Button>
+                )
+              }
+              
             </div>
 
             <div className={classes.inputContainer}>
@@ -351,11 +464,11 @@ function SignUp() {
                 </Button>
               </div>
             </div>
-          </>
+          </React.Fragment>
         );
       case 1:
         return (
-          <>
+          <React.Fragment>
             <Grid
               container
               direction="column"
@@ -371,7 +484,7 @@ function SignUp() {
                 <Typography className={classes.verifyNotify}>
                   Nhập mã xác thực chúng tôi đã gửi tới:
                 </Typography>
-                <Typography className={classes.verifyEmail}>thuyduong@gmail.com</Typography>
+                <Typography className={classes.verifyEmail}> {email} </Typography>
               </Grid>
               <Grid item style={{ margin: '20px 0px 10px 0px' }}>
                 <TextField
@@ -379,6 +492,8 @@ function SignUp() {
                   id="outlined-start-adornment"
                   className={classes.textField}
                   placeholder="Mã xác thực"
+                  value={verifyCode}
+                  onChange={onChangeVerifyCode}
                   InputProps={{
                     startAdornment: <InputAdornment position="start"><VerifiedUserIcon style={{color: '#007dff'}}/></InputAdornment>,
                   }}
@@ -386,16 +501,25 @@ function SignUp() {
                 />
               </Grid>
               <div className={classes.inputContainer}>
-                <Button className={classes.loginBtn} onClick={handleNext}>
-                  Xác thực
-                </Button>
+                {
+                  isFetching ? (
+                    <Button className={classes.loginBtn}>
+                      <CircularProgress className={classes.loading} size={24}/>
+                    </Button>
+                  ) : (
+                    <Button className={classes.loginBtn} onClick={handleVerifyEmail}>
+                      Xác thực
+                    </Button>
+                  )
+                }
+                
               </div>
             </Grid>
-          </>
+          </React.Fragment>
         );
       case 2:
         return (
-          <>
+          <React.Fragment>
             <Grid
               container
               direction="column"
@@ -426,7 +550,7 @@ function SignUp() {
                 </Button>
               </div>
             </Grid>
-          </>
+          </React.Fragment>
         )
       default:
         return '';
@@ -434,6 +558,14 @@ function SignUp() {
   }
   return (
     <div className={classes.container}>
+      <Snackbar
+        open={showError}
+        onClose={() => setShowError(false)}
+        TransitionComponent={TransitionDown}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+      > 
+        <Alert severity="error">{errorMsg}</Alert>
+      </Snackbar>
       <div className={classes.loginContainer}>
         <Button
           disabled={activeStep === 0}

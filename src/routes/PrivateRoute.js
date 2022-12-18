@@ -1,7 +1,8 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-// import authenticationService from '../services/authentication';
+import authenticationService from 'Services/authenticationService';
+
 
 const PrivateRoute = ({
   component: Component, roles, path, topath, ...rest
@@ -9,10 +10,14 @@ const PrivateRoute = ({
   <Route
     {...rest}
     render={(props) => {
-      // const currentUser = authenticationService.currentUserValue;
-      // if (!currentUser) {
-      //   return <Redirect to={{ pathname: '/login', state: { from: props.location } }} />;
-      // }
+      const currentUser = authenticationService.currentUserValue;
+      if (!currentUser) {
+        return <Redirect to={{ pathname: '/login', state: { from: props.location } }} />;
+      }
+
+      if (currentUser.role === 'user') {
+        return <Redirect to={{ pathname: '/home', state: { from: props.location } }} />;
+      }
 
       if (topath !== undefined) {
         return <Redirect to={{ pathname: topath }} />;

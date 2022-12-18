@@ -1,4 +1,4 @@
-import { Avatar, Badge, Grid } from "@material-ui/core";
+import { Avatar, Badge, Button, Grid, Popover } from "@material-ui/core";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Drawer from "@material-ui/core/Drawer";
@@ -13,7 +13,8 @@ import Notifications from "@material-ui/icons/Notifications";
 import clsx from "clsx";
 import React from "react";
 import ListSlideBar from "./components/ListSlideBar";
-import { useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
+import authenticationService from "Services/authenticationService";
 
 const drawerWidth = 300;
 
@@ -86,12 +87,18 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#0077B6",
     padding: "0 20px 0 0",
   },
+  signoutBtn: {
+    textTransform: 'none',
+    width: 150
+  }
 }));
 
 export default function Navigation({ children }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const location = useLocation();
+  const [openLogout, setOpenLogout] = React.useState(false);
+  const history = useHistory();
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -100,6 +107,15 @@ export default function Navigation({ children }) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const handleTogleLogout = () => {
+    setOpenLogout(!openLogout);
+  }
+
+  const handleLogOut = () => {
+    authenticationService.logout();
+    history.push("/login");
+  }
 
   return (
     <div className={classes.root}>
@@ -155,9 +171,28 @@ export default function Navigation({ children }) {
                 </Typography>
                 <div className={classes.icon}>
                   <Avatar
+                    onClick={handleTogleLogout}
                     alt="Remy Sharp"
                     src="https://v4.mui.com/static/images/avatar/1.jpg"
                   />
+
+                  <Popover
+                    open={openLogout}
+                    style={{
+                      marginTop: 50,
+                    }}
+                    onClose={()=> setOpenLogout(false)}
+                    anchorOrigin={{
+                      vertical: 'top',
+                      horizontal: 'right',
+                    }}
+                    transformOrigin={{
+                      vertical: 'top',
+                      horizontal: 'right',
+                    }}
+                  >
+                    <Button className={classes.signoutBtn} onClick={handleLogOut}> Sign Out </Button>
+                  </Popover>
                 </div>
               </Grid>
             </Grid>

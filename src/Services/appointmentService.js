@@ -1,4 +1,4 @@
-import { apiBase } from './instance';
+import { apiBase } from './instance-mock';
 
 const getAppointments = () => {
     return apiBase({

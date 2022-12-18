@@ -1,23 +1,28 @@
 import {
     AppBar,
     Button,
+    CircularProgress,
     Dialog,
     makeStyles,
     MenuItem,
     Select,
+    Slide,
+    Snackbar,
     Tab,
     Tabs,
     TextField,
     Typography,
     useTheme,
 } from '@material-ui/core';
-import { OK } from 'constant';
+import { Alert } from '@material-ui/lab';
+import { CREATED, OK } from 'constant';
 import useInput from 'hooks/input.hooks';
 import { storeData } from 'pages/FakeData';
 import React from 'react';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import SwipeableViews from 'react-swipeable-views';
+import { orderService } from 'Services/orderServices';
 import { productService } from 'Services/productService';
 import { treatementService } from 'Services/treatmentService';
 import ToCurrency from 'Utils/FormatNumber';
@@ -33,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
         background: 'white',
         boxShadow: '0px 0px 32px rgba(0, 0, 0, 0.08)',
         borderRadius: 10,
+        overflow: 'scroll',
     },
 
     header: {
@@ -92,7 +98,7 @@ const useStyles = makeStyles((theme) => ({
     productList: {
         width: '100%',
         padding: 10,
-        height: 'calc(100vh - 440px)',
+        height: 'calc(100vh - 350px)',
         rowGap: 10,
         display: 'flex',
         flexDirection: 'column',
@@ -198,6 +204,15 @@ function TabPanel(props) {
     );
 }
 
+const orderStatus = {
+    paid: "Đã thanh toán",
+    unpaid: "Chưa thanh toán",
+}
+
+function TransitionDown(props) {
+    return <Slide {...props} direction="down" />;
+}
+  
 
 function AddOrder(props) {
     const classes = useStyles();
@@ -211,12 +226,16 @@ function AddOrder(props) {
     const [ selectedTreatment, setSelectedTreament ] = React.useState();
     const [ selectedProduct, setSelectedProduct ] = React.useState();
     const [ totalOrder, setTotalOrder ] = React.useState();
-    const [ isFetching, setFetching ] = React.useState();
-
+    const [ isFetching, setFetching ] = React.useState(false);
+    const [ isAddFetching, setAddFetching ] = React.useState(false);
+    const [ isPayFetching, setPayFetching ] = React.useState(false);
+    const [ showError, setShowError] = React.useState(false);
+    const [ errorMsg, setErrorMsg] = React.useState("");
     const [ treatmentDataTable, setTreatmentDataTable ] = React.useState([]);
     const [ productDataTable, setProductDataTable ] = React.useState([]);
     const { value: sellAmount, onChange: setSellAmount } = useInput(1);
     const { value: location, onChange: setLocation} = useInput("");
+    const { value: customer, onChange: setCustomer} = useInput("");
 
 
     const handleChange = (event, newValue) => {
@@ -298,6 +317,42 @@ function AddOrder(props) {
         setTotalOrder(totalProductPrice + totalTreatmentPrice);
     }
 
+    const handleAddOrder = async(status) => {
+        if (
+            location &&
+            customer &&
+            totalOrder > 0
+        ) {
+            const order = {
+                location,
+                customer,
+                total: totalOrder,
+                products: productDataTable,
+                treatments: treatmentDataTable,
+                status,
+                time: (new Date()).toLocaleDateString(),
+            }
+            try {
+                status === orderStatus.unpaid ?  setAddFetching(true) : setPayFetching(true);
+                const response = await orderService.addOrder(order);
+                if(response && response.status === CREATED) {
+                    status === orderStatus.unpaid ?  setAddFetching(false) : setPayFetching(false);
+                    history.push("/admin/order");
+                }
+                
+            } catch (error) {
+                setShowError(true);
+                setErrorMsg(error.message);
+                setAddFetching(true);
+                setPayFetching(true);
+            }
+            
+        } else {
+            setShowError(true);
+            setErrorMsg("Vui lòng nhập đầy đủ các thông tin")
+        }
+    }
+
     useEffect(() => {
         handleGetTreatment();
         handleGetAllProduct();
@@ -309,12 +364,64 @@ function AddOrder(props) {
 
     return (
         <div className={classes.container}>
+            <Snackbar
+                open={showError}
+                onClose={() => setShowError(false)}
+                TransitionComponent={TransitionDown}
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+            > 
+                <Alert severity="error">{errorMsg}</Alert>
+            </Snackbar>
             <div className={classes.header}>
                 <Typography className={classes.headerTitle}> Tạo đơn hàng mới  </Typography>
                 <div className={classes.buttonGroup}>
-                    <Button className={classes.button} variant='contained' onClick={() => history.push("/admin/order")}> Hủy </Button>
-                    <Button className={classes.button} variant='contained' color="primary"> Hoàn thành </Button>
-                    <Button className={classes.button} variant='contained' color="secondary"> Thanh toán </Button>
+                    <Button
+                        className={classes.button}
+                        variant='contained'
+                        onClick={() => history.push("/admin/order")}
+                    >
+                        Hủy
+                    </Button>
+                    {
+                        isAddFetching ? (
+                            <Button 
+                                className={classes.button}
+                                variant='contained'
+                                color="primary"
+                            >
+                                <CircularProgress color='secondary' size={24}/>
+                            </Button>
+                        ) : (
+                            <Button 
+                                className={classes.button}
+                                variant='contained'
+                                color="primary"
+                                onClick={() => handleAddOrder(orderStatus.unpaid)}
+                            >
+                                Hoàn thành
+                            </Button>
+                        )
+                    }
+                    {
+                        isPayFetching ? (
+                            <Button 
+                                className={classes.button}
+                                variant='contained'
+                                color="primary"
+                            >
+                                <CircularProgress color='secondary' size={24}/>
+                            </Button>
+                        ) : (
+                            <Button 
+                                className={classes.button}
+                                variant='contained'
+                                color="primary"
+                                onClick={() => handleAddOrder(orderStatus.paid)}
+                            >
+                                Thanh toán
+                            </Button>
+                        )
+                    }
                 </div>
             </div>
 
@@ -339,17 +446,6 @@ function AddOrder(props) {
                             }
 
                         </Select>
-                    </div>
-
-                    <div className={classes.formGroup}>
-                        <Typography className={classes.inputLabel}> Tiềm kiếm sản phẩm </Typography>
-                        <TextField
-                            className={classes.inputfield}
-                            id="standard-textarea"
-                            placeholder="Tìm kiếm sản phẩm"
-                            variant="outlined"
-                            size='small'
-                        />
                     </div>
 
                     <div>
@@ -406,6 +502,8 @@ function AddOrder(props) {
                             placeholder="Tên khách hàng hoặc số điện thoại"
                             variant="outlined"
                             size='small'
+                            value={customer}
+                            onChange={setCustomer}
                         />
                     </div>
                     <div className={classes.formGroup} style={{ paddingBottom: 10 }}>

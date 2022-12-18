@@ -55,9 +55,24 @@ const useStyles = makeStyles({
         },
     },
 
+    buttonActionGroup: {
+        display: 'flex',
+        columnGap: 10,
+    },
+
+    actionBtn: {
+      textTransform: 'none'  
+    }
+
 });
 
-export default function DataTable({ data, columns, type, height, minHeight, hasMoreTools, onDelete, onSelectRow }) {
+export default function DataTable({
+    data,columns,
+    type, height,
+    minHeight, hasMoreTools,
+    onDelete, onSelectRow,
+    hasButtonActions, onChangeStatus
+}) {
     const rows = data;
     const history = useHistory();
     const classes = useStyles();
@@ -91,6 +106,12 @@ export default function DataTable({ data, columns, type, height, minHeight, hasM
         EDIT: 'EDIT',
         ADD: 'ADD',
         DETAIL: 'DETAIL'
+    }
+
+    const orderStatus = {
+        paid: "Đã thanh toán",
+        unpaid: "Chưa thanh toán",
+        cancel: "Hủy"
     }
 
 
@@ -173,6 +194,9 @@ export default function DataTable({ data, columns, type, height, minHeight, hasM
             case "APPOINTMENT":
                 onDelete(data.id);
                 break;
+            case "ORDER":
+                onDelete(data);
+                break;
             default:
                 return;
         };
@@ -189,6 +213,10 @@ export default function DataTable({ data, columns, type, height, minHeight, hasM
             default:
                 return;
         }
+    }
+
+    const handleChangeStatus = (data, status) => {  
+        onChangeStatus(data, status);
     }
 
     const handleChangePage = (event, newPage) => {
@@ -218,7 +246,7 @@ export default function DataTable({ data, columns, type, height, minHeight, hasM
                                         {column.label}
                                     </TableCell>
                                 ))}
-                                {hasMoreTools && <TableCell> Xem thêm </TableCell>}
+                                {(hasMoreTools || hasButtonActions) && <TableCell> Xem thêm </TableCell>}
                             </TableRow>
                         </TableHead>
                         {
@@ -274,6 +302,38 @@ export default function DataTable({ data, columns, type, height, minHeight, hasM
                                                                 </div>
                                                             )}
                                                         </PopupState>
+                                                    </TableCell>
+                                                }
+
+                                                {
+                                                    hasButtonActions && 
+                                                    <TableCell className={classes.buttonActionGroup}>
+                                                        {
+                                                            (row.status && row.status === orderStatus.unpaid) &&
+                                                            <Button
+                                                                variant='contained'
+                                                                className={classes.actionBtn}
+                                                                color="primary"
+                                                                onClick={() => handleChangeStatus(row, orderStatus.paid)}
+                                                            > Thanh Toán </Button>
+                                                        }
+                                                        
+
+                                                        {
+                                                            row.status && row.status === orderStatus.unpaid &&
+                                                            <Button
+                                                                variant='contained'
+                                                                className={classes.actionBtn}
+                                                                onClick={() => handleChangeStatus(row, orderStatus.cancel)}
+                                                            > Hủy </Button>
+                                                        }
+
+                                                        <Button
+                                                            variant='contained'
+                                                            className={classes.actionBtn}
+                                                            color="secondary"
+                                                            onClick={() => handleDelete(row)}
+                                                        > Xóa </Button>
                                                     </TableCell>
                                                 }
                                             </TableRow>

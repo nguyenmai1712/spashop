@@ -31,8 +31,7 @@ export const dayOfWeekLable = [
 
 export const storeData = [
   "Meow Meow",
-  "Gau Gau Gau",
-  "Cop cop cop"
+  "Gau Gau",
 ]
 
 export const appointmentStatus = [
@@ -42,6 +41,12 @@ export const appointmentStatus = [
   "Hủy",
   "Đang thực hiện"
 ];
+
+export const orderStatus = [
+  "Đã thanh toán",
+  "Chưa thanh toán",
+  "Hủy"
+]
 
 export const treatmentCategory =[
   "Chăm sóc da mặt",

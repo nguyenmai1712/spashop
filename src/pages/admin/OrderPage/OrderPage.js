@@ -1,9 +1,14 @@
-import { Button, makeStyles, MenuItem, Select } from '@material-ui/core';
-import ItemProductRecommend from 'components/ItemProductRecommend';
-import { storeData } from 'pages/FakeData';
+import { Button, makeStyles, MenuItem, Select, Slide, Snackbar } from '@material-ui/core';
+import { Alert } from '@material-ui/lab';
+import LoadingComponent from 'components/LoadingComponent';
+import { OK } from 'constant';
+import useInput from 'hooks/input.hooks';
+import { orderStatus } from 'pages/FakeData';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-
+import { appointmentService } from 'Services/appointmentService';
+import { orderService } from 'Services/orderServices';
+import ToCurrency from 'Utils/FormatNumber';
 import DataTable from '../Components/DataTable';
 
 const useStyles = makeStyles((theme) => ({
@@ -123,7 +128,6 @@ const columns = [
         label: 'Trạng thái',
         minWidth: 150,
         align: 'center',
-        format: (value) => value.name,
     },
     {
         id: 'time',
@@ -132,42 +136,114 @@ const columns = [
         align: 'center',
     },
     {
-        id: 'total ',
+        id: 'total',
         label: 'Tổng tiền',
         minWidth: 70,
         align: 'left',
-        format: (value) => value.name,
+        format: (value) => ToCurrency(value)+'đ',
     },
 ]
+
+function TransitionDown(props) {
+    return <Slide {...props} direction="down" />;
+}
 
 function OrderPage(props) {
     const history = useHistory();
     const classes = useStyles();
     const DATA_TABLE_TYPE = "ORDER";
+    const [isLoadingData, setLoadingData] = React.useState(false);
+    const [ordersData, setOrderData] = React.useState([]);
+    const [ordersDataOrigin, setOrderDataOrigin] = React.useState([]);
+    const [showError, setShowError] = React.useState(false);
+    const [errorMsg, setErrorMsg] = React.useState("")
+    const { value: status, onChange: setStatus } = useInput("");
+
+    const getAllOrder = async () => {
+        setLoadingData(true);
+        try{
+            const response = await orderService.getOrders();
+            setOrderData(response.data);
+            setOrderDataOrigin(response.data);
+            setLoadingData(false);
+
+        } catch(error) {
+            setLoadingData(false);
+            setShowError(true);
+            setErrorMsg(error.message); 
+        }
+    }
+
+    const deleteOrder = async (data) => {
+        const allDeleteAppointmentRequest = data.treatments.map(item => {
+            return appointmentService.deleteAppointmentById(item.appointmentId);
+        })
+
+        console.log(allDeleteAppointmentRequest);
+        try{
+            const response = await orderService.deleteOrderById(data.id);
+            if(response && response.status === OK) {
+                Promise.all(allDeleteAppointmentRequest);
+                getAllOrder();
+            }
+        } catch(error) {
+            setLoadingData(false);
+            setShowError(true);
+            setErrorMsg(error.message); 
+        }
+    }
+
+    const changeStatusOrder = async(data, status) => {
+        if (data && status) {
+            const orderUpdate = {
+                ...data,
+                status
+            }
+            try{
+                const response = await orderService.updateOrders(orderUpdate);
+                if (response && response.status === OK){
+                    getAllOrder();
+                }
+            } catch (error) {
+                setLoadingData(false);
+                setShowError(true);
+                setErrorMsg(error.message); 
+            }
+        } 
+    }
+
+    const filterOrderByStatus = (status) => {
+        if (status) {
+            const dataFilter = ordersDataOrigin.filter(item => item.status === status);
+            setOrderData(dataFilter);
+        } else {
+            setOrderData(ordersDataOrigin);
+        }
+    }
+
+    React.useEffect(() => {
+        getAllOrder();
+    }, []);
     
-    const { value: location, onChange: setLocation } = React.useState("");
-    const { value: status, onChange: setStatus } = React.useState("");
+
+    React.useEffect(() => {
+        filterOrderByStatus(status);
+    }, [status]);
+
     return (
         <div className={classes.container}>
+            {isLoadingData && <LoadingComponent />}
+            <Snackbar
+                open={showError}
+                onClose={() => setShowError(false)}
+                TransitionComponent={TransitionDown}
+                anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+            > 
+                <Alert severity="error">{errorMsg}</Alert>
+            </Snackbar>
             <div className={classes.header}>
                 <div className={classes.leftContent}>
                     <div className={classes.filterGroup}>
-                        <Select
-                            displayEmpty
-                            size="small"
-                            className={classes.fieldSelect}
-                            variant="outlined"
-                            value={location}
-                            onChange={setLocation}
-                        >
-                            <MenuItem value="">Cửa Hàng</MenuItem>
-                            {
-                                storeData.map(item => (
-                                    <MenuItem value={item}> {item} </MenuItem>
-                                ))
-                            }
-                        </Select>
-
                         <Select
                             displayEmpty
                             size="small"
@@ -177,9 +253,11 @@ function OrderPage(props) {
                             onChange={setStatus}
                         >
                             <MenuItem value="">Tình trạng đơn hàng</MenuItem>
-                            <MenuItem value={1}>Đã Thanh Toán</MenuItem>
-                            <MenuItem value={2}>Đã hoàn thành</MenuItem>
-                            <MenuItem value={2}>Hủy</MenuItem>
+                            {
+                                orderStatus.map(item => (
+                                    <MenuItem value={item}>{item}</MenuItem>
+                                ))
+                            }
                         </Select>
                     </div>
                 </div>
@@ -195,7 +273,15 @@ function OrderPage(props) {
             </div>
 
             <div className={classes.tableContent}>
-                <DataTable data={[]} columns={columns} type={DATA_TABLE_TYPE} hasMoreTools height="calc(100vh - 250px)" />
+                <DataTable
+                    data={ordersData}
+                    columns={columns}
+                    type={DATA_TABLE_TYPE}
+                    hasButtonActions
+                    height="calc(100vh - 250px)"
+                    onDelete={(id) => deleteOrder(id)}
+                    onChangeStatus={(data, status) => changeStatusOrder(data, status)}
+                />
             </div>
         </div>
     );
