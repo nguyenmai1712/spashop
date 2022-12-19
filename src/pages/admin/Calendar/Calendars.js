@@ -271,14 +271,14 @@ export default function Calendars() {
     const [ selectedData, setSelectedData ] = React.useState();
     const [ typeForm, setTypeForm ] = React.useState();
     
-    const { value: customerName, onChange: setCustomerName } = useInput("");
-    const { value: technicanName, onChange: setTechnicanName } = useInput("");
-    const { value: startTime, onChange: setStartTime } = useInput("");
-    const { value: endTime, onChange: setEndTime } = useInput("");
-    const { value: description, onChange: setDescription } = useInput("");
-    const { value: status, onChange: setStatus } = useInput("");
-    const { value: service, onChange: setService } = useInput("");
-    const { value: location, onChange: setLocation } = useInput("");
+    const { value: customerName, onChange: setCustomerName, reset: resetCutomerName } = useInput("");
+    const { value: technicanName, onChange: setTechnicanName, reset: resetTechnicanName } = useInput("");
+    const { value: startTime, onChange: setStartTime, reset: resetStartTime } = useInput("");
+    const { value: endTime, onChange: setEndTime, reset: resetEndTime } = useInput("");
+    const { value: description, onChange: setDescription, reset: resetDescription  } = useInput("");
+    const { value: status, onChange: setStatus, reset: resetStatus } = useInput("");
+    const { value: service, onChange: setService, reset: resetService } = useInput("");
+    const { value: location, onChange: setLocation, reset: resetLocation } = useInput("");
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -299,6 +299,17 @@ export default function Calendars() {
         if ((args.type === 'QuickInfo' || args.type === 'Editor') && isEmptyCell) {
             args.cancel = true;
         }
+    }
+
+    const handleResetForm = () => {
+        resetCutomerName();
+        resetTechnicanName();
+        resetStartTime();
+        resetEndTime();
+        resetDescription();
+        resetStatus();
+        resetService();
+        resetLocation();
     }
 
     const handleSubmit = async () => {
@@ -338,6 +349,7 @@ export default function Calendars() {
             const response = await appointmentService.deleteAppointmentById(id);
             if (response && response.status === OK){
                 handleGetAppointments();
+                handleResetForm();
                 setTimeout(() => {
                     setFetching(false);
                 }, 1000);

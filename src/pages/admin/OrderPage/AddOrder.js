@@ -173,15 +173,23 @@ const productColumns = [
 ];
 
 const treatmentColumns = [
-    { id: 'name', label: 'Tên liệu trình', minWidth: 170 },
+    { 
+        id: 'name',
+        label: 'Tên liệu trình',
+        minWidth: 170
+    },
     {
         id: 'sellAmount',
         label: 'Số lượng',
         minWidth: 170,
-        align: 'right',
-        format: (data) => `${ToCurrency(data)}đ`, 
+        align: 'right', 
     },
-    { id: 'totalPrice', label: 'Giá bán', minWidth: 100 },
+    { 
+        id: 'totalPrice',
+        label: 'Giá bán',
+        minWidth: 100,
+        format: (data) => `${ToCurrency(data)}đ`
+    },
 ];
 
 function TabPanel(props) {

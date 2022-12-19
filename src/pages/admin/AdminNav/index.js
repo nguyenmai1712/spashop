@@ -191,7 +191,7 @@ export default function Navigation({ children }) {
                       horizontal: 'right',
                     }}
                   >
-                    <Button className={classes.signoutBtn} onClick={handleLogOut}> Sign Out </Button>
+                    <Button className={classes.signoutBtn} onClick={handleLogOut}> Đăng xuất </Button>
                   </Popover>
                 </div>
               </Grid>

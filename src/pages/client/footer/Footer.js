@@ -89,25 +89,33 @@ function Footer({ location, popularData }) {
                 </Grid>
                 <Grid item xs={12}>
                   <Typography className={classes.textFooter}>
-                    Nullam porttitor pharetra ullamcorper. Praesent varius erat vitae nibh. Suspendisse consectetur ipsum augue, a varius enim tempus a. Phasellus id nibh arcu.
+                    Smile Spa luôn nỗ lực không ngừng <br />
+                    để đem đến cho khách hàng những dịch vụ <br/>
+                    những sản phẩm hoàn hảo nhất.
                   </Typography>
                 </Grid>
               </Grid>
               <Grid container item xs={12} sm={6} md={6} lg={6}>
                 <Grid item xs={12}>
+                <Grid item xs={12}>
                   <Typography className={classes.subTitle}>
-                    End Points
+                    Cửa hàng của chúng tôi
                   </Typography>
-                  <Typography className={classes.textFooter}>Orders</Typography>
-                  <Typography className={classes.textFooter}>Addresses</Typography>
-                  <Typography className={classes.textFooter}>Downloads</Typography>
-                  <Typography className={classes.textFooter}>Account details</Typography>
-                  <Typography className={classes.textFooter}>Lost Password</Typography>
+                  <Typography className={classes.textFooter}>Các chi nhánh khác</Typography>
+                  <Typography className={classes.textFooter}>Nhận nhượng quyền thương mại</Typography>
+                  <Typography className={classes.textFooter}> Ưu đãi theo lịch trình </Typography>
+                  <Typography className={classes.textFooter}>Xem thêm</Typography>
+                </Grid>
                 </Grid>
               </Grid>
             </Grid>
             <Grid container item xs={12} spacing={2}>
               {/* 1/8 footer */}
+              <Grid container item xs={12} sm={6} md={6} lg={6}>
+                <Grid item xs={12}>
+                  
+                </Grid>
+              </Grid>
               <Grid container item xs={12} sm={6} md={6} lg={6}>
                 <Grid item xs={12}>
                   <Typography className={classes.subTitle}>
@@ -117,17 +125,6 @@ function Footer({ location, popularData }) {
                   <Typography className={classes.textFooter}>Twitter</Typography>
                   <Typography className={classes.textFooter}>Instagram</Typography>
                   <Typography className={classes.textFooter}>Whatsapp</Typography>
-                </Grid>
-              </Grid>
-              <Grid container item xs={12} sm={6} md={6} lg={6}>
-                <Grid item xs={12}>
-                  <Typography className={classes.subTitle}>
-                    Cửa hàng của chúng tôi
-                  </Typography>
-                  <Typography className={classes.textFooter}>Các chi nhánh khác</Typography>
-                  <Typography className={classes.textFooter}>Nhận nhượng quyền thương mại</Typography>
-                  <Typography className={classes.textFooter}> Ưu đãi theo lịch trình </Typography>
-                  <Typography className={classes.textFooter}>Xem thêm</Typography>
                 </Grid>
               </Grid>
             </Grid>
@@ -154,14 +151,11 @@ function Footer({ location, popularData }) {
                     Chi tiết liên hệ
                   </Typography>
                   <Typography className={classes.textFooter}>
-                    Address: 3548 Columbia Mine Road,
+                    Địa chỉ: 319 Trân Đại Nghĩa, Hai Bà Trưng, Hà Nội
                   </Typography>
-                  <Typography className={classes.textFooter}>Wheeling, West Virginia,</Typography>
-                  <Typography className={classes.textFooter}>26003</Typography>
                   <Typography className={classes.textFooter}>Contact : 304-559-3023</Typography>
-                  <Typography className={classes.textFooter}>304-650-2694</Typography>
-                  <Typography className={classes.textFooter}>E-mail : shopnow@store.com</Typography>
-                  <Typography className={classes.textFooter}>contact@top.com</Typography>
+                  <Typography className={classes.textFooter}>Số điện thoại: 037 393 2917</Typography>
+                  <Typography className={classes.textFooter}>E-mail : smilespa@store.com</Typography>
                 </Grid>
               </Grid>
               <Grid container item xs={12}>
@@ -169,13 +163,10 @@ function Footer({ location, popularData }) {
                   <Typography className={classes.subTitle}>
                     Cửa hàng offline
                   </Typography>
-                  <Typography className={classes.textFooter}>
-                    Address: 3548 Columbia Mine Road,
-                  </Typography>
-                  <Typography className={classes.textFooter}>Delhi</Typography>
-                  <Typography className={classes.textFooter}>Chandigarh</Typography>
-                  <Typography className={classes.textFooter}>Indore</Typography>
-                  <Typography className={classes.textFooter}>Ahmedabad</Typography>
+                  <Typography className={classes.textFooter}>09 - Hùng Vương - Quy Nhơn</Typography>
+                  <Typography className={classes.textFooter}>07 - Xuân Diệu - Đà Nẵng</Typography>
+                  <Typography className={classes.textFooter}>Đường số 6, Cityland Park Hills, P.10, Q. Gò Vấp</Typography>
+                  <Typography className={classes.textFooter}>245 Quang Trung - Nha trang</Typography>
                 </Grid>
               </Grid>
             </Grid>

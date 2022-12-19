@@ -239,6 +239,7 @@ function Login() {
             token: data.token,
             email: data.user.email,
             role: data.user.role,
+            name: data.user.name,
           }
           authenticationService.updateUser(user);
 

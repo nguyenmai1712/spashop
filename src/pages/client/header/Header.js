@@ -1,7 +1,7 @@
 import React from 'react';
 import {
-  Avatar, Badge, Grid, IconButton,
-  InputAdornment, makeStyles, TextField, Typography,
+  Avatar, Badge, Button, Grid, IconButton,
+  InputAdornment, makeStyles, Popover, TextField, Typography,
 } from '@material-ui/core';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -20,9 +20,8 @@ import LocalMallIcon from '@material-ui/icons/LocalMall';
 import { productCarts } from 'redux/cart/selector';
 import ToCurrency from 'Utils/FormatNumber';
 import { useHistory } from 'react-router-dom';
-
-
-
+import authenticationService from 'Services/authenticationService';
+import clsx from 'clsx';
 
 const useStyles = makeStyles((theme) => ({
   header: {
@@ -198,6 +197,31 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("sm")]: {
       display: 'none',
     },
+  },
+
+  logoutButton: {
+    width: 150,
+    background: 'white',
+    '&:hover': {
+      background: '#ddd', 
+    }
+  },
+
+  popupLogout: {
+    position: 'absolute',
+    width: 150,
+    zIndex: 999,
+    borderRadius: 8,
+    color: '#686868',
+    display: 'none',
+    cursor: 'pointer',
+    '&.open': {
+      display: 'block',
+    },
+  },
+
+  logoutContainer: {
+    position: 'relative',
   }
 
 }));
@@ -206,6 +230,8 @@ function Header() {
   const history = useHistory();
   const dispatch = useDispatch();
   const classes = useStyles();
+  const [currentUser, setCurrentUser] = React.useState();
+  const [showLogoutButton, setShowLogoutButton] = React.useState(false);
 
   const productCart = useSelector(productCarts);
   const totalPrice = productCart.reduce((result, item) => {
@@ -219,6 +245,20 @@ function Header() {
   const handleNavigate = (link) => {
     history.push(link);
   };
+
+  const handleGetUserLocal = () => {
+    const currentUser = authenticationService.currentUserValue;
+    setCurrentUser(currentUser);
+  }
+
+  const handleLogout = () => {
+    authenticationService.logout();
+    history.push("/login");
+  }
+
+  React.useEffect(() => {
+    handleGetUserLocal();
+  }, [])
 
   return (
     <div className={classes.header}>
@@ -381,13 +421,41 @@ function Header() {
             xs={4}
             className={classes.optionItem}
           >
-            <Typography className={classes.mainOptionName}> Đăng nhập / Đăng kí</Typography>
-            <Typography className={classes.subOptionName} onClick={() => handleNavigate("/login")}>
-              Tài khoản của
-            </Typography>
-            <IconButton className={classes.iconButton} onClick={() => handleNavigate("/login")}>
-              <AccountCircleIcon />
-            </IconButton>
+            {
+              currentUser ? (
+                <>
+                  <Typography className={classes.mainOptionName}>{currentUser.name}</Typography>
+                  <Typography className={classes.subOptionName} onClick={handleLogout}>
+                    Đăng xuất
+                  </Typography>
+                  <div className={classes.logoutContainer}>
+                    <IconButton className={classes.iconButton} onClick={() => setShowLogoutButton(!showLogoutButton)}>
+                      <Avatar src="https://v4.mui.com/static/images/avatar/1.jpg"/>
+                    </IconButton>
+                    <div
+                      onClick={handleLogout}
+                      className={clsx(classes.popupLogout, {
+                        'open':showLogoutButton
+                      })}
+                    >
+                      <Button className={classes.logoutButton}>Đăng xuất</Button>
+                    </div>
+
+                  </div>
+                </>
+              ) : (
+                <>
+                  <Typography className={classes.mainOptionName}> Đăng nhập / Đăng kí</Typography>
+                  <Typography className={classes.subOptionName} onClick={() => handleNavigate("/login")}>
+                    Tài khoản của
+                  </Typography>
+                  <IconButton className={classes.iconButton} onClick={() => handleNavigate("/login")}>
+                    <AccountCircleIcon />
+                  </IconButton>
+                </>
+              )
+            }
+            
           </Grid>
           <Grid
             item

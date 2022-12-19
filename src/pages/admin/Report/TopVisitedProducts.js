@@ -38,28 +38,28 @@ const useStyles = makeStyles((theme) => ({
 }));
 const data = [
   {
-    Product: 'Honey Tea',
-    link: '/products/honey-tea',
+    Product: 'Kem Chống nắng',
+    link: '/products/kem-chong-nang',
     access_times: '555',
   },
   {
-    Product: 'Espresso Coffee',
-    link: '/products/oloong-milktea',
+    Product: 'Serum trẻ hóa làn da',
+    link: '/products/serum',
     access_times: '1457',
   },
   {
-    Product: 'Blue Sea Mojito',
-    link: '/products/bluesea-mojito',
+    Product: 'Đông trùng hạ thảo',
+    link: '/products/dong-trung-ha-thao',
     access_times: '754',
   },
   {
-    Product: 'Smoothie Coconut',
-    link: '/products/smoothie-coconut',
+    Product: 'Collagen',
+    link: '/products/Collagen',
     access_times: '862',
   },
   {
-    Product: 'Machiato Lotus Tea',
-    link: '/products/lotus-tea',
+    Product: 'Kem dưỡng ngày Lutous Body',
+    link: '/products/kem-duong-lotus',
     access_times: '1569',
   },
 ];
