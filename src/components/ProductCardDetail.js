@@ -16,6 +16,7 @@ import QuantityComponent from './QuantityComponent';
 import { useWindowSize } from 'hooks/input.hooks';
 import { useDispatch } from 'react-redux';
 import { addProductCart, notifyCart } from 'redux/cart/actions';
+import ToCurrency from 'Utils/FormatNumber';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -129,7 +130,6 @@ const useStyles = makeStyles((theme) => ({
 
   newPrice: {
     fontWeight: 600,
-    marginLeft: 20,
     fontSize: 18,
     fontFamily: 'Lato',
     color: '#fb6f92',
@@ -315,11 +315,11 @@ function ProductCardDetail({ data, productIdCart }) {
         <div className={classes.priceContainer}>
           { data.oldPrice && 
             <>
-              <Typography className={classes.oldPrice}>{`$ ${data.oldPrice}`}</Typography>
+              <Typography className={classes.oldPrice}>{`${ToCurrency(data.oldPrice)}đ`}</Typography>
               <Typography>  &nbsp; -   &nbsp; </Typography>
             </>
           }
-          <Typography className={classes.newPrice}>$ {data.newPrice}</Typography>
+          <Typography className={classes.newPrice}>{ToCurrency(data.newPrice)}đ</Typography>
         </div>
         <div className={classes.description}>
           {data.description}

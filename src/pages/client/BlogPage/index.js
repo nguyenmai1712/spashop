@@ -15,35 +15,30 @@ const postData = [
   {
     id: 1,
     image: post1,
-    title: "Maecenas nec venenatis augue unt vel",
-    category: "Uncategoried",
-    author: "Acops",
-    date: "July 28, 2020",
-    description: `Proin quam arcu, maximus maximus lorem sit amet, gravida commodo nunc. Maecenas condimentum justo sapien, nec congue urna faucibus at. Suspendisse tristique feugiat tortor, vel suscipit nibh. Cras convallis vehicula aliquam. Praesent ullamcorper id leo quis cursus. In dapibus turpis quis risus fermentum ultrices. Aenean eget mauris venenatis, vulputate ipsum non, placerat massa. Pellentesque blandit elementum metus, aliquet interdum massa. Maecenas nec venenatis augue. Sed tincidunt vel risus ut varius. Ut fermentum, sem non tristique pharetra, lectus orci elementum turpis, vitae ultrices ipsum leo non nibh. Ut diam lacus, maximus id risus et, gravida pretium tellus. Donec metus velit, dictum non porttitor in, tincidunt ut arcu.
-
-    Aliquam mollis, ante vitae viverra lacinia, nulla ligula interdum ligula, non vulputate elit magna vitae nulla. Integer ultrices venenatis justo non sodales. Nam sollicitudin gravida arcu, a volutpat enim venenatis eget. Pellentesque placerat ipsum vitae neque dictum, id maximus justo viverra. Aenean at nisl sit amet odio mattis pretium. Nam ut vehicula enim. Nam urna ligula, vestibulum quis massa at, laoreet ultrices felis. Fusce aliquet volutpat turpis, id interdum dui porta ut. Vivamus arcu nulla, blandit ac ante in, pretium imperdiet tellus. Nam vehicula dui vitae consequat rutrum. Phasellus justo eros, pulvinar sed sem quis, sodales maximus velit. Cras arcu odio, accumsan placerat dui quis, malesuada hendrerit justo. Vestibulum sed nibh tempus, feugiat erat id, ultrices ipsum. Suspendisse potenti. Aenean venenatis ac mauris nec ornare.`,
+    title: "MÙA KHÔ LẠNH, ĐỪNG QUÊN CÂN BẰNG ĐỘ PH CHO DA",
+    category: "Làm đẹp",
+    author: "Mei",
+    date: "Tháng 7 28, 2022",
+    description: `Tiết trời hanh hao thiếu ẩm, kết hợp với môi trường ô nhiễm sẽ phá vỡ sự cân bằng dầu và nước, gây bong tróc và khó chịu cho da. Do đó, để duy trì một làn da khỏe mạnh và ẩm mượt thì việc duy trì độ cân bằng pH là điều rất cần thiết. Vậy độ pH là gì và làm sao để duy trì một chỉ số lý tưởng? Chẳng cần hồi tưởng lại tiết hóa học căng thẳng ở những năm cấp 3, bài viết dưới đây sẽ tiết lộ tất tật những thông tin về độ pH mà bạn cần nắm để có một làn da đẹp.`,
   },
   {
     id: 2,
     image: post2,
-    title: "Maecenas nec venenatis augue unt vel",
-    category: "Uncategoried",
-    author: "Thuy Duong",
-    date: "July 28, 2020",
-    description: `Proin quam arcu, maximus maximus lorem sit amet, gravida commodo nunc. Maecenas condimentum justo sapien, nec congue urna faucibus at. Suspendisse tristique feugiat tortor, vel suscipit nibh. Cras convallis vehicula aliquam. Praesent ullamcorper id leo quis cursus. In dapibus turpis quis risus fermentum ultrices. Aenean eget mauris venenatis, vulputate ipsum non, placerat massa. Pellentesque blandit elementum metus, aliquet interdum massa. Maecenas nec venenatis augue. Sed tincidunt vel risus ut varius. Ut fermentum, sem non tristique pharetra, lectus orci elementum turpis, vitae ultrices ipsum leo non nibh. Ut diam lacus, maximus id risus et, gravida pretium tellus. Donec metus velit, dictum non porttitor in, tincidunt ut arcu.
-
-    Aliquam mollis, ante vitae viverra lacinia, nulla ligula interdum ligula, non vulputate elit magna vitae nulla. Integer ultrices venenatis justo non sodales. Nam sollicitudin gravida arcu, a volutpat enim venenatis eget. Pellentesque placerat ipsum vitae neque dictum, id maximus justo viverra. Aenean at nisl sit amet odio mattis pretium. Nam ut vehicula enim. Nam urna ligula, vestibulum quis massa at, laoreet ultrices felis. Fusce aliquet volutpat turpis, id interdum dui porta ut. Vivamus arcu nulla, blandit ac ante in, pretium imperdiet tellus. Nam vehicula dui vitae consequat rutrum. Phasellus justo eros, pulvinar sed sem quis, sodales maximus velit. Cras arcu odio, accumsan placerat dui quis, malesuada hendrerit justo. Vestibulum sed nibh tempus, feugiat erat id, ultrices ipsum. Suspendisse potenti. Aenean venenatis ac mauris nec ornare.`,
+    title: "DAVINES HAIR SHOW 2022: TRỌN VẸN SỨ MỆNH GÌN GIỮ VẺ ĐẸP ",
+    category: "Chăm sóc tóc",
+    author: "Thuy Thuy",
+    date: "Tháng 8 28, 2022",
+    description: `Davines Hair Show là chương trình thời trang và trình diễn tóc được tổ chức thường niên từ năm 2007, nhằm giới thiệu những thiết kế tóc sáng tạo trong nước và quốc tế, đồng thời truyền cảm hứng cho mọi người với những triết lý tôn trọng thiên nhiên, môi trường.`,
   },
   {
     id: 3,
     image: post3,
-    title: "Maecenas nec venenatis augue unt vel",
-    category: "Uncategoried",
+    title: "XU HƯỚNG DƯỠNG DA TỐI GIẢN “SKIN CYCLING” LIỆU CÓ ĐÁNG THỬ?",
+    category: "Làm đẹp",
     author: "Thuy Duong",
-    date: "July 28, 2020",
-    description: `Proin quam arcu, maximus maximus lorem sit amet, gravida commodo nunc. Maecenas condimentum justo sapien, nec congue urna faucibus at. Suspendisse tristique feugiat tortor, vel suscipit nibh. Cras convallis vehicula aliquam. Praesent ullamcorper id leo quis cursus. In dapibus turpis quis risus fermentum ultrices. Aenean eget mauris venenatis, vulputate ipsum non, placerat massa. Pellentesque blandit elementum metus, aliquet interdum massa. Maecenas nec venenatis augue. Sed tincidunt vel risus ut varius. Ut fermentum, sem non tristique pharetra, lectus orci elementum turpis, vitae ultrices ipsum leo non nibh. Ut diam lacus, maximus id risus et, gravida pretium tellus. Donec metus velit, dictum non porttitor in, tincidunt ut arcu.
-
-    Aliquam mollis, ante vitae viverra lacinia, nulla ligula interdum ligula, non vulputate elit magna vitae nulla. Integer ultrices venenatis justo non sodales. Nam sollicitudin gravida arcu, a volutpat enim venenatis eget. Pellentesque placerat ipsum vitae neque dictum, id maximus justo viverra. Aenean at nisl sit amet odio mattis pretium. Nam ut vehicula enim. Nam urna ligula, vestibulum quis massa at, laoreet ultrices felis. Fusce aliquet volutpat turpis, id interdum dui porta ut. Vivamus arcu nulla, blandit ac ante in, pretium imperdiet tellus. Nam vehicula dui vitae consequat rutrum. Phasellus justo eros, pulvinar sed sem quis, sodales maximus velit. Cras arcu odio, accumsan placerat dui quis, malesuada hendrerit justo. Vestibulum sed nibh tempus, feugiat erat id, ultrices ipsum. Suspendisse potenti. Aenean venenatis ac mauris nec ornare.`,
+    date: "Tháng 12, 2022",
+    description: `Khi thực hành Skin Cycling, sản phẩm đặc trị sẽ được sử dụng lặp lại sau 2 ngày, điều này đồng nghĩa với việc da sẽ có một quãng nghỉ – chính là 2 ngày để phục hồi. Đây là bước rất quan trọng để bảo vệ hàng rào giữ ẩm của da sau chuỗi ngày thoa đắp những thành phần mạnh mẽ. Lúc này, bạn cần tập trung trang bị cho da những sản phẩm với chức năng cấp nước, cấp ẩm và nuôi dưỡng như axit hyaluronic, ceramide và glycerin,…
+    Tuy nhiên Skin Cycling vẫn còn một số nhược điểm cần khắc phục, đó là sự đơn điệu trong việc lựa chọn thành phần và sản phẩm dưỡng da. Thực chất, để nhận định là đơn điệu hay tối giản còn tùy thuộc vào quan điểm của từng người, nhưng nếu da bạn không có quá nhiều vấn đề thì Retinoids không phải là sự lựa chọn duy nhất và vẫn còn rất nhiều thành phần khác bạn nên thử.`,
   },
 ]
 

@@ -1,7 +1,7 @@
 {
   "name": "myspa",
   "version": "0.1.0",
-  "homepage": "https://nguyenmai1712.github.io/admin",
+  "homepage": "https://nguyenmai1712.github.io/home",
   "private": true,
   "dependencies": {
     "@fullcalendar/daygrid": "^5.11.3",

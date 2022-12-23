@@ -12,7 +12,7 @@ const initState = {
         fullName: "Thuy Duong",
         email: 'thuyduong@mail.com'
       },
-      content: "I'm stay up all night, tell myself i'm alright...",
+      content: "sản phẩm rất tốt, rất hợp với da khô...",
       createAt: new Date(),
       parentId: null,
       rating: 5,
@@ -21,9 +21,9 @@ const initState = {
       id:2,
       user: {
         id: 2,
-        username: "phiho",
+        username: "Mai Mai",
         avatar: null,
-        fullName: "Nguyen Phi Ho",
+        fullName: "Nguyễn Mai ",
         email: 'thuyduong@mail.com'
       },
       content: "Thương em là điều anh không thể ngờ, ngăn nỗi nhớ cũng không thể ngăn trái tim..",

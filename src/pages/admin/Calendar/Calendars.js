@@ -29,7 +29,7 @@ import {
 import LoadingComponent from 'components/LoadingComponent';
 import { OK } from 'constant';
 import useInput from 'hooks/input.hooks';
-import { appointmentStatus, dayOfWeekLable, storeData } from 'pages/FakeData';
+import { appointmentStatus, dayOfWeekLable, storeData, technicanNameData } from 'pages/FakeData';
 import React from 'react';
 import { useEffect } from 'react';
 import SwipeableViews from 'react-swipeable-views';
@@ -491,16 +491,24 @@ export default function Calendars() {
 
                                 <div className={classes.formGroup}>
                                     <Typography className={classes.inputLabel}> Tên kĩ thuật viên </Typography>
-                                    <TextField
-                                        className={classes.inputfield}
-                                        id="standard-textarea"
-                                        placeholder="Nhập tên kĩ thuật viên"
+                                    <Select
+                                        displayEmpty
+                                        size="small"
+                                        className={classes.fieldSelect}
                                         variant="outlined"
-                                        size='small'
                                         value={technicanName}
                                         onChange={setTechnicanName}
-                                    />
+                                    >
+                                        <MenuItem value={""}> Chọn Kĩ thuật viên </MenuItem>
+                                        {
+                                            technicanNameData.map(item => (
+                                                <MenuItem value={item}>{item}</MenuItem>
+                                            ))
+                                        }
+
+                                    </Select>
                                 </div>
+
                                 <div className={classes.formGroup}>
                                     <Typography className={classes.inputLabel}> Thời gian bắt đầu </Typography>
                                     <TextField

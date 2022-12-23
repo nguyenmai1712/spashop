@@ -117,13 +117,13 @@ export default function TabProductInfo({ productComments }) {
             },
           }}
         >
-          <Tab label="DESCRIPTION" {...a11yProps(0)} className={classes.tabChildren} />
-          <Tab label="REVIEWS(1)" {...a11yProps(1)} className={classes.tabChildren} />
+          <Tab label="Mô tả" {...a11yProps(0)} className={classes.tabChildren} />
+          <Tab label="Đánh giá(1)" {...a11yProps(1)} className={classes.tabChildren} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
         <div className={classes.description}>
-          Nulla finibus massa non maximus rhoncus. Duis ut ligula et nibh dictum eleifend vel non massa. Aliquam molestie, urna at pellentesque vehicula, sem justo condimentum purus, quis sodales dolor urna ut lorem. Aliquam erat volutpat. Sed ac ligula quis lacus consequat fringilla laoreet quis purus.
+        Sản phẩm chứa thành phần chính là Hyaluronic Acid và Glycerin tăng cường khả năng liên kết các phân tử nước và giữ nước cho da giúp da luôn căng mọng, hạn chế tối đa tình trạng da khô ráp, bong tróc.
         </div>
       </TabPanel>
       <TabPanel value={value} index={1}>

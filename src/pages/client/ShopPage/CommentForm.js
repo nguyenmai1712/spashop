@@ -140,14 +140,14 @@ function CommentForm({ activeComment }) {
   return (
     <div className={classes.container}>
       <div>
-        <Typography className={classes.title}>Add a new review</Typography>
+        <Typography className={classes.title}>Thêm mới đánh giá</Typography>
         <Typography className={classes.subTitle}>
-          *** Your email address will not be published. <br />
-          Required fields are marked *
+          *** Đánh giá ẩn danh <br />
+          Các trường bắt buộc đã được đánh dấu *
         </Typography>
       </div>
       <div className={classes.rating}>
-        <Typography className={classes.label}>Your rating*: &nbsp; </Typography>
+        <Typography className={classes.label}>Đánh giá của bạn*: &nbsp; </Typography>
         <Rating
           name="simple-controlled"
           value={rating}
@@ -158,22 +158,22 @@ function CommentForm({ activeComment }) {
       </div>
       <div className={classes.ratingForm}>
         <div className={classes.inputBlock}>
-          <Typography className={classes.label}> Your review* :</Typography>
+          <Typography className={classes.label}> Bình luận* :</Typography>
           <TextField
             className={classes.textField}
             multiline
             minRows={6}
-            placeholder="Type your review here..."
+            placeholder="Viết đánh giá của bạn tại đây..."
             variant="outlined"
             value={review}
             onChange={onChangeReview}
           />
         </div>
         <div className={classes.inputBlock}>
-          <Typography className={classes.label}> Name* :</Typography>
+          <Typography className={classes.label}> Tên* :</Typography>
           <TextField
             className={classes.textField}
-            placeholder="Name"
+            placeholder="Tên"
             variant="outlined"
             size="small"
             value={name}
@@ -200,7 +200,7 @@ function CommentForm({ activeComment }) {
                 name="checkedG"
               />
             }
-            label="Save my name, email, and website in this browser for the next time I comment."
+            label="Lưu tên, email của tôi trong trang web này cho lần bình luận tiếp theo."
           />
         </div>
         <div>
@@ -208,7 +208,7 @@ function CommentForm({ activeComment }) {
             className={classes.submitBtn}
             onClick={handleSubmit}
           >
-            Submit
+            Cập nhật
           </Button>
         </div>
       </div>

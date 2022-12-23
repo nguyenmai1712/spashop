@@ -107,7 +107,7 @@ function Menu({ location }) {
             <IconButton className={classes.callButton}>
               <PhoneInTalkIcon style={{ color: 'white' }} />
             </IconButton>
-            <Typography className={classes.phoneNumber}>+8435 2642 497</Typography>
+            <Typography className={classes.phoneNumber}>+8437 393 2917</Typography>
           </a>
         </Grid>
       </Grid>

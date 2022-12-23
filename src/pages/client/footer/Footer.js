@@ -151,7 +151,7 @@ function Footer({ location, popularData }) {
                     Chi tiết liên hệ
                   </Typography>
                   <Typography className={classes.textFooter}>
-                    Địa chỉ: 319 Trân Đại Nghĩa, Hai Bà Trưng, Hà Nội
+                    Địa chỉ: 319 Trần Đại Nghĩa, Hai Bà Trưng, Hà Nội
                   </Typography>
                   <Typography className={classes.textFooter}>Contact : 304-559-3023</Typography>
                   <Typography className={classes.textFooter}>Số điện thoại: 037 393 2917</Typography>
@@ -163,7 +163,7 @@ function Footer({ location, popularData }) {
                   <Typography className={classes.subTitle}>
                     Cửa hàng offline
                   </Typography>
-                  <Typography className={classes.textFooter}>09 - Hùng Vương - Quy Nhơn</Typography>
+                  <Typography className={classes.textFooter}>09 - Hùng Vương - Hà Nội</Typography>
                   <Typography className={classes.textFooter}>07 - Xuân Diệu - Đà Nẵng</Typography>
                   <Typography className={classes.textFooter}>Đường số 6, Cityland Park Hills, P.10, Q. Gò Vấp</Typography>
                   <Typography className={classes.textFooter}>245 Quang Trung - Nha trang</Typography>

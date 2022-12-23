@@ -26,7 +26,7 @@ function RecommendCard({ name, data , collapse}) {
 
   React.useEffect(() => {
     const container = document.querySelector(`.${name}`);
-    setContainerWidth(container.offsetWidth);
+    setContainerWidth(container && container.offsetWidth);
   },[name, windowsWidth])
   
   return (

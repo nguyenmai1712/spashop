@@ -334,7 +334,7 @@ function Header() {
               xs={4}
               className={classes.optionItem}
             >
-              <Typography className={classes.mainOptionName}> Sign In/Sign Up</Typography>
+              <Typography className={classes.mainOptionName}> Đăng Nhập/Đăng Kí</Typography>
               <Typography className={classes.subOptionName} onClick={() => handleNavigate("/login")}>
                 My Account
               </Typography>

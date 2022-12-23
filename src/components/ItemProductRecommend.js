@@ -1,6 +1,7 @@
 import { Avatar, Grid, makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import ToCurrency from 'Utils/FormatNumber';
 
 const useStyles = makeStyles(() => ({
   itemRecommendcontainer: {
@@ -77,12 +78,12 @@ function ItemProductRecommend({ item, containerWidth }) {
           {
             item.oldPrice && (
               <Grid item xs={12} sm={12} md={12} lg={item.oldPrice ? 6 : 1}>
-                <Typography className={classes.oldPrice}>${item.oldPrice}</Typography>
+                <Typography className={classes.oldPrice}>{ToCurrency(item.oldPrice)}đ</Typography>
               </Grid>
             )
           }
           <Grid item xs={12} sm={12} md={12} lg={item.oldPrice ? 6 : 11}>
-            <Typography className={classes.newPrice}>${item.newPrice}</Typography>
+            <Typography className={classes.newPrice}>{ToCurrency(item.newPrice)}đ</Typography>
           </Grid>
         </Grid>
       </div>

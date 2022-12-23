@@ -57,13 +57,13 @@ function ProductDetail({ productIdCart }) {
 
       <div className={classes.categories}>
         <Typography className={classes.textTags}>
-          Categories:&nbsp;&nbsp;
+          Phân loại:&nbsp;&nbsp;
           <span
             style={{
               color: '#fb6f92',
             }}
           >
-            Accessories, Audio, Home Appliances, New Arrival, On Sale, Speaker
+            Giảm giá, Dưỡng ẩm, Da khô, Da thường, Chăm sóc da
           </span>
         </Typography>
         <Typography className={classes.textTags}>
@@ -73,7 +73,7 @@ function ProductDetail({ productIdCart }) {
               color: '#fb6f92',
             }}
           >
-            music, sound, speaker
+            massage, tinh dầu, da
           </span>
         </Typography>
       </div>

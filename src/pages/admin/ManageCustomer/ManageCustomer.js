@@ -13,14 +13,14 @@ const DATA_TABLE_TYPE = "CUSTOMER";
 const columns = [
     { 
       id: 'id',
-      label: 'Mã NV',
+      label: 'Mã KH',
       minWidth: 100,
       align: "center",
     },
   
     {
       id: 'fullname',
-      label: 'Tên nhân viên',
+      label: 'Tên Khách hàng',
       minWidth: 150,
       align: 'left',
     },
@@ -275,7 +275,7 @@ function ManageCustomer(props) {
                                 className={classes.inputfield}
                                 id="standard-textarea"
                                 label="Tìm kiếm"
-                                placeholder="Nhập tên nhân viên"
+                                placeholder="Nhập tên khách hàng"
                                 variant="outlined"
                                 size='small'
                                 InputProps={{

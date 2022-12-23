@@ -10,6 +10,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { addProductCart, notifyCart } from 'redux/cart/actions';
+import ToCurrency from 'Utils/FormatNumber';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -323,11 +324,11 @@ function ProductCard({ data, horizontal, added }) {
         <div className={classes.horizontalPriceContainer}>
           { data.oldPrice && 
             <>
-              <Typography className={classes.oldPrice}>{`$ ${data.oldPrice}`}</Typography>
+              <Typography className={classes.oldPrice}>{`${ToCurrency(data.oldPrice)}đ`}</Typography>
               <Typography>  &nbsp; -   &nbsp; </Typography>
             </>
           }
-          <Typography className={classes.newPrice}>{`$ ${data.newPrice}`}</Typography>
+          <Typography className={classes.newPrice}>{`${ToCurrency(data.newPrice)}đ`}</Typography>
         </div>
         <div>
           <Typography className={classes.description}>
@@ -362,11 +363,11 @@ function ProductCard({ data, horizontal, added }) {
       <div className={classes.priceContainer}>
           { data.oldPrice && 
             <>
-              <Typography className={classes.oldPrice}>{`$ ${data.oldPrice}`}</Typography>
+              <Typography className={classes.oldPrice}>{`${ToCurrency(data.oldPrice)}đ`}</Typography>
               <Typography>  &nbsp; -   &nbsp; </Typography>
             </>
           }
-        <Typography className={classes.newPrice}>{`$ ${data.newPrice}`}</Typography>
+        <Typography className={classes.newPrice}>{`${ToCurrency(data.newPrice)}đ`}</Typography>
       </div>
       <div className={clsx(classes.addToCart, {
         [classes.cartIn]: isHover,

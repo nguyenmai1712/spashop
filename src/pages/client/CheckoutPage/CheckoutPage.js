@@ -234,8 +234,8 @@ function CheckoutPage(props) {
                     </div>
                     <div className={classes.addressContent}>
                         <div>
-                            <span className={classes.phoneNumber}> Mai Mai (+84 0978 564 321)</span>
-                            <span className={classes.street}> 9 Trần Khánh Dư, Phường Nguyễn Văn Cừ, Thành Phố Quy Nhơn, Bình Định </span>
+                            <span className={classes.phoneNumber}> Mai Mai (+84 37 393 2917)</span>
+                            <span className={classes.street}> 9 Trần Đại Nghĩa, Phường Hai Bà Trưng, Thành Phố Hà Nội </span>
                         </div>
                         <Button variant="contained" color="secondary"> Thay đổi </Button>
                     </div>
@@ -256,7 +256,7 @@ function CheckoutPage(props) {
                                         <td>
                                             <CheckoutCard image={item.mainImage} title={item.name}/>
                                         </td>
-                                        <td>{item.color. join(", ")}</td>
+                                        <td>{item.color.join(",")}</td>
                                         <td>{ToCurrency(item.newPrice)+"đ"}</td>
                                         <td align='center'>{item.quantity}</td>
                                         <td>{ToCurrency(item.quantity * item.newPrice)+"đ"}</td>

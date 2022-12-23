@@ -68,7 +68,7 @@ function Body({ children, location, ...props }) {
             <ListComponent name="Danh mục" data={props.categoryData} location={location} />
           </div>
           <div className={classes.item}>
-            <PopularCard data={props.popularData} name={"Popular"} />
+            <PopularCard data={props.popularData} name={"Bán Chạy"} />
           </div>
           <div className={classes.item}>
             <TagCloud data={props.tagCloudData} />

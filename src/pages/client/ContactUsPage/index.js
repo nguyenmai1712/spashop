@@ -207,7 +207,7 @@ function ContactUs() {
       <div className={classes.container}>
         <div className={classes.header}>
           <Typography className={classes.title}> Liên hệ </Typography>
-          <Typography className={classes.subTitle}> Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, </Typography>
+          <Typography className={classes.subTitle}> Sứ mệnh của kiến trúc sư là điêu khắc lên những kì quan, còn sứ mệnh của nghề spa thẩm mỹ là điêu khắc lên những gương mặt hoàn hảo </Typography>
         </div>
         <Grid container className={classes.contact}>
           <Grid
@@ -228,7 +228,7 @@ function ContactUs() {
                 </div>
                 <div className={classes.contactInfo}>
                   <Typography className={classes.titleCard}> Địa chỉ </Typography>
-                  <Typography className={classes.subTitleCard}> Địa chỉ: 3548 Columbia Mine Road, Wheeling, West Virginia, 26003 </Typography>
+                  <Typography className={classes.subTitleCard}> Địa chỉ: 319 Trần Đại Nghĩa, Hai Bà Trưng, Hà Nội </Typography>
                 </div>
               </div>
             </Grid>
@@ -242,7 +242,7 @@ function ContactUs() {
                 </div>
                 <div className={classes.contactInfo}>
                   <Typography className={classes.titleCard}>Liên hệ</Typography>
-                  <Typography className={classes.subTitleCard}> 0352642497 </Typography>
+                  <Typography className={classes.subTitleCard}> 037 393 2917 </Typography>
                 </div>
               </div>
             </Grid>
@@ -256,7 +256,7 @@ function ContactUs() {
                 </div>
                 <div className={classes.contactInfo}>
                   <Typography className={classes.titleCard}> Email </Typography>
-                  <Typography className={classes.subTitleCard}> Email: email@mail.com</Typography>
+                  <Typography className={classes.subTitleCard}> Email: smilespa@mail.com</Typography>
                 </div>
               </div>
             </Grid>
@@ -270,10 +270,10 @@ function ContactUs() {
             className={classes.formContainer}
           >
             <div className={classes.inputContainer}>
-              <Typography className={classes.label}> Name* :</Typography>
+              <Typography className={classes.label}> Tên* :</Typography>
               <TextField
                 className={classes.textField}
-                placeholder="Type your name"
+                placeholder="Nhập tên của bạn"
                 variant="outlined"
                 size="small"
               />
@@ -283,29 +283,29 @@ function ContactUs() {
               <Typography className={classes.label}> Email* :</Typography>
               <TextField
                 className={classes.textField}
-                placeholder="Type your email"
+                placeholder="Nhập email của bạn"
                 variant="outlined"
                 size="small"
               />
             </div>
 
             <div className={classes.inputContainer}>
-              <Typography className={classes.label}> Phone No* :</Typography>
+              <Typography className={classes.label}> Số điện thoại* :</Typography>
               <TextField
                 className={classes.textField}
-                placeholder="Type your phone number"
+                placeholder="Nhập số điện thoại"
                 variant="outlined"
                 size="small"
               />
             </div>
 
             <div className={classes.inputContainer}>
-              <Typography className={classes.label}> Your review* :</Typography>
+              <Typography className={classes.label}> Đánh giá của bạn* :</Typography>
               <TextField
                 className={classes.textField}
                 multiline
                 minRows={3}
-                placeholder="Type your review here..."
+                placeholder="Viết đánh giá của bạn tại đây..."
                 variant="outlined"
               />
             </div>
